@@ -1,4 +1,4 @@
-public class Buku09 {
+public class Buku09{
     String judul, pengarang;
     int halaman, stok, harga;
 
@@ -10,7 +10,9 @@ public class Buku09 {
         System.out.println("Harga: Rp " + harga);
     }
     void terjual(int jml) {
-        stok -= jml;
+        if (stok > 0) {
+            stok -= jml;
+        } 
     }
 
     void restock(int jml) {
@@ -21,4 +23,3 @@ public class Buku09 {
         harga = hrg;
     }
 }
-
