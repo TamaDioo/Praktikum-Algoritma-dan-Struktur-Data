@@ -1,4 +1,4 @@
-class Buku {
+public class Buku09 {
     String judul, pengarang;
     int halaman, stok, harga;
 
