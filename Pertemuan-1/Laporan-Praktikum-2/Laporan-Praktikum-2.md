@@ -200,7 +200,7 @@ public class BukuMain09 {
 ```
 
 <p>Screenshot push dan commit</p>
-<img src="Screenshot Code/">
+<img src="Screenshot Code/perc3push.png">
 
 ### 2.3.2 Verifikasi Hasil Percobaan
 <img src="Screenshot Code/perc3output.png">
@@ -208,13 +208,41 @@ public class BukuMain09 {
 ### 2.3.3 Pertanyaan
 1. Pada class Buku di Percobaan 3, tunjukkan baris kode program yang digunakan untuk
 mendeklarasikan konstruktor berparameter!
+```java
+public Buku09(String jud, String pg, int hal, int stok, int har) {
+        judul = jud;
+        pengarang = pg;
+        halaman = hal;
+        this.stok = stok;
+        harga = har;
+    }
+```
+<p>Kode program di atas merupakan kode yang digunakan untuk mendeklarasikan konstruktor berparameter. Di dalam tanda kurung diberikan parameter dengan didahului tipe datanya.<p>
+
 2. Perhatikan class BukuMain. Apa sebenarnya yang dilakukan pada baris program berikut?
+```java
+Buku09 bk2 = new Buku09("Self Reward", "Maheera Ayesha", 160, 29, 59000);
+```
+<p>Kode program di atas merupakan proses instansiasi yang menghasilkan objek <strong>bk2<strong> dengan mengisikan parameter dalam tanda kurung. Konstruktor yang digunakan adalah konstruktor berparameter sehingga perlu menambahkan nilai parameter saat menginstansiasi objek. Parameter yang dimasukkan harus urut sesuai dengan deklarasi konstruktor pada class Buku.<p>
+
 3. Hapus konstruktor default pada class Buku, kemudian compile dan run program. Bagaimana
 hasilnya? Jelaskan mengapa hasilnya demikian!
+<img src="Screenshot Code/perc3no3.png">
+<p>Program akan error, hal ini terjadi karena konstruktor defaultnya dihapus sehingga objek bk1 tidak dapat diinstansiasi pada class BukuMain. jika ingin kodenya berjalan maka harus menambah kembali konstruktor default atau sekalian menghapus semua konstruktor (konstruktor berparameter juga harus dihapus) dan tidak mengisikan nilai parameter dalam tanda kurung saat menginstansiasi objek.<p>
+
 4. Setelah melakukan instansiasi object, apakah method di dalam class Buku harus diakses
 secara berurutan? Jelaskan alasannya!
-5. Buat object baru dengan nama buku <NamaMahasiswa> menggunakan konstruktor
+<p>Tidak, karena method bersifat fleksibel. Artinya method dapat dipanggil kapan saja dan tidak harus berurutan.<p>
+
+5. Buat object baru dengan nama buku(Namamahasiswa) menggunakan konstruktor
 berparameter dari class Buku!
+```java
+Buku09 bukuDio = new Buku09("Sukses Dunia Akhirat", "Dio Andika", 399, 42, 56000);
+bukuDio.terjual(19);
+bukuDio.restock(10);
+bukuDio.tampilInformasi();
+```
+
 6. Commit dan push kode program ke Github
 
 ### Latihan Praktikum
