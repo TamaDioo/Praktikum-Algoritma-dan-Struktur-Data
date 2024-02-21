@@ -47,7 +47,7 @@ Behavior merepresentasikan tindakan atau fungsi yang dapat dilakukan oleh class 
 
 2. Perhatikan class Buku pada Praktikum 1 tersebut, ada berapa atribut yang dimiliki oleh class
 Buku? Sebutkan apa saja atributnya!
-<p>Ada lima atribut pada class Buku, yang terdiri dari judul, pengarang, halaman, stok, dan harga.</p>
+<p>Ada lima atribut pada class Buku, yang terdiri dari: judul, pengarang, halaman, stok, dan harga.</p>
 
 3. Ada berapa method yang dimiliki oleh class tersebut? Sebutkan apa saja methodnya!
 <p>Ada empat method yang dimiliki class tersebut, yang terdiri dari method tampilInformasi(), terjual(jml: int), restock(n: int), dan gantiHarga()hrg: int</p>
@@ -69,7 +69,7 @@ sehingga proses pengurangan hanya dapat dilakukan jika stok masih ada (lebih bes
 
 ## Percobaan 2
 
-### 2.2 Percobaan 2: Instansiasi Object, serta Mengakses Atribut dan Method
+### 2.2.1 Langkah-langkah Percobaan
 ```java
 public class BukuMain09 {
     public static void main(String[] args) {
@@ -87,8 +87,136 @@ public class BukuMain09 {
     }
 }
 ```
-### 2.2.1 Langkah-langkah Percobaan
+<p>Screenshot push dan commit</p>
+<img src="Screenshot Code/Perc2src.png">
 
 ### 2.2.2 Verifikasi Hasil Percobaan
+<img src="Screenshot Code/perc2output.png">  
 
 ### 2.2.3 Pertanyaan
+1. Pada class BukuMain, tunjukkan baris kode program yang digunakan untuk proses instansiasi!
+Apa nama object yang dihasilkan?
+```java 
+    Buku09 bk1 = new Buku09();
+```
+<p>Kode program di atas, digunakan untuk proses instansiasi dan <strong>bk1</strong> adalah nama objek yang dihasilkan.</p>
+
+2. Bagaimana cara mengakses atribut dan method dari suatu objek?
+<p>Untuk mengakses atribut dan method dari suatu objek dapat menggunakan tanda titik atau notasi dot. Untuk mengakses atribut dari suatu objek, nama objek diketik terlebih dahulu lalu diikuti oleh operator titik (".") dan kemudian diikuti dengan nama atribut yang ingin diakses. Contoh:</p>
+
+```java
+        bk1.judul = "Today Ends Tomorrow Comes";
+        bk1.pengarang = "Denanda pratiwi";
+        bk1.halaman = 198;
+        bk1.stok = 13;
+        bk1.harga = 71000;
+```
+
+<p>Untuk mengakses method dari suatu objek, nama objek diketik terlebih dahulu diikuti oleh operator titik (".") dan kemudian diikuti dengan nama metode yang ingin diakses, lalu tanda kurung (). Jika method memiliki parameter, maka nilai parameter harus dimasukkan dalam tanda kurung. Contoh:</p>
+
+```java
+bk1.tampilInformasi();
+bk1.terjual(5);
+bk1.gantiHarga(60000);
+bk1.tampilInformasi();
+```
+
+3. Mengapa hasil output pemanggilan method tampilInformasi() pertama dan kedua berbeda?
+<p>Karena objek bk1 telah diproses oleh method terjual() dan gantiHarga() sehingga atribut dari objek bk1 mengalami perubahan. Hal ini terjadi Karena posisi method method terjual() dan gantiHarga() berada diantara method tampilInformasi() pertama dan kedua. Mengapa demikian, karena kode pada Java dieksekusi dari atas ke bawah dan dari kiri ke kanan.</p>
+
+```java
+    bk1.tampilInformasi();
+    bk1.terjual(5);
+    bk1.gantiHarga(60000);
+    bk1.tampilInformasi();
+```
+
+## Percobaan 3
+
+### 2.3.1 Langkah-langkah Percobaan
+<p>Class Buku<p>
+
+```java
+public class Buku09{
+    String judul, pengarang;
+    int halaman, stok, harga;
+
+    void tampilInformasi() {
+        System.out.println("Judul: " + judul);
+        System.out.println("Pengarang: " + pengarang);
+        System.out.println("Jumlah halaman: " + halaman);
+        System.out.println("Sisa Stock: " + stok);
+        System.out.println("Harga: Rp " + harga);
+    }
+    void terjual(int jml) {
+        if (stok > 0) {
+            stok -= jml;
+        } 
+    }
+
+    void restock(int jml) {
+        stok += jml;
+    }
+
+    void gantiHarga(int hrg) {
+        harga = hrg;
+    }
+
+    public Buku09() {
+
+    }
+
+    public Buku09(String jud, String pg, int hal, int stok, int har) {
+        judul = jud;
+        pengarang = pg;
+        halaman = hal;
+        this.stok = stok;
+        harga = har;
+    }
+}
+```
+<p>Class Buku Main<p>
+
+```java
+public class BukuMain09 {
+    public static void main(String[] args) {
+        Buku09 bk1 = new Buku09();
+        bk1.judul = "Today Ends Tomorrow Comes";
+        bk1.pengarang = "Denanda pratiwi";
+        bk1.halaman = 198;
+        bk1.stok = 13;
+        bk1.harga = 71000;
+
+        bk1.tampilInformasi();
+        bk1.terjual(5);
+        bk1.gantiHarga(60000);
+        bk1.tampilInformasi();
+
+        Buku09 bk2 = new Buku09("Self Reward", "Maheera Ayesha", 160, 29, 59000);
+        bk2.terjual(11);
+        bk2.tampilInformasi();
+    }
+}
+```
+
+<p>Screenshot push dan commit</p>
+<img src="Screenshot Code/">
+
+### 2.3.2 Verifikasi Hasil Percobaan
+<img src="Screenshot Code/perc3output.png">
+
+### 2.3.3 Pertanyaan
+1. Pada class Buku di Percobaan 3, tunjukkan baris kode program yang digunakan untuk
+mendeklarasikan konstruktor berparameter!
+2. Perhatikan class BukuMain. Apa sebenarnya yang dilakukan pada baris program berikut?
+3. Hapus konstruktor default pada class Buku, kemudian compile dan run program. Bagaimana
+hasilnya? Jelaskan mengapa hasilnya demikian!
+4. Setelah melakukan instansiasi object, apakah method di dalam class Buku harus diakses
+secara berurutan? Jelaskan alasannya!
+5. Buat object baru dengan nama buku <NamaMahasiswa> menggunakan konstruktor
+berparameter dari class Buku!
+6. Commit dan push kode program ke Github
+
+### Latihan Praktikum
+
+
