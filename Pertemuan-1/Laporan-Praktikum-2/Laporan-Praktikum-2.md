@@ -40,10 +40,10 @@
 ### 2.1.3 Pertanyaan
 1. Sebutkan dua karakteristik class atau object!<br>
     <p>Atribut (State)
-Atribut merepresentasikan data atau informasi yang dimiliki oleh class atau object. Ibarat sebuah mobil, atributnya bisa berupa merk, warna, tahun produksi, dan nomor mesin. Atribut dapat berupa nilai statis (seperti merk) atau nilai dinamis (seperti kecepatan saat mobil bergerak).</p>
+Atribut merepresentasikan data atau informasi yang dimiliki oleh class atau object. Jika diibaratkan sebuah motor, atributnya bisa berupa merk, warna, tahun produksi, dan spesifikasi mesin. Atribut dapat berupa nilai statis (seperti merk) atau nilai dinamis (seperti kecepatan saat motor bergerak).</p>
     <p>Behavior (Tingkah Laku)
-Behavior merepresentasikan tindakan atau fungsi yang dapat dilakukan oleh class atau object. Ibarat mobil, behaviornya bisa berupa jalan, berhenti, belok, dan klakson. Behavior didefinisikan sebagai method atau fungsi yang dapat dipanggil untuk memanipulasi atribut atau menghasilkan suatu output.</p>
-    <p> Class adalah rancangan atau blueprint dari sebuah object, sedangkan object adalah instance atau hasil konkret dari suatu class. Jika objek diibaratkan sebagai rumah, maka class akan memberikan gambaran tentang struktur, desain, dan segala sesuatu yang diperlukan untuk membangun rumah tersebut.</p>
+Behavior merepresentasikan tindakan atau fungsi yang dapat dilakukan oleh class atau object. Ibarat motor, behaviornya bisa berupa jalan, berhenti, belok, dan klakson. Behavior didefinisikan sebagai method atau fungsi yang dapat dipanggil untuk memanipulasi atribut atau menghasilkan suatu output.</p>
+    <p> Class adalah rancangan atau desain dari sebuah object, sedangkan object adalah hasil nyata dari suatu class. Jika objek diibaratkan sebagai rumah, maka class akan memberikan gambaran tentang rancangan atau desain untuk membangun rumah tersebut.</p>
 
 2. Perhatikan class Buku pada Praktikum 1 tersebut, ada berapa atribut yang dimiliki oleh class
 Buku? Sebutkan apa saja atributnya!
@@ -63,13 +63,30 @@ sehingga proses pengurangan hanya dapat dilakukan jika stok masih ada (lebih bes
 ```
 5. Menurut Anda, mengapa method restock() mempunyai satu parameter berupa bilangan int?
 <p>Karena method restock() digunakan untuk menambah stok buku sehingga membutuhkan parameter berupa bilangan bulat yang menunjukkan berapa buku yang ditambah ke dalam stok.</p>
-
 6. Commit dan push kode program ke Github
+<img src="Screenshot Code/ModifPerc1.png">
+
 
 ## Percobaan 2
 
 ### 2.2 Percobaan 2: Instansiasi Object, serta Mengakses Atribut dan Method
+```java
+public class BukuMain09 {
+    public static void main(String[] args) {
+        Buku09 bk1 = new Buku09();
+        bk1.judul = "Today Ends Tomorrow Comes";
+        bk1.pengarang = "Denanda pratiwi";
+        bk1.halaman = 198;
+        bk1.stok = 13;
+        bk1.harga = 71000;
 
+        bk1.tampilInformasi();
+        bk1.terjual(5);
+        bk1.gantiHarga(60000);
+        bk1.tampilInformasi();
+    }
+}
+```
 ### 2.2.1 Langkah-langkah Percobaan
 
 ### 2.2.2 Verifikasi Hasil Percobaan
