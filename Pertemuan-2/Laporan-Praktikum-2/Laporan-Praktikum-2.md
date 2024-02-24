@@ -307,7 +307,7 @@ System.out.println("Diskon yang didapat       : Rp " + bukuDio.hitungDiskon());
 System.out.println("Total Harga bayar         : Rp " + bukuDio.hitungHargaBayar());
 ```
 
-Output Program
+Output Program<br>
 ![alt text](image-1.png)
 
 2. Buat program berdasarkan class diagram berikut ini!
