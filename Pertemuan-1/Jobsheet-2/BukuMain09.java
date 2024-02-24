@@ -16,9 +16,12 @@ public class BukuMain09 {
         bk2.terjual(11);
         bk2.tampilInformasi();
 
-        Buku09 bukuDio = new Buku09("Sukses Dunia Akhirat", "Dio Andika", 399, 42, 56000);
-        bukuDio.terjual(19);
-        bukuDio.restock(10);
+        Buku09 bukuDio = new Buku09("Sukses Dunia Akhirat", "Dio Andika", 399, 20, 56000);
+        bukuDio.terjual(10);
+        bukuDio.restock(5);
         bukuDio.tampilInformasi();
+        System.out.println("Harga total               : Rp " + bukuDio.hitungHargaTotal());
+        System.out.println("Diskon yang didapat       : Rp " + bukuDio.hitungDiskon());
+        System.out.println("Total Harga bayar         : Rp " + bukuDio.hitungHargaBayar());
     }
 }
