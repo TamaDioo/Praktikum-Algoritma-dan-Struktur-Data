@@ -275,6 +275,7 @@ diskon <br><br>
 Class diagram Buku setelah penambahan ketiga method tersebut adalah sebagai berikut.
 <img src="Screenshot Code/Classdiagram1.png">
 
+
 Kode program penambahan method hitungHargaTotal(), hitungDiskon(), dan hitungHargaBayar():
 ```java
 int hitungHargaTotal() {
@@ -296,6 +297,7 @@ int hitungHargaBayar() {
     return hitungHargaTotal()-hitungDiskon();
 }
 ```
+
 Kode program pemanggilan method pada objek bukuDio dalam class main:
 ```java
 Buku09 bukuDio = new Buku09("Sukses Dunia Akhirat", "Dio Andika", 399, 20, 56000);
@@ -326,3 +328,94 @@ berkurang 1), sedangkan moveDown() untuk bergerak ke bawah (koordinat y akan ber
 nilai height. Jika koordinat y < 0 atau y > height maka panggil method detectCollision()
 * Method detectCollision() akan mencetak pesan “Game Over” apabila dragon menyentuh
 ujung area permainan.
+
+Kode program class Dragon:
+```java
+public class Dragon09 {
+    int x, y, width, height;
+    boolean gameOver;
+
+    public Dragon09(int x, int y, int width, int height) {
+        this.x = x;
+        this.y = y;
+        this.width = width;
+        this.height = height;
+    }
+
+    void moveLeft() {
+        x--;
+        if (x < 0 || x > width) {
+            detectCollision(x, y);
+        } else {
+            if (gameOver != true) {
+                position();
+            } 
+        }
+    }
+
+    void moveRight() {
+        x++;
+        if (x < 0 || x > width) {
+            detectCollision(x, y);
+        } else {
+            if (gameOver != true) {
+                position();
+            } 
+        } 
+    }
+
+    void moveUp() {
+        y--;
+        if (y < 0 || y > height) {
+            detectCollision(x, y);
+        } else {
+            if (gameOver != true) {
+                position();
+            }      
+        }
+    }
+
+    void moveDown() {
+        y++;
+        if (y < 0 || y > height) {
+            detectCollision(x, y);
+        } else {
+            if (gameOver != true) {
+                position();
+            }         
+        }
+    }
+
+    void detectCollision(int x, int y) {
+        System.out.println("Game Over!");
+        gameOver = true;
+    }
+
+    void position() {
+        System.out.println("Position : x = " + x +", y = " + y); 
+    }
+}
+```
+
+Kode program class DragonMain:
+```java
+public class DragonMain09 {
+    public static void main(String[] args) {
+        Dragon09 dragon1 = new Dragon09(6, 12, 12, 15);
+        dragon1.moveLeft();
+        dragon1.moveLeft();
+        dragon1.moveDown();
+        dragon1.moveUp();
+        dragon1.moveDown();
+        dragon1.moveDown();
+        dragon1.moveDown();
+        dragon1.moveRight();
+        dragon1.moveDown(); 
+        dragon1.moveRight(); //method tidak tereksekusi karena sudah game over
+        dragon1.moveUp(); //method tidak tereksekusi karena sudah game over
+    }
+}
+```
+
+Output program:<br>
+<img src="Screenshot Code/Lat2output.png">
