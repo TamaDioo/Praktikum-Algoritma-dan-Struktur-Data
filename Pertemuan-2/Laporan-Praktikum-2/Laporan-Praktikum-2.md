@@ -51,16 +51,16 @@
 Jawab:<br>
     1. Atribut<br>
 Atribut merepresentasikan data atau informasi yang dimiliki oleh class atau object. Jika diibaratkan sebuah motor, atributnya bisa berupa merk, warna, tahun produksi, dan spesifikasi mesin. Atribut dapat berupa nilai statis (seperti merk) atau nilai dinamis (seperti kecepatan saat motor bergerak).<br>
-    2. Tingkah Laku<br>
-Tingkah laku merepresentasikan tindakan atau fungsi yang dapat dilakukan oleh class atau object. Ibarat motor, behaviornya bisa berupa jalan, berhenti, belok, dan klakson. Behavior didefinisikan sebagai method atau fungsi yang dapat dipanggil untuk memanipulasi atribut atau menghasilkan suatu output.<br>
+    2. Tindakan<br>
+Tindakan merepresentasikan tingkah laku atau perbuatan yang dapat dilakukan oleh class atau object. Ibarat motor, tindakannya bisa berupa jalan, berhenti, belok, dan klakson. Tindakan didefinisikan sebagai method atau fungsi yang dapat dipanggil untuk memanipulasi atribut atau menghasilkan suatu output.<br>
     Class adalah rancangan atau desain dari sebuah object, sedangkan object adalah hasil nyata dari suatu class. Jika objek diibaratkan sebagai rumah, maka class akan memberikan gambaran tentang rancangan atau desain untuk membangun rumah tersebut.
 
 2. Perhatikan class Buku pada Praktikum 1 tersebut, ada berapa atribut yang dimiliki oleh class
 Buku? Sebutkan apa saja atributnya!<br>
-Ada lima atribut pada class Buku, yang terdiri dari: judul, pengarang, halaman, stok, dan harga.
+Jawab: Ada lima atribut pada class Buku, yang terdiri dari: judul, pengarang, halaman, stok, dan harga.
 
 3. Ada berapa method yang dimiliki oleh class tersebut? Sebutkan apa saja methodnya!<br>
-Ada empat method yang dimiliki class tersebut, yang terdiri dari:
+Jawab: Ada empat method yang dimiliki class tersebut, yang terdiri dari:
     - tampilInformasi() 
     - terjual(jml: int)
     - restock(n: int)
@@ -75,7 +75,8 @@ sehingga proses pengurangan hanya dapat dilakukan jika stok masih ada (lebih bes
         }
     }
 ```
-5. Menurut Anda, mengapa method restock() mempunyai satu parameter berupa bilangan int?
+5. Menurut Anda, mengapa method restock() mempunyai satu parameter berupa bilangan int?<br>
+Jawab:
 Karena method restock() digunakan untuk menambah stok buku sehingga membutuhkan parameter berupa bilangan bulat yang menunjukkan berapa buku yang ditambah ke dalam stok.
 
 6. Commit dan push kode program ke Github
@@ -114,7 +115,7 @@ Apa nama object yang dihasilkan?
 ```java 
     Buku09 bk1 = new Buku09();
 ```
-Kode program di atas digunakan untuk proses instansiasi dan <strong>bk1</strong> adalah nama objek yang dihasilkan.
+Jawab: Kode program di atas digunakan untuk proses instansiasi dan <strong>bk1</strong> adalah nama objek yang dihasilkan.
 
 2. Bagaimana cara mengakses atribut dan method dari suatu objek?<br>
 Untuk mengakses atribut dan method dari suatu objek dapat menggunakan tanda titik atau notasi dot. Untuk mengakses atribut dari suatu objek, nama objek diketik terlebih dahulu lalu diikuti oleh operator titik (".") dan kemudian diikuti dengan nama atribut yang ingin diakses. Contoh:
@@ -127,7 +128,7 @@ Untuk mengakses atribut dan method dari suatu objek dapat menggunakan tanda titi
         bk1.harga = 71000;
 ```
 
-Untuk mengakses method dari suatu objek, nama objek diketik terlebih dahulu diikuti oleh operator titik (".") dan kemudian diikuti dengan nama metode yang ingin diakses, lalu tanda kurung (). Jika method memiliki parameter, maka nilai parameter harus dimasukkan dalam tanda kurung. Contoh:
+Jawab: Untuk mengakses method dari suatu objek, nama objek diketik terlebih dahulu diikuti oleh operator titik (".") dan kemudian diikuti dengan nama method yang ingin diakses, lalu tanda kurung (). Jika method memiliki parameter, maka nilai parameter harus dimasukkan dalam tanda kurung. Contoh:
 
 ```java
 bk1.tampilInformasi();
@@ -137,7 +138,7 @@ bk1.tampilInformasi();
 ```
 
 3. Mengapa hasil output pemanggilan method tampilInformasi() pertama dan kedua berbeda?<br>
-Karena objek bk1 telah diproses oleh method terjual() dan gantiHarga() sehingga atribut dari objek bk1 mengalami perubahan. Hal ini terjadi Karena posisi method method terjual() dan gantiHarga() berada diantara method tampilInformasi() pertama dan kedua. Mengapa demikian, karena kode pada Java dieksekusi dari atas ke bawah dan dari kiri ke kanan.
+Jawab: Karena objek bk1 telah diproses oleh method terjual() dan gantiHarga() sehingga atribut dari objek bk1 mengalami perubahan. Hal ini terjadi Karena posisi method method terjual() dan gantiHarga() berada diantara method tampilInformasi() pertama dan kedua. Mengapa demikian, karena kode pada Java dieksekusi dari atas ke bawah dan dari kiri ke kanan.
 ```java
     bk1.tampilInformasi();
     bk1.terjual(5);
@@ -232,22 +233,22 @@ public Buku09(String jud, String pg, int hal, int stok, int har) {
         harga = har;
     }
 ``` 
-Kode program di atas merupakan kode yang digunakan untuk mendeklarasikan konstruktor berparameter. Di dalam tanda kurung diberikan parameter dengan didahului tipe datanya.
+Jawab: Kode program di atas merupakan kode yang digunakan untuk mendeklarasikan konstruktor berparameter. Di dalam tanda kurung diberikan parameter dengan didahului tipe datanya.
 
 2. Perhatikan class BukuMain. Apa sebenarnya yang dilakukan pada baris program berikut?
 ```java
 Buku09 bk2 = new Buku09("Self Reward", "Maheera Ayesha", 160, 29, 59000);
 ``` 
-Kode program di atas merupakan proses instansiasi yang menghasilkan objek <strong>bk2<strong> dengan mengisikan parameter dalam tanda kurung. Konstruktor yang digunakan adalah konstruktor berparameter sehingga perlu menambahkan nilai parameter saat menginstansiasi objek. Parameter yang dimasukkan harus urut sesuai dengan deklarasi konstruktor pada class Buku.
+Jawab: Kode program di atas merupakan proses instansiasi yang menghasilkan objek <strong>bk2<strong> dengan mengisikan parameter dalam tanda kurung. Konstruktor yang digunakan adalah konstruktor berparameter sehingga perlu menambahkan nilai parameter saat menginstansiasi objek. Parameter yang dimasukkan harus urut sesuai dengan deklarasi konstruktor pada class Buku.
 
 3. Hapus konstruktor default pada class Buku, kemudian compile dan run program. Bagaimana
 hasilnya? Jelaskan mengapa hasilnya demikian!
 <img src="Screenshot Code/perc3no3.png">
-Program akan error, hal ini terjadi karena konstruktor defaultnya dihapus sehingga objek bk1 tidak dapat diinstansiasi pada class BukuMain. jika ingin kodenya berjalan maka harus menambah kembali konstruktor default atau sekalian menghapus semua konstruktor (konstruktor berparameter juga harus dihapus) dan tidak mengisikan nilai parameter dalam tanda kurung saat menginstansiasi objek.
+Jawab: Program akan error, hal ini terjadi karena konstruktor defaultnya dihapus sehingga objek bk1 tidak dapat diinstansiasi pada class BukuMain. jika ingin kodenya berjalan maka harus menambah kembali konstruktor default atau sekalian menghapus semua konstruktor (konstruktor berparameter juga harus dihapus) dan tidak mengisikan nilai parameter dalam tanda kurung saat menginstansiasi objek.
 
 4. Setelah melakukan instansiasi object, apakah method di dalam class Buku harus diakses
 secara berurutan? Jelaskan alasannya!<br>
-Tidak, karena method bersifat fleksibel. Artinya method dapat dipanggil kapan saja dan tidak harus berurutan.
+Jawab: Tidak, karena method bersifat fleksibel. Artinya method dapat dipanggil kapan saja dan tidak harus berurutan.
 
 5. Buat object baru dengan nama buku(Namamahasiswa) menggunakan konstruktor
 berparameter dari class Buku!<br>
@@ -275,7 +276,7 @@ diskon <br><br>
 Class diagram Buku setelah penambahan ketiga method tersebut adalah sebagai berikut.
 <img src="Screenshot Code/Classdiagram1.png">
 
-
+Jawab:<br>
 Kode program penambahan method hitungHargaTotal(), hitungDiskon(), dan hitungHargaBayar():
 ```java
 int hitungHargaTotal() {
@@ -309,7 +310,7 @@ System.out.println("Diskon yang didapat       : Rp " + bukuDio.hitungDiskon());
 System.out.println("Total Harga bayar         : Rp " + bukuDio.hitungHargaBayar());
 ```
 
-Output Program<br>
+Output Program:<br>
 ![alt text](image-1.png)
 
 2. Buat program berdasarkan class diagram berikut ini!
@@ -329,6 +330,7 @@ nilai height. Jika koordinat y < 0 atau y > height maka panggil method detectCol
 * Method detectCollision() akan mencetak pesan “Game Over” apabila dragon menyentuh
 ujung area permainan.
 
+Jawab:<br>
 Kode program class Dragon:
 ```java
 public class Dragon09 {

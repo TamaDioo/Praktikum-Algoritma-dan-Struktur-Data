@@ -11,6 +11,7 @@ public class DragonMain09 {
         dragon1.moveRight();
         dragon1.moveDown(); 
         dragon1.moveRight(); //method tidak tereksekusi karena sudah game over
-        dragon1.moveUp(); //method tidak tereksekusi karena sudah game over
+        dragon1.moveUp(); //method tidak tereksekusi karena sudah game over     
+        dragon1.moveUp(); //method tidak tereksekusi karena sudah game over     
     }
 }
