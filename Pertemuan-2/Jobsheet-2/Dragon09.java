@@ -25,7 +25,7 @@ public class Dragon09 {
         if (x < 0 || x > width) {
             detectCollision(x, y);
         } else {
-            if (gameOver != true) {
+    if (gameOver != true) {
                 position();
             } 
         } 
