@@ -54,6 +54,7 @@ public class Pemilihan09 {
             String message = total <= 50 ? "MAAF ANDA TIDAK LULUS" : "SELAMAT ANDA LULUS";
             System.out.println(message);
         }
+        input09.close();
     }
     
     static void notValid() {
