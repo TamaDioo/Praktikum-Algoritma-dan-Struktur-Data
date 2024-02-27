@@ -64,7 +64,7 @@ Jawab: Ada empat method yang dimiliki class tersebut, yang terdiri dari:
     - tampilInformasi() 
     - terjual(jml: int)
     - restock(n: int)
-    - gantiHarga()hrg: int.
+    - gantiHarga(hrg: int)
 
 4. Perhatikan method terjual() yang terdapat di dalam class Buku. Modifikasi isi method tersebut
 sehingga proses pengurangan hanya dapat dilakukan jika stok masih ada (lebih besar dari 0)!
