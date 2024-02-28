@@ -27,5 +27,6 @@ public class Tugas109 {
                 }
             } 
         }
+        sc.close();
     }
 }

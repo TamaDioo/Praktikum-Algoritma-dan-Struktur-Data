@@ -307,8 +307,14 @@ public class Tugas109 {
                 }
             } 
         }
+        sc.close();
     }
 }
 ```
 
-Output Program:
+Output Program:<br>
+<img src="pictures/tugas1-output1.png">
+
+<img src="pictures/tugas1-output2.png">
+
+<img src="pictures/tugas1-output3.png">
