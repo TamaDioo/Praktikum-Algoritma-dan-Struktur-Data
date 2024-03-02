@@ -77,12 +77,12 @@ Jawab: Kode di atas mendeklarasikan sebuah array dengan nama ppArray yang dapat 
     ppArray[1].panjang = 80; 
     ppArray[1].lebar = 40; 
 ```
-Pada baris pertama, objek PersegiPanjang dibuat dan ditempatkan di indeks ke-1 dari array ppArray. Ini merupakan inisialisasi objek kedua dalam array ppArray (karena indeks array dimulai dengan 0).
+Jawab: Pada baris pertama, objek PersegiPanjang dibuat dan ditempatkan di indeks ke-1 dari array ppArray. Ini merupakan inisialisasi objek kedua dalam array ppArray (karena indeks array dimulai dengan 0).
 Pada baris kedua, atribut panjang dari objek yang berada di indeks ke-1 dalam array ppArray diakses dan nilai atribut panjang diatur menjadi 80.
 Pada baris ini, atribut lebar dari objek yang berada di indeks ke-1 dalam array ppArray diakses dan nilai atribut lebar diatur menjadi 40.
 
 5. Mengapa class main dan juga class PersegiPanjang dipisahkan pada uji coba 3.2?
-Pemisahan class main dan class PersegiPanjang dilakukan agar program lebih rapi dan modular. Jika ingin melakukan perubahan pada class PersegiPanjang, maka tidak perlu khawatir akan mempengaruhi class main. Pemisahan class main dan class PersegiPanjang menjadikan kode program menjadi lebih mudah dibaca dan mudah dipahami. Hal ini sesuai dengan prinsip pembagian tugas dalam pemrograman berorientasi objek. Setiap class memiliki tugas yang spesifik dan tidak berlebihan.
+Jawab: Pemisahan class main dan class PersegiPanjang dilakukan agar program lebih rapi dan modular. Jika ingin melakukan perubahan pada class PersegiPanjang, maka tidak perlu khawatir akan mempengaruhi class main. Pemisahan class main dan class PersegiPanjang menjadikan kode program menjadi lebih mudah dibaca dan mudah dipahami. Hal ini sesuai dengan prinsip pembagian tugas dalam pemrograman berorientasi objek. Setiap class memiliki tugas yang spesifik dan tidak berlebihan.
 
 ## 3.3 Percobaan 2: Menerima Input Isian Array Menggunakan Looping
 
@@ -174,6 +174,7 @@ pgArray[5].sisi = 20;
 ```
 
 4. Modifikasi kode program pada praktikum 3.3 agar length array menjadi inputan dengan Scanner!
+Jawab:<br>
 Modifikasi kode program:
 ```java
 import java.util.Scanner;
@@ -260,21 +261,98 @@ public class ArrayBalok {
 <img src="pictures/js-3-output-perc3.png">
 
 ### 3.4.3 Pertanyaan
-1. Dapatkah konstruktor berjumlah lebih dalam satu kelas? Jelaskan dengan contoh!
+1. Dapatkah konstruktor berjumlah lebih dalam satu kelas? Jelaskan dengan contoh!<br>
+Jawab: Ya, konstruktor dapat berjumlah lebih dalam satu kelas dengan syarat setiap konstruktor dalam satu kelas memiliki parameter yang berbeda-beda. Berikut contohnya:<br>
+```java
+    public Buku09() {
+
+    }
+
+    public Buku09(String jud, String pg, int hal, int stok, int har) {
+        judul = jud;
+        pengarang = pg;
+        halaman = hal;
+        this.stok = stok;
+        harga = har;
+    }
+```
+Pada potongan kode program di atas, terdapat dua konstruktor. Konstruktor pertama (bagian atas) merupakan konstruktor default yang tidak memiliki parameter dan konstruktor kedua (bagian bawah) adalah konstruktor yang memiliki parameter. Konstruktor yang lain pun dapat dibuat dalam class yang sama asalkan parameternya berbeda.
+
 2. Jika diketahui terdapat class Segitiga seperti berikut ini:
 ```java
-
+public class Segitiga {
+    int alas;
+    int tinggi;
+}
 ```
 Tambahkan konstruktor pada class Segitiga tersebut yang berisi parameter int a, int t
-yang masing-masing digunakan untuk mengisikan atribut alas dan tinggi.
+yang masing-masing digunakan untuk mengisikan atribut alas dan tinggi.<br>
+Kode program:
+```java
+public class Segitiga {
+    int alas;
+    int tinggi;
+
+    public Segitiga(int a, int t) {
+        alas = a;
+        tinggi = t;
+    }
+}
+```
+
 3. Tambahkan method hitungLuas() dan hitungKeliling() pada class Segitiga
 tersebut. **Asumsi segitiga adalah segitiga siku-siku**. *(Hint: Anda dapat menggunakan bantuan
 library Math pada Java untuk mengkalkulasi sisi miring)*<br>
+Kode program: 
+```java
+    public double hitungLuas() {
+        return 0.5 * alas * tinggi;
+    }
+
+    public double hitungkeliling() {
+        return alas + tinggi + Math.sqrt(Math.pow(alas, 2) + Math.pow(tinggi, 2));
+    }
+```
+
 4. Pada fungsi main, buat array Segitiga sgArray yang berisi 4 elemen, isikan masing-masing
 atributnya sebagai berikut:
 <img src="pictures/4-3-no4.png">
-5. Kemudian menggunakan looping, cetak luas dan keliling dengan cara memanggil method
-hitungLuas() dan hitungKeliling().
+Kode program:
+
+```java
+public class ArraySegitiga {
+    public static void main(String[] args) {
+        Segitiga sgArray[] = new Segitiga[4];
+
+        sgArray[0] = new Segitiga(10, 4);
+        sgArray[1] = new Segitiga(20, 10);
+        sgArray[2] = new Segitiga(15, 6);
+        sgArray[3] = new Segitiga(25, 10);
+    }
+}
+```
+
+5. Kemudian menggunakan looping, cetak luas dan keliling dengan cara memanggil method hitungLuas() dan hitungKeliling().<br>
+Kode Program:
+```java
+public class ArraySegitiga {
+    public static void main(String[] args) {
+        Segitiga sgArray[] = new Segitiga[4];
+
+        sgArray[0] = new Segitiga(10, 4);
+        sgArray[1] = new Segitiga(20, 10);
+        sgArray[2] = new Segitiga(15, 6);
+        sgArray[3] = new Segitiga(25, 10);
+
+        for (int i = 0; i < sgArray.length; i++) {
+            System.out.printf("Luas segitiga ke %d: %.2f \n", i, sgArray[i].hitungLuas());
+            System.out.printf("Keliling segitiga ke %d: %.2f \n", i, sgArray[i].hitungkeliling());
+        }
+    }
+}
+```
+Output program:<br>
+<img src="pictures/js3-output-perc3-no5-output.png">
 
 ## 3.5 Latihan Praktikum
 
