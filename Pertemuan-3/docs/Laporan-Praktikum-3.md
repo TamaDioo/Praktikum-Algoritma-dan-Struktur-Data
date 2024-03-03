@@ -309,7 +309,7 @@ Kode program:
         return 0.5 * alas * tinggi;
     }
 
-    public double hitungkeliling() {
+    public double hitungKeliling() {
         return alas + tinggi + Math.sqrt(Math.pow(alas, 2) + Math.pow(tinggi, 2));
     }
 ```
@@ -346,7 +346,7 @@ public class ArraySegitiga {
 
         for (int i = 0; i < sgArray.length; i++) {
             System.out.printf("Luas segitiga ke %d: %.2f \n", i, sgArray[i].hitungLuas());
-            System.out.printf("Keliling segitiga ke %d: %.2f \n", i, sgArray[i].hitungkeliling());
+            System.out.printf("Keliling segitiga ke %d: %.2f \n", i, sgArray[i].hitungKeliling());
         }
     }
 }
@@ -365,6 +365,151 @@ ruang. Buatlah satu main class untuk membuat array of objects yang menginputkan 
     c. Pada limas segi empat sama sisi, inputan untuk atribut hanya panjang sisi alas dan
     tinggi limas<br>
     d. Pada bola, inpuntan untuk atribut hanya jari-jari<br></strong>
+Kode program class Kerucut:
+```java
+public class Kerucut {
+    int jari2, sisiMrg;
+
+    public Kerucut (int r, int sMrg) {
+        jari2 = r;
+        sisiMrg = sMrg;
+    }
+
+    public double hitungLuasPermukaan () {
+        return (Math.PI * Math.pow(jari2, 2) + (Math.PI * jari2 * sisiMrg)); 
+    }
+
+    public double hitungVolume() {
+        double tinggi = (Math.sqrt(Math.pow(sisiMrg, 2) - Math.pow(jari2, 2)));
+        return Math.PI * Math.pow(jari2, 2) * tinggi / 3;
+    }
+}
+```
+Kode program class LimasSegiEmpat:
+```java
+public class LimasSegiEmpat {
+    int sisiAlas, tinggi;
+
+    public LimasSegiEmpat(int s, int t) {
+        sisiAlas = s;
+        tinggi = t;
+    }
+
+    public double hitungLuasPermukaan () {
+        double tgSg = Math.sqrt(Math.pow(tinggi, 2) + Math.pow(sisiAlas / 2, 2));
+        return (Math.pow(sisiAlas, 2)) + (4 * (0.5 * sisiAlas * tgSg));
+    }
+
+    public double hitungVolume() {
+        return (Math.pow(sisiAlas, 2)) * tinggi / 3;
+    }
+}
+```
+Kode program class Bola:
+```java
+public class Bola {
+    int jari2;
+
+    public Bola (int r) {
+        jari2 = r;
+    }
+
+    public double hitungLuasPermukaan () {
+        return 4 * Math.PI * Math.pow(jari2, 2);
+    }
+
+    public double hitungVolume() {
+        return 4 * Math.PI * Math.pow(jari2, 3) / 3;
+    }
+}
+```
+Kode program class ArrayBangunRuang (main):
+```java
+import java.util.Scanner;
+
+public class ArrayBangunRuang {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        System.out.println("========================================================== ");
+        System.out.println("program perhitungan luas permukaan dan volume bangun ruang ");
+        System.out.println("========================================================== ");
+
+        System.out.print("Masukkan jumlah bangun ruang kerucut: ");
+        int krc = sc.nextInt();
+
+        Kerucut[] krcArray = new Kerucut[krc];
+
+        for (int i = 0; i < krcArray.length; i++) { 
+            System.out.println("Kerucut ke-" + i);
+            System.out.print("Masukkan jari-jari kerucut: ");
+            int jari2 = sc.nextInt(); 
+            System.out.print("Masukkan sisi miring kerucut: ");
+            int sisiMrg = sc.nextInt(); 
+            krcArray[i] = new Kerucut(jari2, sisiMrg);        
+        }          
+    
+        System.out.println("============================================");
+
+        System.out.print("Masukkan jumlah bangun ruang limas segi empat sama sisi: ");
+        int lms = sc.nextInt();
+
+        LimasSegiEmpat[] lmsArray = new LimasSegiEmpat[lms];
+
+        for (int j = 0; j < lmsArray.length; j++) { 
+            System.out.println("Limas segi empat sama sisi ke-" + j);
+            System.out.print("Masukkan sisi alas limas segi empat sama sisi: ");
+            int sisiAlas = sc.nextInt(); 
+            System.out.print("Masukkan tinggi limas segi empat sama sisi: ");
+            int tinggi = sc.nextInt(); 
+            lmsArray[j] = new LimasSegiEmpat(sisiAlas, tinggi);        
+        }          
+    
+        System.out.println("============================================");
+
+        System.out.print("Masukkan jumlah bangun ruang bola: ");
+        int bola = sc.nextInt();
+
+        Bola[] bolaArray = new Bola[bola];
+
+        for (int o = 0; o < bolaArray.length; o++) {
+            System.out.println("Bola ke-" + o);
+            System.out.print("Masukkan jari-jari bola: ");
+            int jari2 = sc.nextInt(); 
+            bolaArray[o] = new Bola(jari2);        
+        }          
+    
+        System.out.println("============================================ ");
+        System.out.println("Hasil perhitungan luas permukaan dan volume ");
+        System.out.println("============================================ ");
+
+        for (int k = 0; k < krcArray.length; k++) {
+            System.out.printf("Luas permukaan kerucut ke %d: %.2f \n", k, krcArray[k].hitungLuasPermukaan());
+            System.out.printf("Volume kerucut ke %d: %.2f \n", k, krcArray[k].hitungVolume());
+        }
+
+        System.out.println("============================================");
+
+        for (int l = 0; l < lmsArray.length; l++) {
+            System.out.printf("Luas permukaan limas segi empat sama sisi ke %d: %.2f \n", l, lmsArray[l].hitungLuasPermukaan());
+            System.out.printf("Volume limas segi empat sama sisi ke %d: %.2f \n", l, lmsArray[l].hitungVolume());
+        }
+        
+        System.out.println("============================================");
+
+        for (int b = 0; b < bolaArray.length; b++) {
+            System.out.printf("Luas permukaan bola ke %d: %.2f \n", b, bolaArray[b].hitungLuasPermukaan());
+            System.out.printf("Volume bola ke %d: %.2f \n", b, bolaArray[b].hitungVolume());
+        }
+
+        sc.close();
+    }
+}
+```
+
+Output program:<br>
+<img src="pictures/LatPrak1-output-1.png">
+<img src="pictures/LatPrak1-output-2.png">
 
 2. Sebuah kampus membutuhkan program untuk menampilkan informasi mahasiswa berupa nama,
 nim, jenis kelamin dan juga IPK mahasiswa. Program dapat menerima input semua informasi

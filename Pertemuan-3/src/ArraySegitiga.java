@@ -9,7 +9,7 @@ public class ArraySegitiga {
 
         for (int i = 0; i < sgArray.length; i++) {
             System.out.printf("Luas segitiga ke %d: %.2f \n", i, sgArray[i].hitungLuas());
-            System.out.printf("Keliling segitiga ke %d: %.2f \n", i, sgArray[i].hitungkeliling());
+            System.out.printf("Keliling segitiga ke %d: %.2f \n", i, sgArray[i].hitungKeliling());
         }
     }
 }
