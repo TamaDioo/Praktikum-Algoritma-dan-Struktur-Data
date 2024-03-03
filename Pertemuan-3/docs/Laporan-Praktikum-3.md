@@ -517,6 +517,57 @@ tersebut, kemudian menampilkanya kembali ke user. Implementasikan program terseb
 dimisalkan terdapat 3 data mahasiswa yang tersedia. Contoh output program:<br>
 <img src="pictures/js3-contoh-output-soal2.png">
 
-3. Modifikasi program Latihan no.2 di atas, sehingga bisa digunakan untuk menghitung rata-rata IPK,
-serta menampilkan data mahasiswa dengan IPK terbesar! (gunakan method untuk masing-masing
+Kode program class Mahasiswa:
+```java
+public class Mahasiswa {
+    String nama, nim;
+    char jeniskelamin;
+    double ipk;
+}
+```
+Kode program class MahasiswaMain:
+```java
+import java.util.Scanner;
+public class MahasiswaMain {
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+        Scanner sc = new Scanner(System.in);
+
+        Mahasiswa[] mhsArray = new Mahasiswa[3];
+
+        for (int i = 0; i < mhsArray.length; i++) { 
+            mhsArray[i] = new Mahasiswa();
+            System.out.printf("Masukkan data mahasiswa ke-%d \n", (i + 1));
+            System.out.print("Masukkan nama : ");
+            mhsArray[i].nama = input.nextLine(); 
+            System.out.print("Masukkan NIM : ");
+            mhsArray[i].nim = input.nextLine(); 
+            System.out.print("Masukkan jenis kelamin : ");
+            mhsArray[i].jeniskelamin = input.nextLine().toUpperCase().charAt(0); 
+            System.out.print("Masukkan IPK : ");
+            mhsArray[i].ipk = sc.nextDouble();  
+            System.out.println("===============================");  
+        }
+
+        System.out.println();
+
+        for (int j = 0; j < mhsArray.length; j++) {
+            System.out.printf("Data Mahasiswa ke-%d \n", (j + 1));
+            System.out.printf("Nama : %s \n", mhsArray[j].nama);
+            System.out.printf("NIM : %s \n", mhsArray[j].nim);
+            System.out.printf("Jenis Kelamin : %s \n", mhsArray[j].jeniskelamin);
+            System.out.printf("Nilai IPK : %.2f \n", mhsArray[j].ipk);
+            System.out.println("===============================");  
+        }
+
+        input.close();
+        sc.close();
+    }
+}
+```
+Output program:<br>
+<img src="pictures/LatPrak2-output-1.png">
+<img src="pictures/LatPrak2-output-2.png">
+
+3. Modifikasi program Latihan no.2 di atas, sehingga bisa digunakan untuk menghitung rata-rata IPK, serta menampilkan data mahasiswa dengan IPK terbesar! (gunakan method untuk masing-masing
 proses tersebut)
