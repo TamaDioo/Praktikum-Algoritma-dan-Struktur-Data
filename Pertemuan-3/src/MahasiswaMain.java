@@ -31,6 +31,13 @@ public class MahasiswaMain {
             System.out.println("===============================");  
         }
 
+        System.out.println();
+
+        Mahasiswa mhs = new Mahasiswa();
+        System.out.printf("Rata-rata IPK : %.2f \n", mhs.rataIpk(mhsArray));  
+        System.out.println();  
+        mhs.ipkTertinggi(mhsArray);
+
         input.close();
         sc.close();
     }
