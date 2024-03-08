@@ -239,11 +239,11 @@ Jawab: Kode program di atas merupakan kode yang digunakan untuk mendeklarasikan 
 ```java
 Buku09 bk2 = new Buku09("Self Reward", "Maheera Ayesha", 160, 29, 59000);
 ``` 
-Jawab: Kode program di atas merupakan proses instansiasi yang menghasilkan objek <strong>bk2<strong> dengan mengisikan parameter dalam tanda kurung. Konstruktor yang digunakan adalah konstruktor berparameter sehingga perlu menambahkan nilai parameter saat menginstansiasi objek. Parameter yang dimasukkan harus urut sesuai dengan deklarasi konstruktor pada class Buku.
+Jawab: Kode program di atas merupakan proses instansiasi yang menghasilkan objek <strong>bk2</strong> dengan mengisikan parameter dalam tanda kurung. Konstruktor yang digunakan adalah konstruktor berparameter sehingga perlu menambahkan nilai parameter saat menginstansiasi objek. Parameter yang dimasukkan harus urut sesuai dengan deklarasi konstruktor pada class Buku.
 
 3. Hapus konstruktor default pada class Buku, kemudian compile dan run program. Bagaimana
 hasilnya? Jelaskan mengapa hasilnya demikian!
-<img src="Screenshot Code/perc3no3.png">
+<img src="Screenshot Code/perc3no3.png"><br>
 Jawab: Program akan error, hal ini terjadi karena konstruktor defaultnya dihapus sehingga objek bk1 tidak dapat diinstansiasi pada class BukuMain. jika ingin kodenya berjalan maka harus menambah kembali konstruktor default atau sekalian menghapus semua konstruktor (konstruktor berparameter juga harus dihapus) dan tidak mengisikan nilai parameter dalam tanda kurung saat menginstansiasi objek.
 
 4. Setelah melakukan instansiasi object, apakah method di dalam class Buku harus diakses
