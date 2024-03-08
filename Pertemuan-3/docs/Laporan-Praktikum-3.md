@@ -81,7 +81,7 @@ Jawab: Pada baris pertama, objek PersegiPanjang dibuat dan ditempatkan di indeks
 Pada baris kedua, atribut panjang dari objek yang berada di indeks ke-1 dalam array ppArray diakses dan nilai atribut panjang diatur menjadi 80.
 Pada baris ini, atribut lebar dari objek yang berada di indeks ke-1 dalam array ppArray diakses dan nilai atribut lebar diatur menjadi 40.
 
-5. Mengapa class main dan juga class PersegiPanjang dipisahkan pada uji coba 3.2?
+5. Mengapa class main dan juga class PersegiPanjang dipisahkan pada uji coba 3.2?<br>
 Jawab: Pemisahan class main dan class PersegiPanjang dilakukan agar program lebih rapi dan modular. Jika ingin melakukan perubahan pada class PersegiPanjang, maka tidak perlu khawatir akan mempengaruhi class main. Pemisahan class main dan class PersegiPanjang menjadikan kode program menjadi lebih mudah dibaca dan mudah dipahami. Hal ini sesuai dengan prinsip pembagian tugas dalam pemrograman berorientasi objek. Setiap class memiliki tugas yang spesifik dan tidak berlebihan.
 
 ## 3.3 Percobaan 2: Menerima Input Isian Array Menggunakan Looping
@@ -118,10 +118,10 @@ public class ArrayObjects {
 <img src="pictures/js3-output-perc2.png">
 
 ### 3.3.3 Pertanyaan
-1. Apakah array of object dapat diimplementasikan pada array 2 Dimensi?
+1. Apakah array of object dapat diimplementasikan pada array 2 Dimensi?<br>
 Jawab: Ya, array of object dapat diimplementasikan pada array dua dimensi. 
 
-2. Jika jawaban soal no satu iya, berikan contohnya! Jika tidak, jelaskan!
+2. Jika jawaban soal no satu iya, berikan contohnya! Jika tidak, jelaskan!<br>
 Jawab: Berikut adalah contoh program yang mengimplementasikan array of object pada array 2 Dimensi:
 Kode program:
 ```java
@@ -156,7 +156,7 @@ public class PersegiPanjang2D {
     }
 }
 ```
-Output program:
+Output program:<br>
 <img src="pictures/js3-output-perc2-no2-output.png">
 
 
@@ -211,7 +211,7 @@ public class ArrayObjects {
 Output program:<br>
 <img src="pictures/js3-output-perc2-no4-output.png">
 
-5. Apakah boleh Jika terjadi duplikasi instansiasi array of objek, misalkan saja instansiasi dilakukan pada ppArray[i] sekaligus ppArray[0]?Jelaskan !
+5. Apakah boleh Jika terjadi duplikasi instansiasi array of objek, misalkan saja instansiasi dilakukan pada ppArray[i] sekaligus ppArray[0]?Jelaskan !<br>
 Jawab: Boleh saja. Duplikasi instansiasi array of objek tidak menghasilkan error, namun nilai atribut yang disimpan pada objek yang diduplikasi akan hilang. Jika instansiasi dilakukan pada ppArray[i] sekaligus ppArray[0] maka akan terjadi instansiasi pada ppArray[0] setelah pengisian atribut pada ppArray[i] sehingga nilai atribut pada ppArray[0] akan hilang.<br>
 <img src="pictures/js3-output-perc2-no5-output.png">
 
