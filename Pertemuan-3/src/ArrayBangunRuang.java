@@ -44,7 +44,7 @@ public class ArrayBangunRuang {
         int bola = sc.nextInt();
 
         Bola[] bolaArray = new Bola[bola];
-
+ 
         for (int o = 0; o < bolaArray.length; o++) {
             System.out.println("Bola ke-" + o);
             System.out.print("Masukkan jari-jari bola: ");
