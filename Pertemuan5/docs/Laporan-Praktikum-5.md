@@ -408,10 +408,93 @@ public class MainPangkat {
 <img src="pictures/4.2.3 verif perc.png">
 
 ### 4.3.3 Pertanyaan
-1. Jelaskan mengenai perbedaan 2 method yang dibuat yaitu PangkatBF() dan PangkatDC()!
-2. Apakah tahap combine sudah termasuk dalam kode tersebut?Tunjukkan!
-3. Modifikasi kode program tersebut, anggap proses pengisian atribut dilakukan dengan konstruktor.
-4. Tambahkan menu agar salah satu method yang terpilih saja yang akan dijalankan menggunakan switch-case!
+1. Jelaskan mengenai perbedaan 2 method yang dibuat yaitu PangkatBF() dan PangkatDC()!<br>
+Jawab: Perbedaan utama antara kedua method tersebut adalah algoritma yang digunakan dalam menghitung pangkat. Method pangkatBF menggunakan algoritma brute force dengan perulangan, sementara method pangkatDC menggunakan algoritma Divide and Conquer dengan rekursif. 
+- pangkatBF()
+    - Method ini menggunakan algoritma brute force dengan menggunakan perulangan for untuk menghitung pangkat dari suatu bilangan.
+    - Pada setiap iterasi, nilai hasil akan dikalikan dengan bilangan a sebanyak n kali.    
+- pangkatDC()
+    - Method ini menggunakan algoritma Divide and Conquer dengan rekursi untuk menghitung pangkat dari suatu bilangan.
+    - Pada base case (n == 0), fungsi akan mengembalikan 1.
+    - Jika n merupakan bilangan ganjil, maka fungsi akan memanggil dirinya sendiri dua kali dengan parameter n/2 dan mengalikan hasilnya dengan a lalu mengembalikan hasilnya.
+    - Jika n merupakan bilangan genap, maka fungsi akan memanggil dirinya sendiri dua kali dengan parameter n/2 dan mengembalikan hasilnya.
+2. Apakah tahap combine sudah termasuk dalam kode tersebut?Tunjukkan!<br>
+Jawab: Ya. Tahap combine sudah termasuk dalam kode tersebut melalui operasi perkalian pada bagian return. Tahap combine dilakukan pada bagian else dengan statement return (pangkatDC(a, n/2) * pangkatDC(a, n/2)); atau return (pangkatDC(a, n/2) * pangkatDC(a, n/2) * a);. Pada bagian return di dalam fungsi pangkatDC, terdapat operasi perkalian yang menggabungkan hasil rekursi dari pemanggilan rekursif pertama dan kedua. Jika nilai n ganjil, maka hasil rekursi tersebut juga dikalikan dengan a.
+```java
+    int pangkatDC(int a, int n) {
+        if (n == 0) {
+            return 1;
+        } else {
+            if (n % 2 == 1) {
+                return (pangkatDC(a, n/2)*pangkatDC(a, n/2)*a);//Ini adalah tahap combine
+            } else {
+                return (pangkatDC(a, n/2)*pangkatDC(a, n/2));//Ini adalah tahap combine
+            }
+        }
+    }
+```
+
+3. Modifikasi kode program tersebut, anggap proses pengisian atribut dilakukan dengan konstruktor.<br>
+Modifikasi kode program:<br>
+- Membuat konstruktor berparameter pada class Pangkat
+```java
+    public Pangkat(int a, int n) {
+        nilai = a;
+        pangkat = n;
+    }
+```
+- Modifikasi kode program pada class MainPangkat
+```java
+    Pangkat[] png = new Pangkat[elemen];
+    for (int i = 0; i < elemen; i++) {
+        System.out.println("Masukkan nilai yang hendak dipangkatkan: ");
+        int nilai = sc.nextInt();
+        System.out.println("Masukkan nilai pemangkat: ");
+        int pangkat = sc.nextInt();
+        png[i] = new Pangkat(nilai, pangkat);
+    }
+```
+
+Output kode program:
+<img src="pictures/4.2 pert 3.png">
+
+4. Tambahkan menu agar salah satu method yang terpilih saja yang akan dijalankan menggunakan switch-case!<br>
+Modifikasi kode program:
+```java
+    System.out.println("=======================================");
+    System.out.print
+    ("Method untuk menghitung nilai pangkat" + 
+        "\n 1. Method Brute Force \n 2. Method Divide and Conquer \n" +
+        "Pilih method yang akan dijalankan: ");
+    short menu = sc.nextShort();
+    System.out.println("=======================================");
+
+    switch (menu) {
+        case 1:
+            System.out.println("HASIL PANGKAT - BRUTE FORCE");
+            for (int i = 0; i < elemen; i++) {
+                System.out.println("Hasil dari " + png[i].nilai + " pangkat "
+                    + png[i].pangkat + " adalah "
+                    + png[i].pangkatBF(png[i].nilai, png[i].pangkat));
+            }
+            break;
+        case 2:
+            System.out.println("HASIL PANGKAT - DIVIDE AND CONQUER");
+            for (int i = 0; i < elemen; i++) {
+                System.out.println
+                ("Hasil dari " + png[i].nilai + " pangkat "
+                    + png[i].pangkat + " adalah "
+                    + png[i].pangkatDC(png[i].nilai, png[i].pangkat));
+            }
+            break;
+        default:
+            System.out.println("Menu yang Anda masukkan tidak valid!");
+            break;
+        }
+```
+Output kode program:<br>
+<img src="pictures/4.3 pert 4.png">
+
 
 ## 4.4 Menghitung Sum Array dengan Algoritma Brute Force dan Divide and Conquer
 Di dalam percobaan ini, kita akan mempraktekkan bagaimana proses divide, conquer, dan
