@@ -16,12 +16,12 @@
 
 ## 4.2 Menghitung Nilai Faktorial dengan Algoritma Brute Force dan Divide and Conquer
 Perhatikan Diagram Class berikut ini :<br>
-<img src="pictures/4.2 ss 1.png">
+<img src="pictures/4.2 ss 1.png"><br>
 Berdasarkan diagram class di atas, akan dibuat program class dalam Java. Untuk menghitung nilai
 faktorial suatu angka menggunakan 2 jenis algoritma, Brute Force dan Divide and Conquer. Jika
 digambarkan terdapat perbedaan proses perhitungan 2 jenis algoritma tersebut sebagai berikut : <br>
 Tahapan pencarian nilai faktorial dengan algoritma Brute Force :<br>
-<img src="pictures/4.2 ss 2.png">
+<img src="pictures/4.2 ss 2.png"><br>
 Tahapan pencarian nilai faktorial dengan algoritma Divide and Conquer :<br>
 <img src="pictures/4.2 ss 3.png">
 
@@ -29,7 +29,7 @@ Tahapan pencarian nilai faktorial dengan algoritma Divide and Conquer :<br>
 1. Buat Project baru, dengan nama “BruteForceDivideConquer”. Buat package dengan nama
 minggu5.
 2. Buatlah class baru dengan nama Faktorial
-3. Lengkapi class Faktorial dengan atribut dan method yang telah digambarkan di dalam diagram class di atas, sebagai berikut:
+3. Lengkapi class Faktorial dengan atribut dan method yang telah digambarkan di dalam diagram class di atas, sebagai berikut:<br>
     a) Tambahkan atribut nilai
     ```java
     public int nilai;
@@ -55,7 +55,7 @@ minggu5.
         }
     }
     ```
-4. Coba jalankan (Run) class Faktorial dengan membuat class baru MainFaktorial.
+4. Coba jalankan (Run) class Faktorial dengan membuat class baru MainFaktorial.<br>
     a) Di dalam fungsi main sediakan komunikasi dengan user untuk menginputkan jumlah angka yang akan dicari nilai faktorialnya
     ```java
         Scanner sc = new Scanner(System.in);
@@ -155,9 +155,39 @@ public class MainFaktorial {
 
 ### 4.2.3 Pertanyaan
 1. Pada base line Algoritma Divide Conquer untuk melakukan pencarian nilai faktorial, jelaskan perbedaan bagian kode pada penggunaan if dan else!<br>
-Jawab: Pada base line Algoritma Divide Conquer untuk melakukan pencarian nilai faktorial
+Jawab: Pada base line Algoritma Divide Conquer untuk melakukan pencarian nilai faktorial menggunakan fungsi rekursif untuk menghitung nilai faktorial dari suatu bilangan. Kondisi if merupakan base case dari fungsi rekursif (n = 1), sedangkan kondisi else merupakan recursion call yang digunakan untuk memecah masalah menjadi submasalah yang lebih kecil (n - 1) sampai mendekati kondisi base case.
+Jika n memenuhi kondisi if (n = 1), maka maka fungsi akan mengembalikan nilai 1. Jika nilai n tidak sama dengan 1, maka bagian kode else akan dieksekusi. Pada bagian kode else, dilakukan perhitungan faktorial dengan memanggil kembali fungsi faktorialDC dengan parameter n - 1. Hasil perhitungan tersebut dikalikan dengan nilai n, kemudian hasilnya dikembalikan sebagai faktorial dari n.
+
 2. Apakah memungkinkan perulangan pada method faktorialBF() dirubah selain menggunakan for?Buktikan!<br>
+Jawab: Ya, perulangan pada method faktorialBF() dapat menggunakan perulangan selain for seperi while atau do while.<br>
+Menggunakan perulangan while:<br>
+```java
+    int faktorialBF(int n) {
+        int fakto = 1, i = 1;
+        while (i <= n) {
+            fakto *= i;
+            i++;
+        }
+        return fakto;
+    }
+```
+Menggunakan perulangan do while:<br>
+```java
+    int faktorialBF(int n) {
+        int fakto = 1, i = 1;
+        do {
+            fakto *= i;
+            i++;
+        } while (i <= n);
+        return fakto;
+    }
+```
+Outputnya akan tetap sama seperti pada perulangan for:<br>
+<img src="pictures/4.2 pert 2.png">
+
 3. Jelaskan perbedaan antara fakto *= i; dan int fakto = n * faktorialDC(n-1); !<br>
+Jawab: Perbedaannya adalah pada cara penghitungan faktorial. Method faktorialBF menggunakan perulangan untuk mengitung faktorial. Statement fakto *= i; melakukan operasi perkalian antara variabel fakto dan i, lalu menyimpan hasilnya pada variabel fakto. Statement fakto *= i; akan dieksekusi secara berulang sampai kondisi i <= n terpenuhi<br>
+Sedangkan pada method faktorialDC() menggunakan pendekatan rekursif Divide and Conquer untuk menghitung faktorial. Statetement int fakto = n * faktorialDC(n-1); pada blok else akan mengalikan n dengan method faktorialDC(n-1). Proses ini terjadi secara rekursif hingga mencapai base case yaitu saat n sama dengan 1.
 
 ## 4.3 Menghitung Hasil Pangkat dengan Algoritma Brute Force dan Divide and Conquer
 Pada praktikum ini kita akan membuat program class dalam Java. Untuk menghitung nilai pangkat suatu angka menggunakan 2 jenis algoritma, Brute Force dan Divide and Conquer.
@@ -423,6 +453,24 @@ double keuntungan[], total;
         return 0;
     }
 ```
+Terdapat kesalahan pada method totalDC() di atas, yaitu pada inisialisasi variabel mid dan pemberian nilai parameter fungsi totalDC() untuk mengisi variabel lsum dan rsum. Berikut penjelasannya:
+- Formula untuk mendapatkan nilai tengah pada variabel mid salah. Rumus yang benar adalah menambah l dan r kemudian membaginya dengan 2 ((l + r) / 2) bukan membagi l dengan r lalu ditambah 2 ((l/r)+2).
+- Pemberian nilai parameter yang salah pada pemanggilan method totalDC() untuk mengisi variabel lsum. parameter ketiga seharusnya adalah mid - 1 bukan mid - l. Jika parameter ketiga adalah mid - l, maka kondisi base case l == r tidak akan terpenuhi. Hal ini akan menyebabkan pemanggilan fungsi akan terjadi secara terus menerus (tak terbatas) dan akhirnya terjadi error stack over flow.
+- Pemberian nilai parameter yang salah pada pemanggilan method totalDC() untuk mengisi variabel rsum. parameter kedua seharusnya adalah mid + 1 bukan mid + l. Jika parameter kedua adalah mid + l, maka kondisi base case l == r tidak akan terpenuhi. Hal ini akan menyebabkan pemanggilan fungsi akan terjadi secara terus menerus (tak terbatas) dan akhirnya terjadi error stack over flow.<br>
+Berikut perbaikan kode program method totalDC():
+```java
+    double totalDc(double arr[], int l, int r) {
+        if (l == r) {
+            return arr[l];
+        } else if (l < r) {
+            int mid = (l + r) / 2;
+            double lsum = totalDc(arr, l, mid - 1);
+            double rsum = totalDc(arr, mid + 1, r);
+            return lsum+rsum+arr[mid];
+        }
+        return 0;
+    }
+```
 4. Buat class baru yaitu MainSum. Di dalam kelas ini terdapat method main. Pada method ini user dapat menuliskan berapa bulan keuntungan yang akan dihitung. Dalam kelas ini sekaligus dibuat instansiasi objek untuk memanggil atribut ataupun fungsi pada class Sum
 ```java
     Scanner sc = new Scanner(System.in);
@@ -452,15 +500,70 @@ double keuntungan[], total;
 
 Kode program class Sum:
 ```java
+package Pertemuan5.BruteForceDivideConquer.minggu5;
 
+public class Sum {
+    int elemen;
+    double keuntungan[], total;
+
+    Sum(int elemen) {
+        this.elemen = elemen;
+        this.keuntungan = new double[elemen];
+        this.total = 0;
+    }
+
+    double totalBF(double arr[]) {
+        for (int i = 0; i < elemen; i++) {
+            total = total + arr[i];
+        }
+        return total;
+    }
+
+    double totalDc(double arr[], int l, int r) {
+        if (l == r) {
+            return arr[l];
+        } else if (l < r) {
+            int mid = (l + r) / 2;
+            double lsum = totalDc(arr, l, mid - 1);
+            double rsum = totalDc(arr, mid + 1, r);
+            return lsum+rsum+arr[mid];
+        }
+        return 0;
+    }
+}
 ```
 Kode program class MainSum:
 ```java
+package Pertemuan5.BruteForceDivideConquer.minggu5;
+import java.util.Scanner;
 
+public class MainSum {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("================================================================");
+        System.out.println("Program menghitung Keuntungan Total (Satuan Juta. Misal 5.9)");
+        System.out.print("Masukkan jumlah bulan : ");
+        int elm = sc.nextInt();
+
+        Sum sm = new Sum(elm);
+        System.out.println("====================================================================");
+        for (int i = 0; i < sm.elemen; i++) {
+            System.out.print("Masukkan untung bulan ke - " + (i + 1) + " = ");
+            sm.keuntungan[i] = sc.nextDouble();
+        }
+
+        System.out.println("===================================================================");
+        System.out.println("Algoritma Brute Force");
+        System.out.println("Total keuntungan perusahaan selama " + sm.elemen + " bulan adalah = " + sm.totalBF(sm.keuntungan));
+        System.out.println("===================================================================");
+        System.out.println("Algoritma Divide Conquer");
+        System.out.println("Total keuntungan perusahaan selama " + sm.elemen + " bulan adalah = " + sm.totalDc(sm.keuntungan, 0, sm.elemen-1));
+    }
+}
 ```
 
 ### 4.4.2 Verifikasi Hasil Percobaan
-<img src="">
+<img src="pictures/4.4.2 verif perc.png">
 
 ### 4.4.3 Pertanyaan
 1. Mengapa terdapat formulasi return value berikut?Jelaskan!
@@ -469,8 +572,8 @@ Kode program class MainSum:
 
 ## 4.5 Latihan Praktikum
 1. Sebuah showroom memiliki daftar mobil dengan data sesuai tabel di bawah ini<br>
-<img src="">
-Tentukan:
-    a) top_acceleration tertinggi menggunakan Divide and Conquer!
-    b) top_acceleration terendah menggunakan Divide and Conquer!
-    c) Rata-rata top_power dari seluruh mobil menggunakan Brute Force!
+<img src="pictures/4.5 Latprak.png">
+Tentukan:<br>
+    a) top_acceleration tertinggi menggunakan Divide and Conquer!<br>
+    b) top_acceleration terendah menggunakan Divide and Conquer!<br>
+    c) Rata-rata top_power dari seluruh mobil menggunakan Brute Force!<br>
