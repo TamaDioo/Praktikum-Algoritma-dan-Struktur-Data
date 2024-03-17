@@ -3,6 +3,7 @@ package Pertemuan5.BruteForceDivideConquer.minggu5;
 public class Sum {
     int elemen;
     double keuntungan[], total;
+    String compName;
 
     Sum(int elemen) {
         this.elemen = elemen;

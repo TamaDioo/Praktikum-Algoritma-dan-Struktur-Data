@@ -189,6 +189,7 @@ Outputnya akan tetap sama seperti pada perulangan for:<br>
 Jawab: Perbedaannya adalah pada cara penghitungan faktorial. Method faktorialBF menggunakan perulangan untuk mengitung faktorial. Statement fakto *= i; melakukan operasi perkalian antara variabel fakto dan i, lalu menyimpan hasilnya pada variabel fakto. Statement fakto *= i; akan dieksekusi secara berulang sampai kondisi i <= n terpenuhi<br>
 Sedangkan pada method faktorialDC() menggunakan pendekatan rekursif Divide and Conquer untuk menghitung faktorial. Statetement int fakto = n * faktorialDC(n-1); pada blok else akan mengalikan n dengan method faktorialDC(n-1). Proses ini terjadi secara rekursif hingga mencapai base case yaitu saat n sama dengan 1.
 
+
 ## 4.3 Menghitung Hasil Pangkat dengan Algoritma Brute Force dan Divide and Conquer
 Pada praktikum ini kita akan membuat program class dalam Java. Untuk menghitung nilai pangkat suatu angka menggunakan 2 jenis algoritma, Brute Force dan Divide and Conquer.
 
@@ -418,6 +419,7 @@ Jawab: Perbedaan utama antara kedua method tersebut adalah algoritma yang diguna
     - Pada base case (n == 0), fungsi akan mengembalikan 1.
     - Jika n merupakan bilangan ganjil, maka fungsi akan memanggil dirinya sendiri dua kali dengan parameter n/2 dan mengalikan hasilnya dengan a lalu mengembalikan hasilnya.
     - Jika n merupakan bilangan genap, maka fungsi akan memanggil dirinya sendiri dua kali dengan parameter n/2 dan mengembalikan hasilnya.
+
 2. Apakah tahap combine sudah termasuk dalam kode tersebut?Tunjukkan!<br>
 Jawab: Ya. Tahap combine sudah termasuk dalam kode tersebut melalui operasi perkalian pada bagian return. Tahap combine dilakukan pada bagian else dengan statement return (pangkatDC(a, n/2) * pangkatDC(a, n/2)); atau return (pangkatDC(a, n/2) * pangkatDC(a, n/2) * a);. Pada bagian return di dalam fungsi pangkatDC, terdapat operasi perkalian yang menggabungkan hasil rekursi dari pemanggilan rekursif pertama dan kedua. Jika nilai n ganjil, maka hasil rekursi tersebut juga dikalikan dengan a.
 ```java
@@ -650,8 +652,98 @@ public class MainSum {
 
 ### 4.4.3 Pertanyaan
 1. Mengapa terdapat formulasi return value berikut?Jelaskan!
-2. Kenapa dibutuhkan variable mid pada method TotalDC()?
-3. Program perhitungan keuntungan suatu perusahaan ini hanya untuk satu perusahaan saja. Bagaimana cara menghitung sekaligus keuntungan beberapa bulan untuk beberapa perusahaan.(Setiap perusahaan bisa saja memiliki jumlah bulan berbeda-beda)? Buktikan dengan program!
+```java
+return lsum+rsum+arr[mid];
+```
+Jawab: Formulasi tersebut digunakan untuk mengembalikan nilai total keuntungan yang diperoleh dengan menggabungkan (combine) hasil penjumlahan dua pemanggilan rekursif lsum (penjumlahan kiri) dan rsum (penjumlahan kanan) serta elemen tengah (arr[mid]) sehingga dari penjumlahan ketiganya bisa diketahui berapa banyak total keuntungan yang didapat dalam rentang waktu n bulan (sesuai inputan).
+
+2. Kenapa dibutuhkan variable mid pada method TotalDC()?<br>
+Jawab: Variable mid pada method TotalDC() dibutuhkan untuk membagi masalah menjadi dua submasalah yang lebih kecil menggunakan algoritma  Divide and Conquer. Dalam hal ini, variabel mid digunakan untuk menentukan batas tengah dari array yang akan dibagi menjadi dua bagian, yaitu bagian kiri(lsum) dan bagian kanan(rsum). Dengan demikian, perhitungan jumlah elemen dalam bagian kiri dan bagian kanan dapat dilakukan secara terpisah.<br>
+
+3. Program perhitungan keuntungan suatu perusahaan ini hanya untuk satu perusahaan saja. Bagaimana cara menghitung sekaligus keuntungan beberapa bulan untuk beberapa perusahaan.(Setiap perusahaan bisa saja memiliki jumlah bulan berbeda-beda)? Buktikan dengan program!<br>
+Modifikasi kode program class Sum:
+```java
+package Pertemuan5.BruteForceDivideConquer.minggu5;
+
+public class Sum {
+    int elemen;
+    double keuntungan[], total;
+    String compName; // Menambah atribut nama perusahaan
+
+    Sum(int elemen) {
+        this.elemen = elemen;
+        this.keuntungan = new double[elemen];
+        this.total = 0;
+    }
+
+    double totalBF(double arr[]) {
+        for (int i = 0; i < elemen; i++) {
+            total = total + arr[i];
+        }
+        return total;
+    }
+
+    double totalDc(double arr[], int l, int r) {
+        if (l == r) {
+            return arr[l];
+        } else if (l < r) {
+            int mid = (l + r) / 2;
+            double lsum = totalDc(arr, l, mid - 1);
+            double rsum = totalDc(arr, mid + 1, r);
+            return lsum+rsum+arr[mid];
+        }
+        return 0;
+    }
+}
+```
+Modifikasi kode program class MainSum:
+```java
+package Pertemuan5.BruteForceDivideConquer.minggu5;
+import java.util.Scanner;
+
+public class MainSum {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        Scanner nm = new Scanner(System.in);
+        System.out.println("===================================================================");
+        System.out.println("Program menghitung Keuntungan Total (Satuan Juta. Misal 5.9)");
+
+        System.out.print("Jumlah perusahaan: ");
+        short comp = sc.nextShort();
+        Sum[] sm = new Sum[comp]; //Membuat array of objek agar perusahaan yang dihitung bisa lebih dari satu
+
+        for (int x = 0; x < sm.length; x++) {
+            System.out.println("Perusahaan ke-" + (x+1));
+            System.out.print("Masukkan jumlah bulan : ");
+            int elm = sc.nextInt();
+            sm[x] = new Sum(elm);
+            System.out.print("Masukkan nama perusahaan: ");
+            sm[x].compName = nm.nextLine();
+
+            System.out.println("===================================================================");
+            for (int i = 0; i < sm[x].elemen; i++) {
+                System.out.print("Masukkan untung bulan ke - " + (i + 1) + " = ");
+                sm[x].keuntungan[i] = sc.nextDouble();
+            }
+        }
+
+        for (int j = 0; j < sm.length; j++) {
+            System.out.println("===================================================================");
+            System.out.println("Algoritma Brute Force");
+            System.out.println("Perusahaan ke-" + (j+1));
+            System.out.println("Total keuntungan perusahaan " + sm[j].compName + " selama " + sm[j].elemen + " bulan adalah = " + sm[j].totalBF(sm[j].keuntungan));
+            System.out.println("===================================================================");
+            System.out.println("Algoritma Divide Conquer");
+            System.out.println("Perusahaan ke-" + (j+1));
+            System.out.println("Total keuntungan perusahaan " + sm[j].compName + " selama " + sm[j].elemen + " bulan adalah = " + sm[j].totalDc(sm[j].keuntungan, 0, sm[j].elemen-1));
+        }
+    }
+}
+```
+output kode program:<br>
+<img src="pictures/4.4 pert 3-1.png">
+<img src="pictures/4.4 pert 3-2.png">
+
 
 ## 4.5 Latihan Praktikum
 1. Sebuah showroom memiliki daftar mobil dengan data sesuai tabel di bawah ini<br>
