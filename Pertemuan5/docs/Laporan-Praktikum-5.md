@@ -750,5 +750,151 @@ output kode program:<br>
 <img src="pictures/4.5 Latprak.png">
 Tentukan:<br>
     a) top_acceleration tertinggi menggunakan Divide and Conquer!<br>
+
+    ```java
+    //Method untuk mencari top_acceleration tertinggi menggunakan Divide and Conquer
+    int maxAcceleration(Mobil[] mbl, int left, int right) {
+        if (left == right) {
+            return mbl[left].top_accel;
+        }
+        
+        int mid = (left + right) / 2;
+        int maxLeft = maxAcceleration(mbl, left, mid);
+        int maxRight = maxAcceleration(mbl, mid + 1, right);
+        
+        if (maxLeft > maxRight) {
+            return maxLeft;
+        } else {
+            return maxRight;
+        }
+    }
+    ```
+    <img src="pictures/Latprak 4.5 output1.png">
+
     b) top_acceleration terendah menggunakan Divide and Conquer!<br>
+
+    ```java
+    //Method untuk mencari top_acceleration terendah menggunakan Divide and Conquer
+    int minAcceleration(Mobil[] mbl, int left, int right) {
+        if (left == right) {
+            return mbl[left].top_accel;
+        }
+        
+        int mid = (left + right) / 2;
+        int minLeft = minAcceleration(mbl, left, mid);
+        int minRight = minAcceleration(mbl, mid + 1, right);
+        
+        if (minLeft < minRight) {
+            return minLeft;
+        } else {
+            return minRight;
+        }
+    }
+    ```
+    <img src="pictures/Latprak 4.5 output2.png">
+
     c) Rata-rata top_power dari seluruh mobil menggunakan Brute Force!<br>
+
+    ```java
+    //Method untuk menghitung rata-rata top power dari seluruh mobil
+    double topPower(Mobil mbl[]) {
+        int sum = 0;
+        for (int j = 0; j < mbl.length; j++) {
+            sum += mbl[j].top_power;
+        }
+        return (double) sum / mbl.length;
+    }
+    ```
+    <img src="pictures/Latprak 4.5 output3.png">
+
+Kode program lengkapnya sebagai berikut.<br>
+Kode program class Mobil:
+```java
+package Pertemuan5.BruteForceDivideConquer.minggu5;
+
+public class Mobil {
+    String merk, tipe;
+    int tahun, top_accel, top_power;
+
+    public Mobil(String merk, String tipe, int tahun, int top_accel, int top_power) {
+        this.merk = merk;
+        this.tipe = tipe;
+        this.tahun = tahun;
+        this.top_accel = top_accel;
+        this.top_power = top_power;
+    }
+ 
+    //Method untuk mencari top_acceleration tertinggi menggunakan Divide and Conquer
+    int maxAcceleration(Mobil[] mbl, int left, int right) {
+        if (left == right) {
+            return mbl[left].top_accel;
+        }
+        
+        int mid = (left + right) / 2;
+        int maxLeft = maxAcceleration(mbl, left, mid);
+        int maxRight = maxAcceleration(mbl, mid + 1, right);
+        
+        if (maxLeft > maxRight) {
+            return maxLeft;
+        } else {
+            return maxRight;
+        }
+    }
+    
+    //Method untuk mencari top_acceleration terendah menggunakan Divide and Conquer
+    int minAcceleration(Mobil[] mbl, int left, int right) {
+        if (left == right) {
+            return mbl[left].top_accel;
+        }
+        
+        int mid = (left + right) / 2;
+        int minLeft = minAcceleration(mbl, left, mid);
+        int minRight = minAcceleration(mbl, mid + 1, right);
+        
+        if (minLeft < minRight) {
+            return minLeft;
+        } else {
+            return minRight;
+        }
+    }
+
+    //Method untuk menghitung rata-rata top power dari seluruh mobil
+    double topPower(Mobil mbl[]) {
+        int sum = 0;
+        for (int j = 0; j < mbl.length; j++) {
+            sum += mbl[j].top_power;
+        }
+        return (double) sum / mbl.length;
+    }  
+}
+```
+
+Kode program class MainMobil:
+```java
+package Pertemuan5.BruteForceDivideConquer.minggu5;
+
+public class MainMobil {
+    public static void main(String[] args) {
+        Mobil mobil[] = new Mobil[8];
+
+        mobil[0] = new Mobil("BMW", "M2 Coupe", 2016, 6816, 728);
+        mobil[1] = new Mobil("Ford", "Fiesta ST", 2014, 3921, 575);
+        mobil[2] = new Mobil("Nissan", "370Z", 2009, 4360, 657);
+        mobil[3] = new Mobil("Subaru", "BRZ", 2014, 4058, 609);
+        mobil[4] = new Mobil("Subaru", "Impreza WRX STI", 2013, 6255, 703);
+        mobil[5] = new Mobil("Toyota", "AE86 Trueno", 1986, 3700, 553);
+        mobil[6] = new Mobil("Toyota", "86/GT86", 2014, 4180, 609);
+        mobil[7] = new Mobil("Volkswagen", "Golf GTI", 2014, 4180, 631);
+
+        //Karena saya membuat methodnya dalam class Mobil, maka saya bisa mengakses method melalui objek dalam array mobil.
+        //Untuk indeks array of objek yang ingin diakses methodnya bebas asalkan masih dalam array of objek mobil.
+        //Karena semua indeks outputnya sama kecuali jika indeks melebihi atau sama dengan panjang array of objek maka akan error.  
+        System.out.println("Top acceleration tertinggi: " + mobil[3].maxAcceleration(mobil, 0, mobil.length - 1));
+        System.out.println("Top acceleration teremdah: " + mobil[1].minAcceleration(mobil, 0, mobil.length - 1));
+        System.out.println("Rata-rata top power dari seluruh mobil: " + mobil[4].topPower(mobil));
+    }
+}
+```
+
+Output program:<br>
+<img src="pictures/Latprak 4.5 output.png">
