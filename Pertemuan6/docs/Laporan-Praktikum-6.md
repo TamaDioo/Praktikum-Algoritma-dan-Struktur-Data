@@ -130,7 +130,22 @@ public class Main {
 <img src="pictures/5.2.2 output-2.png">
 
 ### 5.2.3 Pertanyaan
-1. Terdapat di method apakah proses bubble sort?
+1. Terdapat di method apakah proses bubble sort?<br>
+Jawab: Proses bubble sort terdapat pada method buubleSort() pada class DaftarMahasiswaBerprestasi.
+```java
+    void bubbleSort() {
+        for (int i = 0; i < listMhs.length-1; i++) {
+            for (int j = 1; j < listMhs.length-i; j++) {
+                if (listMhs[j].ipk > listMhs[j-1].ipk) {
+                    //Proses swap atau pertukaran
+                    Mahasiswa tmp = listMhs[j];
+                    listMhs[j] = listMhs[j-1];
+                    listMhs[j-1] = tmp;
+                }
+            }
+        }   
+    }
+```
 2. Di dalam method bubbleSort(), terdapat baris program seperti di bawah ini:
 ```java
                 if (listMhs[j].ipk > listMhs[j-1].ipk) {
@@ -140,16 +155,28 @@ public class Main {
                     listMhs[j-1] = tmp;
                 }
 ```
-Untuk apakah proses tersebut?
+Untuk apakah proses tersebut?<br>
+Jawab: Proses tersebut adalah proses pertukaran atau swap. Proses tersebut bertujuan untuk menukar posisi nilai yang lebih besar dengan posisi nilai sebelumnya (yang lebih kecil). Jika nilai IPK mahasiswa pada indeks ke-j lebih besar dari nilai IPK pada indeks ke-(j-1), maka proses swap dilakukan. Variabel tmp bertipe Mahasiswa berfungsi sebagai tempat penyimpanan data sementara dari listMhs[j]. Kemudian data pada listMhs[j] ditimpa dengan data dari listMhs[j-1]. Setelah itu, data pada listMhs[j-1] ditimpa dengan data yang disimpan di variabel tmp. Hal ini bertujuan untuk menukar posisi antara mahasiswa pada indeks ke-j (yang IPK nya lebih besar) dengan mahasiswa pada indeks ke-(j-1) (yang IPK nya lebih kecil).
+
 3. Perhatikan perulangan di dalam bubbleSort() di bawah ini:
 ```java
         for (int i = 0; i < listMhs.length-1; i++) {
             for (int j = 1; j < listMhs.length-i; j++) {
 ```
-    a. Apakah perbedaan antara kegunaan perulangan i dan perulangan j?
-    b. Mengapa syarat dari perulangan i adalah i<listMhs.length-1 ?
-    c. Mengapa syarat dari perulangan j adalah j<listMhs.length-i ?
-    d. Jika banyak data di dalam listMhs adalah 50, maka berapakali perulangan i akan berlangsung? Dan ada berapa Tahap bubble sort yang ditempuh?
+a. Apakah perbedaan antara kegunaan perulangan i dan perulangan j?<br>
+Jawab:<br>
+- Perulangan i digunakan untuk mengatur iterasi dari awal hingga sebelum elemen terakhir dalam array. Ini digunakan untuk menentukan berapa kali tahapan bubble sort berjalan untuk mengurutkan sekumpulan nilai. Setiap iterasi perulangan i memproses satu tahap dari algoritma bubble sort.
+- Perulangan j digunakan untuk melakukan perbandingan dan pertukaran nilai elemen (dua elemen yang bersebelahan) pada setiap tahap i. Jumlah iterasi j bergantung pada nilai i saat itu. Setiap iterasi perulangan j membandingkan dua elemen dan melakukan pertukaran jika kondisi if terpenuhi.<br>
+Dapat disimpulkan bahwa perulangan i menunjukkan Tahapan dan perulangan j menunjukkan Langkah tiap tahap.
+
+b. Mengapa syarat dari perulangan i adalah i<listMhs.length-1 ? <br>
+Jawab: Karena posisi elemen terakhir sudah dibandingkan pada iterasi perulangan sebelumnya sehingga posisinya menjadi terurut dan tidak perlu dibandingkan lagi.  Jadi, Ketika i mencapai listMhs.length-1, perbandingan tidak perlu dilakukan lagi karena elemen terakhir sudah berada di posisi yang benar. Misalnya jika ada 4 elemen dalam array, maka dibutuhkan 3 langkah untuk mengurutkan elemen-elemen tersebut.
+
+c. Mengapa syarat dari perulangan j adalah j<listMhs.length-i ? <br>
+Jawab: Syarat tersebut memastikan bahwa perulangan j tidak membandingkan elemen yang sudah terurut berulang kali. Ketika j mencapai listMhs.length-i, berarti elemen yang berada pada posisi terakhir (elemen j) sudah dibandingkan dengan semua elemen di sebelah kiri elemen j.
+
+d. Jika banyak data di dalam listMhs adalah 50, maka berapakali perulangan i akan berlangsung? Dan ada berapa Tahap bubble sort yang ditempuh? <br>
+Jawab: perulangan i akan berlangsung selama 49 kali karena i dimulai dari 0 sampai kondisi i < listMhs.length-1 atau i < 49 tidak terpenuhi. ini berarti bahwa i dimulai dari 0 dan berakhir sampai i = 48. Jadi perulangan i akan terjadi 49 kali. Jumlah tahap bubblesort yang ditempuh adalah sama dengan perulangan i yaitu ada 49 tahap.
 
 ## 5.3 Mengurutkan Data Mahasiswa Berdasarkan IPK Menggunakan Selection Sort 
 Jika pada praktikum yang sebelumnya kita telah mengurutkan data mahasiwa berdasarkan IPK menggunakan Bubble Sort secara descending, pada kali ini kita akan mencoba untuk menambahkan fungsi pengurutan menggunakan Selection Sort.
@@ -195,6 +222,8 @@ Di dalam method selection sort, terdapat baris program seperti di bawah ini:
             }
 ```
 Untuk apakah proses tersebut, jelaskan!
+Jawab: Proses tersebut digunakan untuk menemukan indeks dari nilai atribut ipk terkecil di dalam array of objek listMhs. Variabel idxMin diinisialisasi dengan i. Ini berarti bahwa mahasiswa pada indeks i merupakan mahasiswa dengan IPK terkecil. Perulangan j dimulai dari indeks i + 1 hingga akhir listMhs. Kemudian dalam perulangan j, nilai atribut ipk dari objek listMHs indeks j dibandingkan dengan nilai ipk objek listMhs pada indeks indxMin.
+Jika nilai atribut ipk dari objek listMHs indeks j lebih kecil daripada nilai ipk objek listMhs pada indeks idxMin, maka nilai idxMin diubah dengan j. 
 
 ## 5.4 Mengurutkan Data Mahasiswa Berdasarkan IPK Menggunakan Insertion Sort
 Yang terakhir akan diimplementasikan Teknik sorting menggunakan Insertion Sort, dengan mengurutkan IPK mahasiswa secara ascending.
