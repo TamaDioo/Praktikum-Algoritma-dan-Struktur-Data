@@ -256,11 +256,280 @@ Yang terakhir akan diimplementasikan Teknik sorting menggunakan Insertion Sort, 
 <img src="pictures/5.4.2 output-2.png">
 
 ### 5.4.3 Pertanyaan
-Ubahlah fungsi pada InsertionSort sehingga fungsi ini dapat melaksanakan proses sorting dengan cara descending.
+Ubahlah fungsi pada InsertionSort sehingga fungsi ini dapat melaksanakan proses sorting dengan cara descending.<br>
+Jawab: Untuk mengubah fungsi pada InsertionSort sehingga fungsi ini dapat melaksanakan proses sorting dengan cara descending adalah dengan cara mengubah operator relasi pada kondisi perulangan dalam (inner loop) yakni pada perulangan while. Operator pembanding listMhs[j - 1].ipk dengan temp.ipk yang semula ">" diubah menjadi "<".<br>
+Sebelum:
+```java
+            while (j > 0 && listMhs[j - 1].ipk > temp.ipk) {
+                listMhs[j] = listMhs[j - 1];
+                j--;
+            }
+```
+Sesudah:
+```java
+            while (j > 0 && listMhs[j - 1].ipk < temp.ipk) {
+                listMhs[j] = listMhs[j - 1];
+                j--;
+            }
+```
+Kode program fungsi InsertionSort setelah diubah:
+```java
+    void insertionSort() {
+        for (int i = 1; i < listMhs.length; i++) {
+            Mahasiswa temp = listMhs[i];
+            int j = i;
+            while (j > 0 && listMhs[j - 1].ipk < temp.ipk) {
+                listMhs[j] = listMhs[j - 1];
+                j--;
+            }
+            listMhs[j] = temp;
+        }
+    }
+```
+Pemanggilan fungsi InsertionSort pada class Main:
+```java
+        System.out.println("Data mahasiswa setelah sorting desc berdasarkan ipk (Insertion Sort)");
+        list.insertionSort();
+        list.tampil();
+```
+Output program:
+<img src="pictures/perc 3-output.png">
 
 ## 5.5 Latihan Praktikum
 Sebuah platform travel yang menyediakan layanan pemesanan kebutuhan travelling sedang mengembangkan backend untuk sistem pemesanan/reservasi akomodasi (penginapan), salah satu fiturnya adalah menampilkan daftar penginapan yang tersedia berdasarkan pilihan filter yang diinginkan user. Daftar penginapan ini harus dapat disorting berdasarkan
 1. Harga dimulai dari harga termurah ke harga tertinggi.
 2. Rating bintang penginapan dari bintang tertinggi (5) ke terendah (1)
 Buatlah proses sorting data untuk kedua filter tersebut dengan menggunakan algoritma <b>bubble sort</b> dan <b>selection sort.</b>
-<img src="pictures/LatPrak5-JS5.png">
+<img src="pictures/LatPrak5-JS5.png"><br>
+
+Kode program class Hotel:
+```java
+package Pertemuan6.bubbleSelectionInsertion.jobsheet6;
+
+public class Hotel {
+    String nama, kota;
+    int harga;
+    byte bintang;   
+
+    Hotel(String n, String k, int h, byte b) {
+        nama = n;
+        kota = k;
+        harga = h;
+        bintang = b;
+    }
+}
+```
+Kode program class HotelService:
+```java
+package Pertemuan6.bubbleSelectionInsertion.jobsheet6;
+
+public class HotelService {
+    Hotel[] rooms = new Hotel[5];
+    int idx;
+
+    void tambah(Hotel H) {
+        if (idx < rooms.length) {
+            rooms[idx] = H;
+            idx++;
+        } else {
+            System.out.println("Data sudah penuh!!");
+        }
+    }
+
+    void tampilAll() {
+        for (int i = 0; i < rooms.length; i++) {
+            System.out.println("Nama Penginapan : " + rooms[i].nama);
+            System.out.println("Kota            : " + rooms[i].kota);
+            System.out.println("Harga           : " + rooms[i].harga);
+            System.out.println("Rating          : " + rooms[i].bintang);
+            System.out.println("--------------------------");
+        }
+    }
+
+    void bubbleSortHarga() {
+        for (int i = 0; i < rooms.length-1; i++) {
+            for (int j = 1; j < rooms.length-i; j++) {
+                if (rooms[j].harga < rooms[j-1].harga) {
+                    //Proses swap atau pertukaran
+                    Hotel tmp = rooms[j];
+                    rooms[j] = rooms[j-1];
+                    rooms[j-1] = tmp;
+                }
+            }
+        }   
+    }
+
+    void bubbleSortRating() {
+        for (int i = 0; i < rooms.length-1; i++) {
+            for (int j = 1; j < rooms.length-i; j++) {
+                if (rooms[j].bintang > rooms[j-1].bintang) {
+                    //Proses swap atau pertukaran
+                    Hotel tmp = rooms[j];
+                    rooms[j] = rooms[j-1];
+                    rooms[j-1] = tmp;
+                }
+            }
+        }  
+    }
+
+    void selectionSortHarga() {
+        for (int i = 0; i < rooms.length-1; i++) {
+            int idxMin = i;
+            for (int j = i + 1; j < rooms.length; j++) {
+                if (rooms[j].harga < rooms[idxMin].harga) {
+                    idxMin = j;
+                }
+            }
+            //swap
+            Hotel tmp = rooms[idxMin];
+            rooms[idxMin] = rooms[i];
+            rooms[i] = tmp;   
+        }
+    }
+
+    void selectionSortRating() {
+        for (int i = 0; i < rooms.length-1; i++) {
+            int idxMin = i;
+            for (int j = i + 1; j < rooms.length; j++) {
+                if (rooms[j].bintang > rooms[idxMin].bintang) {
+                    idxMin = j;
+                }
+            }
+            //swap
+            Hotel tmp = rooms[idxMin];
+            rooms[idxMin] = rooms[i];
+            rooms[i] = tmp;   
+        }
+    }
+}
+```
+Kode program class MainHotel:
+```java
+package Pertemuan6.bubbleSelectionInsertion.jobsheet6;
+import java.util.Scanner;
+
+public class MainHotel {
+    static Scanner input = new Scanner(System.in);
+    static Scanner sc = new Scanner(System.in);
+    public static void main(String[] args) {
+        HotelService daftar = new HotelService();
+        Hotel H1 = new Hotel("Savana", "Malang", 340000, (byte)5);
+        Hotel H2 = new Hotel("YellowDoorz", "Malang", 210000, (byte)4);
+        Hotel H3 = new Hotel("Violet Hotel", "Malang", 399000, (byte)3);
+        Hotel H4 = new Hotel("Huge Star", "Surabaya", 500000, (byte)1);
+        Hotel H5 = new Hotel("Quin Hotel", "Malang", 150000, (byte)2);
+
+        daftar.tambah(H1);
+        daftar.tambah(H2);
+        daftar.tambah(H3);
+        daftar.tambah(H4);
+        daftar.tambah(H5);
+
+        System.out.println("Informasi Penginapan");
+        System.out.println("==========================");
+        System.out.println("Daftar penginapan yang tersedia: ");
+        System.out.println("--------------------------");
+        daftar.tampilAll();
+
+        char konfir;
+            do {
+                menuFilter(daftar);
+                System.out.println("Apakah Anda ingin memilih filter lain? (y/n)");
+                konfir = sc.next().charAt(0);
+                if (konfir == 'Y'|| konfir == 'y') {
+                    System.out.println("==========================");
+                } 
+            } while (konfir == 'Y'|| konfir == 'y');
+    }
+
+    static void menuHarga(HotelService list) {
+        System.out.println("==========================");
+        System.out.println("Metode Sorting harga penginapan");
+        System.out.println("1) Bubble Sort\n" + "2) Selection Sort");
+        System.out.print("Pilih metode sorting: ");
+        byte menuSort = input.nextByte();
+        System.out.println("==========================");
+
+        switch (menuSort) {
+            case 1 :
+                System.out.println("Sorting harga penginapan menggunakan bubble sort");
+                System.out.println("--------------------------");
+                list.bubbleSortHarga();
+                list.tampilAll();
+                break;
+            case 2:
+                System.out.println("Sorting harga penginapan menggunakan selection sort");
+                System.out.println("--------------------------");
+                list.selectionSortHarga();
+                list.tampilAll();
+                break;
+            default:
+                System.out.println("Menu sorting yang Anda masukkan tidak valid!\n" +
+                "Pilih menu sorting yang valid (1/2)");
+                break;
+        }
+    }
+
+    static void menuRating(HotelService list) {
+        System.out.println("==========================");
+        System.out.println("Metode Sorting rating penginapan");
+        System.out.println("1) Bubble Sort\n" + "2) Selection Sort");
+        System.out.print("Pilih metode sorting: ");
+        byte menuSort = input.nextByte();
+        System.out.println("==========================");
+
+        switch (menuSort) {
+            case 1 :
+                System.out.println("Sorting rating penginapan menggunakan bubble sort");
+                list.bubbleSortRating();
+                list.tampilAll();
+                break;
+            case 2:
+                System.out.println("Sorting rating penginapan menggunakan selection sort");
+                list.selectionSortRating();
+                list.tampilAll();
+                break;
+            default:
+                System.out.println("Menu sorting yang Anda masukkan tidak valid!\n" + 
+                "Pilih menu sorting yang valid (1/2)");
+                break;
+        }
+    }
+
+    //Ini merupakan fungsi untuk pemilihan filter (harga/rating).
+    static void menuFilter(HotelService list) {
+        System.out.println("Fitur filter penginapan");
+        System.out.println("1. Harga (dimulai dari harga termurah ke harga tertinggi)\n" + 
+                           "2. Rating bintang penginapan (dari bintang tertinggi (5) ke terendah (1))\"");
+        System.out.print("Pilih filter untuk menampilkan daftar penginapan yang tersedia: ");
+        byte menu = input.nextByte();
+
+        if (menu == 1) {
+            char konfir1;
+            do {
+                menuHarga(list);//Pemanggilan fungsi submenu harga penginapan (metode sorting bubble/selection)
+                System.out.println("Apakah Anda ingin menggunakan metode sorting lain? (y/n)");
+                konfir1 = sc.next().charAt(0);
+            } while (konfir1 == 'Y'|| konfir1 == 'y');
+        } else if (menu == 2) {
+            char konfir2;
+            do {
+                menuRating(list);//Pemanggilan fungsi submenu rating penginapan (metode sorting bubble/selection)
+                System.out.println("Apakah Anda ingin menggunakan metode sorting lain? (y/n)");
+                konfir2 = sc.next().charAt(0);
+            } while (konfir2 == 'Y'|| konfir2 == 'y');
+        } else {
+            System.out.println("Filter yang Anda pilih tidak valid!\nPilih filter yang tersedia (1/2)");
+        }
+    }
+}
+```
+
+Output program:<br>
+<img src="pictures/LatPrak5-JS5-output1.png">
+<img src="pictures/LatPrak5-JS5-output2.png">
+<img src="pictures/LatPrak5-JS5-output3.png">
+<img src="pictures/LatPrak5-JS5-output4.png">
+<img src="pictures/LatPrak5-JS5-output5.png">
+<img src="pictures/LatPrak5-JS5-output6.png">
+<img src="pictures/LatPrak5-JS5-output7b.png">
