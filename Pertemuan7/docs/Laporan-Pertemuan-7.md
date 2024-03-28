@@ -1,4 +1,4 @@
-# <p align ="center">Laporan Praktikum Pertemuan 3 Algoritma dan Struktur Data</p>
+# <p align ="center">Laporan Praktikum Pertemuan 7 Algoritma dan Struktur Data</p>
 <br><br><br><br>
 
 <p align="center">
