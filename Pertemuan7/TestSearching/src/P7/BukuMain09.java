@@ -1,4 +1,4 @@
-package Pertemuan7.TestSearching.src.P7;
+package P7;
 import java.util.Scanner;
 
 public class BukuMain09 {
@@ -10,7 +10,7 @@ public class BukuMain09 {
         int jumBuku = 5;
 
         System.out.println("------------------------------------------------");
-        System.out.println("Masukkan data Buku secara Urut dari KodeBuku Terkecil : ");
+        System.out.println("Masukkan data Buku secara tidak terurut : ");
         for (int i = 0; i < jumBuku; i++) {
             System.out.println("------------------");
             System.out.print("Kode Buku \t: ");
@@ -28,7 +28,7 @@ public class BukuMain09 {
             data.tambah(m);
         }
         System.out.println("-------------------------------------------");
-        System.out.println("Data keseluruhan Mahasiswa : ");
+        System.out.println("Data keseluruhan Buku : ");
         data.tampil();
 
         System.out.println("___________________________________________");
@@ -41,5 +41,15 @@ public class BukuMain09 {
         int posisi = data.FindSeqSearch(cari);
         data.Tampilposisi(cari, posisi);
         data.TampilData(cari, posisi);
+
+        System.out.println("Menggunakan method FindBuku()");
+        Buku09 dataBuku = data.FindBuku(cari);
+        dataBuku.tampilDataBuku();
+
+        /*System.out.println("=================================");
+        System.out.println("menggunakan binary search");
+        posisi = data.FindBinarySearch(cari, 0, jumBuku - 1);
+        data.Tampilposisi(cari, posisi);
+        data.TampilData(cari, posisi);*/
     }
 }

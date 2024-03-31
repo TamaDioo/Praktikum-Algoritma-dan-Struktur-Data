@@ -1,4 +1,4 @@
-package Pertemuan7.TestSearching.src.P7;
+package P7;
 
 public class Buku09 {
     int kodeBuku, tahunTerbit, stock;
