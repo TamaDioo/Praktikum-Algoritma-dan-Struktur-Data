@@ -46,10 +46,10 @@ public class BukuMain09 {
         Buku09 dataBuku = data.FindBuku(cari);
         dataBuku.tampilDataBuku();
 
-        /*System.out.println("=================================");
+        System.out.println("=================================");
         System.out.println("menggunakan binary search");
         posisi = data.FindBinarySearch(cari, 0, jumBuku - 1);
         data.Tampilposisi(cari, posisi);
-        data.TampilData(cari, posisi);*/
+        data.TampilData(cari, posisi);
     }
 }

@@ -442,9 +442,58 @@ Stock            : 2
 
 ### 6.3.3. Pertanyaan
 1. Tunjukkan pada kode program yang mana proses divide dijalankan!
+Jawab: Proses divide dijalankan pada pengisian variabel mid. 
+```java
+    mid = (left + right) / 2;
+```
+Pada kode program di atas, proses divide terjadi dengan menghitung nilai tengah (mid) dengan menggunakan formula (left + right) / 2. Ini merupakan operasi pembagian untuk mencari titik tengah (mid) sebagai pemisah antara bagian kiri dan kanan array.
+
 2. Tunjukkan pada kode program yang mana proses conquer dijalankan!
-4. Jika data Kode Buku yang dimasukkan tidak urut. Apakah program masih dapat berjalan? Mengapa demikian! Tunjukkan hasil screenshoot untuk bukti dengan kode Buku yang acak. Jelaskan Mengapa hal tersebut bisa terjadi?
+Jawab: Proses conquer dijalankan pada bagian kode program berikut:
+```java
+            if (cari == listBk[mid].kodeBuku) {
+                return (mid);
+            } else if (listBk[mid].kodeBuku > cari) {
+                return FindBinarySearch(cari, left, mid - 1);
+            } else {
+                return FindBinarySearch(cari, mid + 1, right);
+            }
+```
+Jika nilai parameter cari sama dengan listBk[mid].kodeBuku, maka fungsi akan mengembalikan nilai mid sebagai posisi elemen yang ditemukan. Jika listBk[mid].kodeBuku lebih besar dari nilai parameter cari, maka fungsi akan memanggil dirinya sendiri (rekursif) dengan parameter kedua left dan yang terakhir menjadi mid - 1. Jika listBk[mid].kodeBuku lebih kecil dari nilai parameter cari, maka fungsi akan memanggil dirinya sendiri (rekursif) dengan parameter kedua menjadi mid + 1 dan yang terakhir adalah right.<br>
+
+4. Jika data Kode Buku yang dimasukkan tidak urut. Apakah program masih dapat berjalan? Mengapa demikian! Tunjukkan hasil screenshoot untuk bukti dengan kode Buku yang acak. Jelaskan Mengapa hal tersebut bisa terjadi?<br>
+Jawab: Ya, program masih dapat berjalan, akan tetapi hasil pencarian menggunakan binary search tidak ditemukan padahal kodeBuku yang dicari ada dalam array listBk. Hal ini dapat terjadi karena kode buku yang diinputkan tidak urut dari yang terkecil ke terbesar. Syarat dari pencarian binary search adalah data harus urut terlebih dahulu. Mengapa harus urut, karena pada binary search data akan dibagi menjadi 2 lalu dicari nilai tengahnya yang kemudian nilai tengah tersebut akan dibandingkan dengan nilai yang dicari. Jika data tidak urut, nilai tengah yang dibandingkan tidak dapat dijadikan acuan karena datanya acak.
+<img src="pictures/6.2.3-Pertanyaan-2.1 .png">
+<img src="pictures/6.2.3-Pertanyaan-2.2.png">
+<img src="pictures/6.3.3. Pertanyaan-4.3.png"><br>
+
 3. Jika Kode Buku yang dimasukkan dari Kode Buku terbesar ke terkecil (missal : 20215, 20214, 20212, 20211, 20210) dan elemen yang dicari adalah 20210. Bagaimana hasil dari binary search? Apakah sesuai? Jika tidak sesuai maka ubahlah kode program binary seach agar hasilnya sesuai!
+Jawab: Hasilnya adalah tidak sesuai. Elemen yang dicari (20210) tidak dapat ditemukan. Hal ini karena data yang disajikan memang urut, namun secara descending (dari terbesar ke terkecil) sedangkan pada method pencarian binary search dikhususkan untuk data terurut secara ascending (dari terkecil ke terbesar). 
+Output awal program:
+<img src="pictures/6.3.3. Pertanyaan-3.1.png">
+<img src="pictures/6.3.3. Pertanyaan-3.2.png">
+<img src="pictures/6.3.3. Pertanyaan-3.3.png"><br>
+Jika ingin mencari nilai pada kumpulan data yang terurut secara descending, maka kode program method FindBinarySearch() harus diubah. Perubahan yang dilakukan adalah pada pengecekan dan pembandingan antara listBk[mid].kodeBuku dengan nilai parameter cari. Ketika listBk[mid].kodeBuku > cari maka pencarian akan dilanjutkan dengan mencari di bagian kanan array. Begitupun sebaliknya, jika listBk[mid].kodeBuku < cari maka pencarian akan dilanjutkan dengan mencari di bagian kiri array.
+Modifikasi kode program method FindBinarySearch():
+
+```java
+    public int FindBinarySearch(int cari, int left, int right) {
+        int mid;
+        if (right >= left) {
+            mid = (left + right) / 2;
+            if (cari == listBk[mid].kodeBuku) {
+                return (mid);
+            } else if (listBk[mid].kodeBuku < cari) { //Ganti operator ">" dengan "<".
+                return FindBinarySearch(cari, left, mid - 1);
+            } else {
+                return FindBinarySearch(cari, mid + 1, right);
+            }
+        } 
+        return -1;
+    }
+```
+Output program setelah dimodifikasi:
+<img src="pictures/6.3.3. Pertanyaan-3.4.png">
 
 ## 6.4. Percobaan Pengayaan Divide and Conquer
 
