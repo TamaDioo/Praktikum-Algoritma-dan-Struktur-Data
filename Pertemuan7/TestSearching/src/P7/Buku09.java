@@ -1,10 +1,10 @@
 package P7;
 
 public class Buku09 {
-    int kodeBuku, tahunTerbit, stock;
-    String judulBuku, pengarang;
+    int tahunTerbit, stock;
+    String judulBuku, pengarang, kodeBuku;
 
-    public Buku09(int kodeBuku, String judulBuku, int tahunTerbit, String pengarang, int stock) {
+    public Buku09(String kodeBuku, String judulBuku, int tahunTerbit, String pengarang, int stock) {
         this.kodeBuku = kodeBuku;
         this.judulBuku = judulBuku;
         this.tahunTerbit = tahunTerbit;

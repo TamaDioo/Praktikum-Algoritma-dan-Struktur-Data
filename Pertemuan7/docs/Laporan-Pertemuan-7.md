@@ -335,7 +335,7 @@ Kode program pembuatan method baru:<br>
 
 ```java
     public Buku09 FindBuku(int cari) {
-        int posisi = 2;
+        int posisi = -1;
         for (int j = 0; j < listBk.length; j++) {
             if (listBk[j].kodeBuku == cari) {
                 posisi = j;
@@ -344,19 +344,32 @@ Kode program pembuatan method baru:<br>
                 posisi = -1;
             }
         }
-        return listBk[posisi];
+        if (posisi == -1) {
+            return null; // Mengembalikan null jika kodeBuku tidak ditemukan
+        } else {
+            return listBk[posisi];
+        }
     }
 ```
 Pemanggilan method FindBuku() pada class BukuMain09:
 ```java
+        System.out.println("Menggunakan method FindBuku()");
         Buku09 dataBuku = data.FindBuku(cari);
-        dataBuku.tampilDataBuku();
+        if (dataBuku != null) {
+            dataBuku.tampilDataBuku();
+        } else {
+            System.out.println("Buku tidak ditemukan.");
+        }
 ```
+Ada sedikit perubahan untuk pemanggilan method FindBuku() pada class BukuMain09, jika nilai kembalian tidak null, maka method tampilDataBuku() akan dipanggil. Jika nilai kembalian null, maka akan mencetak "Buku tidak ditemukan".
 Output program:<br>
 <img src="pictures/6.2.3-Pertanyaan-2.1 .png">
 <img src="pictures/6.2.3-Pertanyaan-2.2.png">
-<img src="pictures/6.2.3-Pertanyaan-3.png">
-Sebenarnya tidak ada perbedaan antara method FindBuku() dengan method FindSeqSearch(), hanya saja pada method FindBuku() nilai yang direturnkan bukanlah posisi indeks saja, melainkan objek listBk dengan posisi indeks yang sama dengan nilai (kodeBuku) yang dicari. Hal ini dapat dilakukan karena tipe method FindBuku() adalah class Buku09 sehingga nilai yang dikembalikan dapat berupa objek (yang diinstansiasi dengan class Buku09). Untuk menampilkan data buku secara lengkap pada fungsi BukuMain juga dapat secara langsung mengakses method tampilDataBuku() karena nilai yang dikembalikan pada method FindBuku() adalah objek dari class Buku09.
+Output jika kodeBuku ditemukan:<br>
+<img src="pictures/6.2.3-Pertanyaan-3.png"><br>
+Output jika kodeBuku tidak ditemukan:<br>
+<img src="pictures/6.2.3-Pertanyaan-2.4.png">
+Sebenarnya tidak ada perbedaan antara method FindBuku() dengan method FindSeqSearch(), hanya saja pada method FindBuku() nilai yang direturnkan bukanlah posisi indeks saja, melainkan objek listBk dengan posisi indeks yang sama dengan nilai (kodeBuku) yang dicari (jika kodeBuku yang dicari ditemukan). Namun, jika kodeBuku yang dicari tidak ditemukan, maka nilai yang direturnkan adalah null karena jika yang direturnkan adalah objek listBk dengan posisi indeks -1 (karena tidak ditemukan) akan terjadi error ``Exception in thread "main" java.lang.ArrayIndexOutOfBoundsException: Index -1 out of bounds for length 5``. Hal ini dapat dilakukan karena tipe method FindBuku() adalah class Buku09 sehingga nilai yang dikembalikan dapat berupa objek (yang diinstansiasi dengan class Buku09). Untuk menampilkan data buku secara lengkap pada fungsi BukuMain juga dapat secara langsung mengakses method tampilDataBuku() karena nilai yang dikembalikan pada method FindBuku() adalah objek dari class Buku09.
 
 ## 6.3. Searching / Pencarian Menggunakan Binary Search
 
@@ -587,7 +600,173 @@ setelah diurutkan
 ## 6.5. Latihan Praktikum
 1. Modifikasi percobaan searching diatas dengan ketentuan berikut ini
 - Ubah tipe data dari kode Buku yang awalnya int menjadi String
+```java
+package P7;
+
+public class Buku09 {
+    int tahunTerbit, stock;
+    String judulBuku, pengarang, kodeBuku;
+
+    public Buku09(String kodeBuku, String judulBuku, int tahunTerbit, String pengarang, int stock) {
+        this.kodeBuku = kodeBuku;
+        this.judulBuku = judulBuku;
+        this.tahunTerbit = tahunTerbit;
+        this.pengarang = pengarang;
+        this.stock = stock;
+    }
+
+    public void tampilDataBuku() {
+        System.out.println("===============================");
+        System.out.println("Kode buku : " + kodeBuku);
+        System.out.println("Judul buku : " + judulBuku);
+        System.out.println("Tahun Terbit : " + tahunTerbit);
+        System.out.println("Pengarang : " + pengarang);
+        System.out.println("Stock : " + stock);
+    }
+}
+```
 - Tambahkan method untuk pencarian kode Buku (bertipe data String) dengan menggunakan sequential search dan binary search.
+Kode program method pencarian kode Buku menggunakan sequential search:
+```java
+    public int FindSeqSearch(String cari) {
+        int posisi = 2;
+        for (int j = 0; j < listBk.length; j++) {
+            if (listBk[j].kodeBuku.equals(cari)) {
+                posisi = j;
+                break;
+            } else {
+                posisi = -1;
+            }
+        }
+        return posisi;
+    }
+```
+Kode program method pencarian kode Buku menggunakan sequential search dengan tipe Buku09:
+```java
+    public Buku09 FindBuku(String cari) {
+        int posisi = -1;
+        for (int j = 0; j < listBk.length; j++) {
+            if (listBk[j].kodeBuku.equals(cari)) {
+                posisi = j;
+                break;
+            } else {
+                posisi = -1;
+            }
+        }
+        if (posisi == -1) {
+            return null; // Mengembalikan null jika kodeBuku tidak ditemukan
+        } else {
+            return listBk[posisi];
+        }
+    }
+```
+Kode program method pencarian kode Buku menggunakan binary search:
+```java
+    public int FindBinarySearch(String cari, int left, int right) {
+        int mid;
+        if (right >= left) {
+            mid = (left + right) / 2;
+            if (listBk[mid].kodeBuku.equals(cari)) {
+                return (mid);
+            //Untuk membandingkan string menggunakan compareTo
+            } else if (listBk[mid].kodeBuku.compareTo(cari) > 0) {
+                return FindBinarySearch(cari, left, mid - 1);
+            } else {
+                return FindBinarySearch(cari, mid + 1, right);
+            }
+        } 
+        return -1;
+    }
+```
+CompareTo mengembalikan nilai dengan ketentuan:
+- Jika nilai yang dikembalikan < 0, maka string pertama memiliki posisi lebih dulu (berdasarkan urutan alfabet).
+- Jika nilai yang dikembalikan == 0, maka kedua string memiliki posisi yang sama (berdasarkan urutan alfabet).
+- Jika nilai yang dikembalikan > 0, maka string kedua memiliki posisi lebih dulu (berdasarkan urutan alfabet).
+``Method FindBinarySearch() ini tetap membutuhkan data kodeBuku secara urut dari terkecil ke terbesar berdasarkan urutan alfabet (bisa juga dari terbesar ke terkecil dengan merubah operator perbandingannya).``
+Modifikasi method TampilData() dan TampilPosisi():
+```java
+    public void Tampilposisi(String x, int pos) {
+        if (pos != -1) {
+            System.out.println("data : " + x + " ditemukan pada indeks " + pos);
+        } else {
+            System.out.println("data : " + x + " tidak ditemukan");
+        }
+    }
+
+    public void TampilData(String x, int pos) {
+        if (pos != -1) {
+            System.out.println("Kode Buku\t : " + x);
+            System.out.println("Judul\t\t : " + listBk[pos].judulBuku);
+            System.out.println("Tahun Terbit\t : " + listBk[pos].tahunTerbit);
+            System.out.println("Pengarang\t : " + listBk[pos].pengarang);
+            System.out.println("Stock\t\t : " + listBk[pos].stock);
+        } else {
+            System.out.println("data " + x + " tidak ditemukan");
+        }
+    }
+```
+Output program setelah dimodifikasi:<br>
+<img src="pictures/6.5. Latihan Praktikum-1.png">
+<img src="pictures/6.5. Latihan Praktikum-2.png">
+Jika data ditemukan:<br>
+<img src="pictures/6.5. Latihan Praktikum-3.png">
+Jika data tidak ditemukan:<br>
+<img src="pictures/6.5. Latihan Praktikum-4rev.png">
+
 2. Modifikasi percobaan searching diatas dengan ketentuan berikut ini
 - Tambahkan method pencarian judul buku menggunakan sequential search dan binary search. Sebelum dilakukan searching dengan binary search data harus dilakukan pengurutan dengan menggunakan algoritma Sorting (bebas pilih algoritma sorting apapun)! Sehingga ketika input data acak, maka algoritma searching akan tetap berjalan
+Kode program method pencarian judul buku menggunakan sequential search:<br>
+```java
+    public int FindJudulSeqSearch(String cariJdl) {
+        int posisi = 2;
+        for (int j = 0; j < listBk.length; j++) {
+            if (listBk[j].judulBuku.equalsIgnoreCase(cariJdl)) {
+                posisi = j;
+                break;
+            } else {
+                posisi = -1;
+            }
+        }
+        return posisi;
+    }
+```
+Kode program method pencarian judul buku menggunakan sequential search dengan tipe Buku09:<br>
+```java
+    public Buku09 FindJudulBuku(String cariJdl) {
+        int posisi = -1;
+        for (int j = 0; j < listBk.length; j++) {
+            if (listBk[j].judulBuku.equalsIgnoreCase(cariJdl)) {
+                posisi = j;
+                break;
+            } else {
+                posisi = -1;
+            }
+        }
+        if (posisi == -1) {
+            return null; // Mengembalikan null jika kodeBuku tidak ditemukan
+        } else {
+            return listBk[posisi];
+        }
+    }
+```
+Kode program method pengurutan judul buku menggunakan algoritma sorting selection sort:<br>
+Kode program method pencarian judul buku menggunakan binary search:<br>
+```java
+    public int FindJdlBinSearch(String cariJdl, int left, int right) {
+        int mid;
+        if (right >= left) {
+            mid = (left + right) / 2;
+            if (listBk[mid].judulBuku.equals(cariJdl)) {
+                return (mid);
+            //Untuk membandingkan String menggunakan compareTo
+            } else if (listBk[mid].judulBuku.compareTo(cariJdl) > 0) {
+                return FindBinarySearch(cariJdl, left, mid - 1);
+            } else {
+                return FindBinarySearch(cariJdl, mid + 1, right);
+            }
+        } 
+        return -1;
+    }
+```
+Kode program method pengurutan kode buku menggunakan algoritma sorting selection sort:<br>
 - Buat aturan untuk mendeteksi hasil pencarian judul buku yang lebih dari 1 hasil dalam bentuk kalimat peringatan! Pastikan algoritma yang diterapkan sesuai dengan kasus yang diberikan!
