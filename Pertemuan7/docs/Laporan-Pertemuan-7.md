@@ -8,7 +8,7 @@
 
 <p align = "center"> Nama     : Dio Andika Pradana Mulia Tama </p>
 <p align = "center"> NIM      : 2341720098 </p>
-<p align = "center"> Prodi    : TEKNIK INFOMATIKA</p>
+<p align = "center"> Prodi    : Teknik Informatika</p>
 <p align = "center"> Kelas    : 1B </p>
 <p align = "center"> Presensi : 09 </p>
 
@@ -172,80 +172,6 @@ Verifikasi hasil pencarian :<br>
 <img src="pictures/6.2.1 no 13.1.png">
 <img src="pictures/6.2.1 no 13.2.png">
 <img src="pictures/6.2.1 no 13.png">
-```
-------------------------------------------------
-Masukkan data Buku secara Urut dari KodeBuku Terkecil :
-------------------
-Kode Buku       : 111
-Judul Buku      : Algoritma
-Tahun Terbit    : 2019
-Pengarang       : Wahyuni
-Stock           : 5
-------------------
-Kode Buku       : 123
-Judul Buku      : Big Data
-Tahun Terbit    : 2020
-Pengarang       : Susilo
-Stock           : 3
-------------------
-Kode Buku       : 125
-Judul Buku      : Desain UI 
-Tahun Terbit    : 2021
-Pengarang       : Supriadi
-Stock           : 3
-------------------
-Kode Buku       : 126
-Judul Buku      : Web Programming
-Tahun Terbit    : 2022
-Pengarang       : Pustaka Adi
-Stock           : 2
-------------------
-Kode Buku       : 127
-Judul Buku      : Etika Mahasiswa
-Tahun Terbit    : 2023
-Pengarang       : Darmawan Adi
-Stock           : 2
--------------------------------------------
-Data keseluruhan Buku :
-===============================
-Kode buku : 111
-Judul buku : Algoritma
-Tahun Terbit : 2019
-Pengarang : Wahyuni
-Stock : 5
-===============================
-Kode buku : 123
-Judul buku : Big Data
-Tahun Terbit : 2020
-Pengarang : Susilo
-Stock : 3
-===============================
-Kode buku : 125
-Judul buku : Desain UI
-Tahun Terbit : 2021
-Pengarang : Supriadi
-Stock : 3
-===============================
-Kode buku : 126
-Judul buku : Web Programming
-Tahun Terbit : 2022
-Pengarang : Pustaka Adi
-Stock : 2
-===============================
-Kode buku : 127
-Judul buku : Etika Mahasiswa
-Tahun Terbit : 2023
-Pengarang : Darmawan Adi
-Stock : 2
-___________________________________________
-___________________________________________
-Pencarian Data :
-Masukkan Kode Buku yang dicari :
-Kode Buku : 111
-Menggunakan sequential Search
-data : 111 ditemukan pada indeks 0
-PS D:\Kuliah\Semester 2\Tugas Kuliah Semester 2\Algoritma dan Struktur Data\Praktikum-Algoritma dan Struktur Data>
-```
 Apakah pencarian pada program anda sudah sesuai? Jika belum perbaiki kode sehingga pencarian
 sesuai. <br>
 Pencarian pada program sudah sesuai.
@@ -272,22 +198,10 @@ data.TampilData(cari, posisi);
 
 ### 6.2.2. Verifikasi Hasil Percobaan
 Jika data ditemukan:<br>
-<img src="pictures/6.2.2 verif-perc.1.png">
-```
-___________________________________________
-Pencarian Data :
-Masukkan Kode Buku yang dicari :
-Kode Buku : 111
-Menggunakan sequential Search
-data : 111 ditemukan pada indeks 0
-Kode Buku        : 111
-Judul            : Algoritma
-Tahun Terbit     : 2019
-Pengarang        : Wahyuni
-Stock            : 5
-```
+<img src="pictures/6.2.2 verif-perc.1.png"><br>
 Jika data tidak ditemukan :
-Ternyata masih ada kesalahan pada kode program method FindSeqSearch yaitu nilai posisi (indeks) yang tidak diubah jika tidak ditemukan kodeBuku yang sama dengan kodeBuku yang dicari. Jadi ketika tidak ada nilai kodeBuku yang sesuai, maka variabel posisi akan tetap terisi 2. Hal ini akan menyebabkan ketidak validan program. Oleh karena itu, perlu ditambahkan blok kode else dalam perulangan for agar ketika kode buku tidak ditemukan indeksnya juga tidak ditemukan. Dalam hal ini, ketika kode buku tidak ditemukan maka posisi akan diubah menjadi -1 (karena indeks array tidak ada nilai minus).
+``Ternyata masih ada kesalahan pada kode program method FindSeqSearch yaitu nilai posisi (indeks) yang tidak diubah jika tidak ditemukan kodeBuku yang sama dengan kodeBuku yang dicari. Jadi ketika tidak ada nilai kodeBuku yang sesuai, maka variabel posisi akan tetap terisi 2. Hal ini akan menyebabkan ketidak validan program. Oleh karena itu, perlu ditambahkan blok kode else dalam perulangan for agar ketika kode buku tidak ditemukan indeksnya juga tidak ditemukan. Dalam hal ini, ketika kode buku tidak ditemukan maka posisi akan diubah menjadi -1 (karena indeks array tidak ada nilai minus).``
+
 Perbaikan kode program:
 ```java
     public int FindSeqSearch(int cari) {
@@ -305,16 +219,6 @@ Perbaikan kode program:
 ```
 Output jika data tidak ditemukan:
 <img src="pictures/6.2.2 verif-perc.2.png">
-```
-___________________________________________
-Pencarian Data :
-Masukkan Kode Buku yang dicari :
-Kode Buku : 124
-Menggunakan sequential Search
-data : 124 tidak ditemukan
-data 124 tidak ditemukan
-PS D:\Kuliah\Semester 2\Tugas Kuliah Semester 2\Algoritma dan Struktur Data\Praktikum-Algoritma dan Struktur Data> 
-```
 
 ### 6.2.3. Pertanyaan
 1. Jelaskan fungsi break yang ada pada method FindSeqSearch!<br>
@@ -364,11 +268,11 @@ Pemanggilan method FindBuku() pada class BukuMain09:
 Ada sedikit perubahan untuk pemanggilan method FindBuku() pada class BukuMain09, jika nilai kembalian tidak null, maka method tampilDataBuku() akan dipanggil. Jika nilai kembalian null, maka akan mencetak "Buku tidak ditemukan".
 Output program:<br>
 <img src="pictures/6.2.3-Pertanyaan-2.1 .png">
-<img src="pictures/6.2.3-Pertanyaan-2.2.png">
+<img src="pictures/6.2.3-Pertanyaan-2.2.png"><br>
 Output jika kodeBuku ditemukan:<br>
 <img src="pictures/6.2.3-Pertanyaan-3.png"><br>
 Output jika kodeBuku tidak ditemukan:<br>
-<img src="pictures/6.2.3-Pertanyaan-2.4.png">
+<img src="pictures/6.2.3-Pertanyaan-2.4.png"><br>
 Sebenarnya tidak ada perbedaan antara method FindBuku() dengan method FindSeqSearch(), hanya saja pada method FindBuku() nilai yang direturnkan bukanlah posisi indeks saja, melainkan objek listBk dengan posisi indeks yang sama dengan nilai (kodeBuku) yang dicari (jika kodeBuku yang dicari ditemukan). Namun, jika kodeBuku yang dicari tidak ditemukan, maka nilai yang direturnkan adalah null karena jika yang direturnkan adalah objek listBk dengan posisi indeks -1 (karena tidak ditemukan) akan terjadi error ``Exception in thread "main" java.lang.ArrayIndexOutOfBoundsException: Index -1 out of bounds for length 5``. Hal ini dapat dilakukan karena tipe method FindBuku() adalah class Buku09 sehingga nilai yang dikembalikan dapat berupa objek (yang diinstansiasi dengan class Buku09). Untuk menampilkan data buku secara lengkap pada fungsi BukuMain juga dapat secara langsung mengakses method tampilDataBuku() karena nilai yang dikembalikan pada method FindBuku() adalah objek dari class Buku09.
 
 ## 6.3. Searching / Pencarian Menggunakan Binary Search
@@ -430,38 +334,15 @@ Perbaikan kode program method indBinarySearch():
 ```
 <img src="pictures/6.3.2 verif-perc.png">
 
-```
-___________________________________________
-___________________________________________
-Pencarian Data :
-Masukkan Kode Buku yang dicari :
-Kode Buku : 126
-Menggunakan sequential Search
-data : 126 ditemukan pada indeks 3
-Kode Buku        : 126
-Judul            : Web Programming
-Tahun Terbit     : 2022
-Pengarang        : Pustaka Adi
-Stock            : 2
-=================================
-menggunakan binary search
-data : 126 ditemukan pada indeks 3
-Kode Buku        : 126
-Judul            : Web Programming
-Tahun Terbit     : 2022
-Pengarang        : Pustaka Adi
-Stock            : 2
-```
-
 ### 6.3.3. Pertanyaan
-1. Tunjukkan pada kode program yang mana proses divide dijalankan!
+1. Tunjukkan pada kode program yang mana proses divide dijalankan!<br>
 Jawab: Proses divide dijalankan pada pengisian variabel mid. 
 ```java
     mid = (left + right) / 2;
 ```
 Pada kode program di atas, proses divide terjadi dengan menghitung nilai tengah (mid) dengan menggunakan formula (left + right) / 2. Ini merupakan operasi pembagian untuk mencari titik tengah (mid) sebagai pemisah antara bagian kiri dan kanan array.
 
-2. Tunjukkan pada kode program yang mana proses conquer dijalankan!
+2. Tunjukkan pada kode program yang mana proses conquer dijalankan!<br>
 Jawab: Proses conquer dijalankan pada bagian kode program berikut:
 ```java
             if (cari == listBk[mid].kodeBuku) {
@@ -480,7 +361,7 @@ Jawab: Ya, program masih dapat berjalan, akan tetapi hasil pencarian menggunakan
 <img src="pictures/6.2.3-Pertanyaan-2.2.png">
 <img src="pictures/6.3.3. Pertanyaan-4.3.png"><br>
 
-3. Jika Kode Buku yang dimasukkan dari Kode Buku terbesar ke terkecil (missal : 20215, 20214, 20212, 20211, 20210) dan elemen yang dicari adalah 20210. Bagaimana hasil dari binary search? Apakah sesuai? Jika tidak sesuai maka ubahlah kode program binary seach agar hasilnya sesuai!
+3. Jika Kode Buku yang dimasukkan dari Kode Buku terbesar ke terkecil (missal : 20215, 20214, 20212, 20211, 20210) dan elemen yang dicari adalah 20210. Bagaimana hasil dari binary search? Apakah sesuai? Jika tidak sesuai maka ubahlah kode program binary seach agar hasilnya sesuai!<br>
 Jawab: Hasilnya adalah tidak sesuai. Elemen yang dicari (20210) tidak dapat ditemukan. Hal ini karena data yang disajikan memang urut, namun secara descending (dari terbesar ke terkecil) sedangkan pada method pencarian binary search dikhususkan untuk data terurut secara ascending (dari terkecil ke terbesar). 
 Output awal program:
 <img src="pictures/6.3.3. Pertanyaan-3.1.png">
@@ -505,7 +386,7 @@ Modifikasi kode program method FindBinarySearch():
         return -1;
     }
 ```
-Output program setelah dimodifikasi:
+Output program setelah dimodifikasi:<br>
 <img src="pictures/6.3.3. Pertanyaan-3.4.png">
 
 ## 6.4. Percobaan Pengayaan Divide and Conquer
@@ -588,14 +469,6 @@ Output program setelah dimodifikasi:
 
 ### 6.4.2. Verifikasi Hasil Percobaan
 <img src="pictures/6.4.2 verif-perc.png">
-
-```
-Sorting dengan merge sort
-data awal
-10 40 30 50 70 20 100 90 
-setelah diurutkan
-10 20 30 40 50 70 90 100 
-```
 
 ## 6.5. Latihan Praktikum
 1. Modifikasi percobaan searching diatas dengan ketentuan berikut ini
@@ -683,7 +556,7 @@ CompareTo mengembalikan nilai dengan ketentuan:
 - Jika nilai yang dikembalikan == 0, maka kedua string memiliki posisi yang sama (berdasarkan urutan alfabet).
 - Jika nilai yang dikembalikan > 0, maka string kedua memiliki posisi lebih dulu (berdasarkan urutan alfabet).
 ``Method FindBinarySearch() ini tetap membutuhkan data kodeBuku secara urut dari terkecil ke terbesar berdasarkan urutan alfabet (bisa juga dari terbesar ke terkecil dengan merubah operator perbandingannya).``
-Modifikasi method TampilData() dan TampilPosisi():
+Modifikasi method TampilData() dan TampilPosisi() pada class PencarianBuku09:
 ```java
     public void Tampilposisi(String x, int pos) {
         if (pos != -1) {
@@ -705,13 +578,75 @@ Modifikasi method TampilData() dan TampilPosisi():
         }
     }
 ```
+Kode program class main:
+```java
+package P7;
+import java.util.Scanner;
+
+public class BukuMain09 {
+    public static void main(String[] args) {
+        Scanner s = new Scanner(System.in); 
+        Scanner s1 = new Scanner(System.in);
+        
+        PencarianBuku09 data = new PencarianBuku09();
+        int jumBuku = 5;
+
+        System.out.println("------------------------------------------------");
+        System.out.println("Masukkan data Buku secara urut dari terkecil ke terbesar (secara alfabet): ");
+        for (int i = 0; i < jumBuku; i++) {
+            System.out.println("------------------");
+            System.out.print("Kode Buku \t: ");
+            String kodeBuku = s1.nextLine();
+            System.out.print("Judul Buku \t: ");
+            String judulBuku = s1.nextLine();
+            System.out.print("Tahun Terbit \t: ");
+            int tahunTerbit = s.nextInt();
+            System.out.print("Pengarang \t: ");
+            String pengarang = s1.nextLine();
+            System.out.print("Stock \t\t: ");
+            int stock = s.nextInt();
+
+            Buku09 m = new Buku09(kodeBuku, judulBuku, tahunTerbit, pengarang, stock);
+            data.tambah(m);
+        }
+        System.out.println("-------------------------------------------");
+        System.out.println("Data keseluruhan Buku : ");
+        data.tampil();
+
+        System.out.println("___________________________________________");
+        System.out.println("___________________________________________");
+        System.out.println("Pencarian Data : ");
+        System.out.println("Masukkan Kode Buku yang dicari : ");
+        System.out.print("Kode Buku : ");
+        String cari = s1.nextLine();
+        System.out.println("Menggunakan sequential Search");
+        int posisi = data.FindSeqSearch(cari);
+        data.Tampilposisi(cari, posisi);
+        data.TampilData(cari, posisi);
+
+        System.out.println("Menggunakan method FindBuku()");
+        Buku09 dataBuku = data.FindBuku(cari);
+        if (dataBuku != null) {
+            dataBuku.tampilDataBuku();
+        } else {
+            System.out.println("Buku tidak ditemukan.");
+        }
+
+        System.out.println("=================================");
+        System.out.println("menggunakan binary search");
+        posisi = data.FindBinarySearch(cari, 0, jumBuku - 1);
+        data.Tampilposisi(cari, posisi);
+        data.TampilData(cari, posisi);
+    }
+}
+```
 Output program setelah dimodifikasi:<br>
 <img src="pictures/6.5. Latihan Praktikum-1.png">
-<img src="pictures/6.5. Latihan Praktikum-2.png">
+<img src="pictures/6.5. Latihan Praktikum-2.png"><br>
 Jika data ditemukan:<br>
-<img src="pictures/6.5. Latihan Praktikum-3.png">
+<img src="pictures/6.5. Latihan Praktikum-3.png"><br>
 Jika data tidak ditemukan:<br>
-<img src="pictures/6.5. Latihan Praktikum-4rev.png">
+<img src="pictures/6.5. Latihan Praktikum-4rev.png"><br>
 
 2. Modifikasi percobaan searching diatas dengan ketentuan berikut ini
 - Tambahkan method pencarian judul buku menggunakan sequential search dan binary search. Sebelum dilakukan searching dengan binary search data harus dilakukan pengurutan dengan menggunakan algoritma Sorting (bebas pilih algoritma sorting apapun)! Sehingga ketika input data acak, maka algoritma searching akan tetap berjalan
@@ -750,23 +685,274 @@ Kode program method pencarian judul buku menggunakan sequential search dengan ti
     }
 ```
 Kode program method pengurutan judul buku menggunakan algoritma sorting selection sort:<br>
+```java
+    //Sorting judul buku menggunakan insertion sort (ascending)
+    void selectionSortJdl() {
+        for (int i = 0; i < listBk.length-1; i++) {
+            int idxMin = i;
+            for (int j = i + 1; j < listBk.length; j++) {
+                if (listBk[j].judulBuku.compareToIgnoreCase(listBk[idxMin].judulBuku) < 0) {
+                    idxMin = j;
+                }
+            }
+            //swap
+            Buku09 tmp = listBk[idxMin];
+            listBk[idxMin] = listBk[i];
+            listBk[i] = tmp;   
+        }
+    }
+```
 Kode program method pencarian judul buku menggunakan binary search:<br>
 ```java
     public int FindJdlBinSearch(String cariJdl, int left, int right) {
         int mid;
         if (right >= left) {
             mid = (left + right) / 2;
-            if (listBk[mid].judulBuku.equals(cariJdl)) {
+            if (listBk[mid].judulBuku.equalsIgnoreCase(cariJdl)) {
                 return (mid);
             //Untuk membandingkan String menggunakan compareTo
-            } else if (listBk[mid].judulBuku.compareTo(cariJdl) > 0) {
-                return FindBinarySearch(cariJdl, left, mid - 1);
+            } else if (listBk[mid].judulBuku.compareToIgnoreCase(cariJdl) > 0) {
+                return FindJdlBinSearch(cariJdl, left, mid - 1);
             } else {
-                return FindBinarySearch(cariJdl, mid + 1, right);
+                return FindJdlBinSearch(cariJdl, mid + 1, right);
             }
         } 
         return -1;
     }
 ```
 Kode program method pengurutan kode buku menggunakan algoritma sorting selection sort:<br>
-- Buat aturan untuk mendeteksi hasil pencarian judul buku yang lebih dari 1 hasil dalam bentuk kalimat peringatan! Pastikan algoritma yang diterapkan sesuai dengan kasus yang diberikan!
+```java
+    //Sorting kode buku menggunakan insertion sort (ascending)
+    void insertionSortKodeBK() {
+        for (int i = 1; i < listBk.length; i++) {
+            Buku09 temp = listBk[i];
+            int j = i;
+            while (j > 0 && listBk[j - 1].kodeBuku.compareToIgnoreCase(temp.kodeBuku) > 0) {
+                listBk[j] = listBk[j - 1];
+                j--;
+            }
+            listBk[j] = temp;
+        }
+    }
+```
+Kode program BukuMain09:
+```java
+package P7;
+import java.util.Scanner;
+
+public class BukuMain09 {
+    static Scanner s = new Scanner(System.in); 
+    static Scanner s1 = new Scanner(System.in);
+    public static void main(String[] args) {
+        
+        PencarianBuku09 data = new PencarianBuku09();
+        int jumBuku = 5;
+
+        System.out.println("------------------------------------------------");
+        System.out.println("Masukkan data Buku (tidak harus terurut): ");
+        for (int i = 0; i < jumBuku; i++) {
+            System.out.println("------------------");
+            System.out.print("Kode Buku \t: ");
+            String kodeBuku = s1.nextLine();
+            System.out.print("Judul Buku \t: ");
+            String judulBuku = s1.nextLine();
+            System.out.print("Tahun Terbit \t: ");
+            int tahunTerbit = s.nextInt();
+            System.out.print("Pengarang \t: ");
+            String pengarang = s1.nextLine();
+            System.out.print("Stock \t\t: ");
+            int stock = s.nextInt();
+
+            Buku09 m = new Buku09(kodeBuku, judulBuku, tahunTerbit, pengarang, stock);
+            data.tambah(m);
+        }
+
+        System.out.println("-------------------------------------------");
+        System.out.println("Fitur Searching Buku");
+        System.out.println("1. Searching berdasarkan kode buku\n" + 
+                           "2. Searching berdasarkan judul buku");
+        System.out.print("Pilih menu searching untuk mencari buku: ");
+        byte menu = s.nextByte();
+        if (menu == 1) {
+            menuKodeBK(jumBuku, data);;//Pemanggilan fungsi search berdasarkan kode buku
+        } else if (menu == 2) {
+            menuJdl(jumBuku, data);//Pemanggilan fungsi search berdasarkan judul buku
+        } else {
+            System.out.println("Menu searching yang Anda pilih tidak valid!");
+        }
+    }
+
+    static void menuKodeBK(int length, PencarianBuku09 data) {
+        System.out.println("-------------------------------------------");
+        System.out.println("Data keseluruhan Buku (Urut berdasarkan kode buku): ");
+        data.insertionSortKodeBK();//Mengurutkan kode buku terlebih dahulu dengan algoritma insertion sort
+        data.tampil();
+
+        System.out.println("___________________________________________");
+        System.out.println("___________________________________________");
+        System.out.println("Pencarian Data : ");
+        System.out.println("Masukkan Kode Buku yang dicari : ");
+        System.out.print("Kode Buku : ");
+        String cari = s1.nextLine();
+        System.out.println("Menggunakan sequential Search");
+        int posisi = data.FindSeqSearch(cari);
+        data.Tampilposisi(cari, posisi);
+        data.TampilData(cari, posisi);
+
+        System.out.println("Menggunakan method FindBuku()");
+        Buku09 dataBuku = data.FindBuku(cari);
+        if (dataBuku != null) {
+            dataBuku.tampilDataBuku();
+        } else {
+            System.out.println("Buku tidak ditemukan.");
+        }
+
+        System.out.println("=================================");
+        System.out.println("menggunakan binary search");
+        posisi = data.FindBinarySearch(cari, 0, length - 1);
+        data.Tampilposisi(cari, posisi);
+        data.TampilData(cari, posisi);
+    }
+
+    static void menuJdl(int length, PencarianBuku09 data) {
+        System.out.println("-------------------------------------------");
+        System.out.println("Data keseluruhan Buku (Urut berdasarkan judul buku): ");
+        data.selectionSortJdl();//Mengurutkan judul buku terlebih dahulu dengan algoritma selection sort
+        data.tampil();
+
+        System.out.println("___________________________________________");
+        System.out.println("___________________________________________");
+        System.out.println("Pencarian Data : ");
+        System.out.println("Masukkan judul Buku yang dicari : ");
+        System.out.print("Judul Buku : ");
+        String jdl = s1.nextLine();
+        System.out.println("Menggunakan sequential Search");
+        int posJdl = data.FindJudulSeqSearch(jdl);
+        data.Tampilposisi(jdl, posJdl);
+        data.TampilData(jdl, posJdl);
+
+        System.out.println("Menggunakan method FindBuku()");
+        Buku09 dataJdl = data.FindJudulBuku(jdl);
+        if (dataJdl != null) {
+            dataJdl.tampilDataBuku();
+        } else {
+            System.out.println("Buku tidak ditemukan.");
+        }
+
+        System.out.println("=================================");
+        System.out.println("menggunakan binary search");
+        posJdl = data.FindJdlBinSearch(jdl, 0, length - 1);
+        data.Tampilposisi(jdl, posJdl);
+        data.TampilData(jdl, posJdl);
+    }
+}
+```
+Output program:<br>
+<img src="pictures/6.5. Latihan Praktikum-no2.1.png"><br>
+Searching berdasarkan kode buku:<br>
+<img src="pictures/6.5. Latihan Praktikum-no2.1a.png"><br>
+Jika ditemukan:<br>
+<img src="pictures/6.5. Latihan Praktikum-no2.1b.png"><br>
+Jika tidak ditemukan:<br>
+<img src="pictures/6.5. Latihan Praktikum-no2.1c.png"><br>
+Searching berdasarkan judul buku:<br>
+<img src="pictures/6.5. Latihan Praktikum-no2.2a.png"><br>
+Jika ditemukan:<br>
+<img src="pictures/6.5. Latihan Praktikum-no2.2b.png"><br>
+Jika tidak ditemukan:<br>
+<img src="pictures/6.5. Latihan Praktikum-no2.2c.png">
+
+- Buat aturan untuk mendeteksi hasil pencarian judul buku yang lebih dari 1 hasil dalam bentuk kalimat peringatan! Pastikan algoritma yang diterapkan sesuai dengan kasus yang diberikan!<br>
+Modifikasi kode program method FindJudulSeqSearch():
+```java
+    public int FindJudulSeqSearch(String cariJdl) {
+        int posisi = -1; // // Ubah posisi awal menjadi -1 
+        int hitungHasil = 0; // Variabel untuk menghitung hasil pencarian judul buku yang lebih dari 1 hasil
+        for (int j = 0; j < listBk.length; j++) {
+            if (listBk[j].judulBuku.equalsIgnoreCase(cariJdl)) {
+                posisi = j;
+                hitungHasil++; // increment 1 ke jumlahHasil jika judul ditemukan
+            } 
+        }
+        // Memeriksa apakah hasil pencarian lebih dari satu
+        if (hitungHasil > 1) {
+            //Jika hasil pencarian lebih dari satu maka akan mencetak peringatan
+            System.out.printf("Terdapat lebih dari satu hasil pencarian buku dengan judul %s !\n", cariJdl);
+        }
+        return posisi;
+    }
+```
+``Posisi awal saya ubah menjadi -1 agar ketika tidak ada judul buku yang ditemukan, maka posisi akan tetap terisi -1 sehingga tidak perlu blok kode else. Hal ini dilakukan karena pada if tidak terdapat break, sehingga setelah judul buku yang dicari ditemukan, maka pencarian akan terus dilanjutkan. Hasil pencarian yang dikembalikan indeksnya adalah yang terakhir ditemukan.``
+Modifikasi kode program method FindJudulBuku():
+```java
+    public Buku09 FindJudulBuku(String cariJdl) {
+        int posisi = -1;
+        int hitungHasil = 0; // Variabel untuk menghitung hasil pencarian judul buku yang lebih dari 1 hasil
+        for (int j = 0; j < listBk.length; j++) {
+            if (listBk[j].judulBuku.equalsIgnoreCase(cariJdl)) {
+                posisi = j;
+                hitungHasil++; // increment 1 ke jumlahHasil jika judul ditemukan
+            } 
+        }
+
+        // Memeriksa apakah hasil pencarian lebih dari satu
+        if (hitungHasil > 1) {
+            //Jika hasil pencarian lebih dari satu maka akan mencetak peringatan
+            System.out.printf("Terdapat lebih dari satu hasil pencarian buku dengan judul %s !\n", cariJdl);
+        }
+
+        if (posisi == -1) {
+            return null; // Mengembalikan null jika kodeBuku tidak ditemukan
+        } else {
+            return listBk[posisi];
+        }
+    }
+```
+Modifikasi kode program method FindJdlBinSearch():
+```java
+    public int FindJdlBinSearch(String cariJdl, int left, int right) {
+        int mid;
+        int hitungHasil = 0; // Variabel untuk menghitung hasil pencarian judul buku yang lebih dari 1 hasil
+        if (right >= left) {
+            mid = (left + right) / 2;
+            if (listBk[mid].judulBuku.equalsIgnoreCase(cariJdl)) {
+                hitungHasil++; // increment 1 ke jumlahHasil jika judul ditemukan
+                    
+                // Mencari hasil pencarian di sebelah kiri mid
+                int kiri = mid - 1;
+                while ((mid - 1) >= left && listBk[kiri].judulBuku.equalsIgnoreCase(cariJdl)) {
+                    hitungHasil++; // increment 1 ke jumlahHasil jika judul ditemukan
+                    kiri--;
+                }
+
+                // Mencari hasil pencarian di sebelah kanan mid
+                int kanan = mid + 1;
+                while (kanan <= right && listBk[kanan].judulBuku.equalsIgnoreCase(cariJdl)) {
+                    hitungHasil++; // increment 1 ke jumlahHasil jika judul ditemukan
+                    kanan++;
+                }
+
+                // Memeriksa apakah hasil pencarian lebih dari satu
+                if (hitungHasil > 1) {
+                    System.out.printf("Terdapat lebih dari satu hasil pencarian buku dengan judul %s !\n", cariJdl);
+                }
+
+                return (mid);
+            //Untuk membandingkan String menggunakan compareTo
+            } else if (listBk[mid].judulBuku.compareToIgnoreCase(cariJdl) > 0) {
+                return FindJdlBinSearch(cariJdl, left, mid - 1);
+            } else {
+                return FindJdlBinSearch(cariJdl, mid + 1, right);
+            }
+        } 
+        return -1;
+    }
+```
+
+Output kode program:
+<img src="pictures/6.5. Latihan Praktikum-no2.3a.png">
+<img src="pictures/6.5. Latihan Praktikum-no2.3b.png">
+<img src="pictures/6.5. Latihan Praktikum-no2.3c.png">
+<img src="pictures/6.5. Latihan Praktikum-no2.3d.png"><br>
+Jika tidak ditemukan:<br>
+<img src="pictures/6.5. Latihan Praktikum-no2.3z.png">

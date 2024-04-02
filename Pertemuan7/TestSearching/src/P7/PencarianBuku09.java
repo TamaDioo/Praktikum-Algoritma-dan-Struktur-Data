@@ -42,8 +42,8 @@ public class PencarianBuku09 {
 
     public void TampilData(String x, int pos) {
         if (pos != -1) {
-            System.out.println("Kode Buku\t : " + x);
-            System.out.println("Judul\t\t : " + listBk[pos].judulBuku);
+            System.out.println("Kode Buku\t : " + listBk[pos].kodeBuku);
+            System.out.println("Judul\t\t : " + x);
             System.out.println("Tahun Terbit\t : " + listBk[pos].tahunTerbit);
             System.out.println("Pengarang\t : " + listBk[pos].pengarang);
             System.out.println("Stock\t\t : " + listBk[pos].stock);
@@ -86,28 +86,38 @@ public class PencarianBuku09 {
     }
 
     public int FindJudulSeqSearch(String cariJdl) {
-        int posisi = 2;
+        int posisi = -1; // // Ubah posisi awal menjadi -1 
+        int hitungHasil = 0; // Variabel untuk menghitung hasil pencarian judul buku yang lebih dari 1 hasil
         for (int j = 0; j < listBk.length; j++) {
             if (listBk[j].judulBuku.equalsIgnoreCase(cariJdl)) {
                 posisi = j;
-                break;
-            } else {
-                posisi = -1;
-            }
+                hitungHasil++; // increment 1 ke jumlahHasil jika judul ditemukan
+            } 
+        }
+        // Memeriksa apakah hasil pencarian lebih dari satu
+        if (hitungHasil > 1) {
+            //Jika hasil pencarian lebih dari satu maka akan mencetak peringatan
+            System.out.printf("Terdapat lebih dari satu hasil pencarian buku dengan judul %s !\n", cariJdl);
         }
         return posisi;
     }
 
     public Buku09 FindJudulBuku(String cariJdl) {
         int posisi = -1;
+        int hitungHasil = 0; // Variabel untuk menghitung hasil pencarian judul buku yang lebih dari 1 hasil
         for (int j = 0; j < listBk.length; j++) {
             if (listBk[j].judulBuku.equalsIgnoreCase(cariJdl)) {
                 posisi = j;
-                break;
-            } else {
-                posisi = -1;
-            }
+                hitungHasil++; // increment 1 ke jumlahHasil jika judul ditemukan
+            } 
         }
+
+        // Memeriksa apakah hasil pencarian lebih dari satu
+        if (hitungHasil > 1) {
+            //Jika hasil pencarian lebih dari satu maka akan mencetak peringatan
+            System.out.printf("Terdapat lebih dari satu hasil pencarian buku dengan judul %s !\n", cariJdl);
+        }
+
         if (posisi == -1) {
             return null; // Mengembalikan null jika kodeBuku tidak ditemukan
         } else {
@@ -117,17 +127,68 @@ public class PencarianBuku09 {
 
     public int FindJdlBinSearch(String cariJdl, int left, int right) {
         int mid;
+        int hitungHasil = 0; // Variabel untuk menghitung hasil pencarian judul buku yang lebih dari 1 hasil
         if (right >= left) {
             mid = (left + right) / 2;
-            if (listBk[mid].judulBuku.equals(cariJdl)) {
+            if (listBk[mid].judulBuku.equalsIgnoreCase(cariJdl)) {
+                hitungHasil++; // increment 1 ke jumlahHasil jika judul ditemukan
+                    
+                // Mencari hasil pencarian di sebelah kiri mid
+                int kiri = mid - 1;
+                while ((mid - 1) >= left && listBk[kiri].judulBuku.equalsIgnoreCase(cariJdl)) {
+                    hitungHasil++; // increment 1 ke jumlahHasil jika judul ditemukan
+                    kiri--;
+                }
+
+                // Mencari hasil pencarian di sebelah kanan mid
+                int kanan = mid + 1;
+                while (kanan <= right && listBk[kanan].judulBuku.equalsIgnoreCase(cariJdl)) {
+                    hitungHasil++; // increment 1 ke jumlahHasil jika judul ditemukan
+                    kanan++;
+                }
+
+                // Memeriksa apakah hasil pencarian lebih dari satu
+                if (hitungHasil > 1) {
+                    System.out.printf("Terdapat lebih dari satu hasil pencarian buku dengan judul %s !\n", cariJdl);
+                }
+
                 return (mid);
             //Untuk membandingkan String menggunakan compareTo
-            } else if (listBk[mid].judulBuku.compareTo(cariJdl) > 0) {
-                return FindBinarySearch(cariJdl, left, mid - 1);
+            } else if (listBk[mid].judulBuku.compareToIgnoreCase(cariJdl) > 0) {
+                return FindJdlBinSearch(cariJdl, left, mid - 1);
             } else {
-                return FindBinarySearch(cariJdl, mid + 1, right);
+                return FindJdlBinSearch(cariJdl, mid + 1, right);
             }
         } 
         return -1;
+    }
+
+    //Sorting kode buku menggunakan insertion sort (ascending)
+    void insertionSortKodeBK() {
+        for (int i = 1; i < listBk.length; i++) {
+            Buku09 temp = listBk[i];
+            int j = i;
+            while (j > 0 && listBk[j - 1].kodeBuku.compareToIgnoreCase(temp.kodeBuku) > 0) {
+                listBk[j] = listBk[j - 1];
+                j--;
+            }
+            listBk[j] = temp;
+        }
+    }
+
+    //Sorting judul buku menggunakan insertion sort (ascending)
+    void selectionSortJdl() {
+        for (int i = 0; i < listBk.length-1; i++) {
+            int idxMin = i;
+            for (int j = i + 1; j < listBk.length; j++) {
+                if (listBk[j].judulBuku.compareToIgnoreCase(listBk[idxMin].judulBuku) < 0) {
+                    idxMin = j;
+                }
+            }
+            //swap
+            Buku09 tmp = listBk[idxMin];
+            listBk[idxMin] = listBk[i];
+            listBk[i] = tmp;   
+        }
     }
 }
