@@ -327,6 +327,7 @@ public class Utama09 {
                     gudang.tampilkanBarang();
                     break;  
                 case 4:
+                    System.exit(0);
                     break;
                 default:
                     System.out.println("Pilihan tidak valid. Silahkan coba lagi.");
@@ -342,10 +343,148 @@ public class Utama09 {
 
 ### 2.1.3 Pertanyaan
 1. Lakukan perbaikan pada kode program, sehingga keluaran yang dihasilkan sama dengan verifikasi hasil percobaan! Bagian mana saja yang perlu diperbaiki?
+Jawab: Bagian yang perlu diperbaiki adalah pada method tampilkanBarang dan method lihatBarangTeratas(). Ada juga kesalahan dalam class Utama09, yaitu pada menu keluar.
+- Method tampilkanBarang():
+```java
+    public void tampilkanBarang() {
+        if (!cekKosong()) {
+            System.out.println("Rincian tumpukan barang di Gudang:");
+            //for (int i = top; i >= 0; i--) { Seharusnya ini yang benar
+            for (int i = 0; i <= top; i++) {
+                System.out.printf("Kode %d: %s (Kategori %s)\n", tumpukan[i].kode, tumpukan[i].nama, tumpukan[i].kategori); 
+            }
+        } else {
+            System.out.println("Tumpukan barang kosong.");
+        }
+    }
+```
+Terdapat kesalahan dalam perulangan untuk menampilkan barang yaitu inisalisasi counter i yang salah, batas perulangan yang salah dan update counter i yang salah. Prinsip dari stack adalah LIFO (last in first out), jadi barang dengan posisi terataslah yang akan tampil terlebih dahulu. Jadi, perulangan yang benar adalah ``//for int i = top; i >= 0; i--)``
+Kode yang benar:
+```java
+public void tampilkanBarang() {
+        if (!cekKosong()) {
+            System.out.println("Rincian tumpukan barang di Gudang:");
+            for (int i = top; i >= 0; i--) {
+            //for (int i = 0; i <= top; i++) {
+                System.out.printf("Kode %d: %s (Kategori %s)\n", tumpukan[i].kode, tumpukan[i].nama, tumpukan[i].kategori); 
+            }
+        } else {
+            System.out.println("Tumpukan barang kosong.");
+        }
+    }
+```
+- Method lihatBarangTeratas():
+```java
+    public Barang09 lihatBarangTeratas() {
+        if (!isEmpty()) {
+            Barang09 barangTeratas = tumpukan[top];
+            System.out.println("Barang teratas: " + barangTeratas.nama);
+            return barangTeratas;
+        } else {
+            System.out.println("Tumpukan barang kosong.");
+            return null;
+        }
+    }
+```
+Terdapat kesalahan pemanggilan method pada kondisi if dalam method lihatBarangTeratas(). Method isEmpty tidak terdefinisikan dalam class Gudang09. Seharusnya method yang dipanggil adalah method cekKosong() untuk memastikan apakah stack dalam keadaan kosong atau tidak.
+Kode yang benar:
+```java
+    public Barang09 lihatBarangTeratas() {
+        if (!cekKosong()) {
+            Barang09 barangTeratas = tumpukan[top];
+            System.out.println("Barang teratas: " + barangTeratas.nama);
+            return barangTeratas;
+        } else {
+            System.out.println("Tumpukan barang kosong.");
+            return null;
+        }
+    }
+```
+- Terdapat kesalahan pada menu keluar (case 4) pada class Utama09. Meskipun telah memilih menu untuk keluar program, program akan tetap berjalan dan tidak akan berhenti (infinite loop). Oleh karena itu perlu ditambahkan sintaks untuk menghentikan eksekusi program. Sintaks yang saya gunakan adalah `System.extit(0)`.
+```java
+                case 4:
+                    System.exit(0);
+                    break;
+```
 2. Berapa banyak data barang yang dapat ditampung di dalam tumpukan? Tunjukkan potongan kode programnya!
+Jawab: Data barang yang dapat ditampung di dalam tumpukan adalah sebanyak 7 barang karena dalam class Utama09, parameter konstruktor Gudang09 diisi dengan angka 7. Parameter tersebut dijadikan panjang array tumpukan.
+```java
+    Gudang09 gudang = new Gudang09(7);
+```
+Konstruktor Gudang09 dalam class Gudang09:
+```java
+    public Gudang09(int kapasitas) { //kapasitas = 7
+        size = kapasitas; //size = 7
+        tumpukan = new Barang09[size]; //tumpukan = new Barang09[7]; 
+        top = -1;
+    }
+```
 3. Mengapa perlu pengecekan kondisi **!cekKosong()** pada method **tampilkanBarang**? Kalau kondisi tersebut dihapus, apa dampaknya?
+Jawab: Untuk memastikan tumpukan barang tidak dalam kondisi kosong. Karena jika tumpukan barang kosong, maka tidak ada barang yang bisa ditampilkan. Oleh karena itu, diperlukan pengecekan terlebih dahulu pada tumpukan barang untuk memastikan apakah barang yang akan ditampilkan ada atau masih kosong. Jika kondisi tersebut dihapus, maka program akan mencoba untuk menampilkan rincian tumpukan barang tanpa mengecek terleih dahulu apakah tumpukan barang kosong atau tidak. Hal ini akan mengakibatkan terjadinya error `NullPointerException`.
+
 4. Modifikasi kode program pada class **Utama** sehingga pengguna juga dapat memilih operasi lihat barang teratas, serta dapat secara bebas menentukan kapasitas gudang!
+Modifikasi kode program:
+```java
+import java.util.Scanner;
+
+public class Utama09 {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        //Meminta pengguna untuk menentukan kapasitas gudang
+        System.out.print("Berapa kapasitas gudang yang Anda inginkan: ");
+        int capacity = scanner.nextInt();
+        Gudang09 gudang = new Gudang09(capacity);
+
+
+        while (true) {
+            System.out.println("\nMenu:");    
+            System.out.println("1. Tambah barang");    
+            System.out.println("2. Ambil barang");    
+            System.out.println("3. Tampilkan tumpukan barang");    
+            System.out.println("4. Lihat barang teratas"); //Menambahkan menu untuk melihat barang teratas
+            System.out.println("5. Keluar");    
+            System.out.print("Pilih operasi: ");    
+            int pilihan = scanner.nextInt();
+
+            switch (pilihan) {
+                case 1:
+                    System.out.print("Masukkan kode barang: ");
+                    int kode = scanner.nextInt();
+                    scanner.nextLine();
+                    System.out.print("Masukkan nama barang: ");
+                    String nama = scanner.nextLine();
+                    System.out.print("Masukkan nama kategori: ");
+                    String kategori = scanner.nextLine();
+                    Barang09 barangBaru = new Barang09(kode, nama, kategori);
+                    gudang.tambahBarang(barangBaru);
+                    break;
+                case 2:
+                    gudang.ambilBarang();
+                    break;
+                case 3:
+                    gudang.tampilkanBarang();
+                    break;  
+                case 4: //Menu lihat barang teratas
+                    gudang.lihatBarangTeratas();
+                    break;
+                case 5:
+                    System.exit(0);
+                    break;
+                default:
+                    System.out.println("Pilihan tidak valid. Silahkan coba lagi.");
+            }
+        }
+    }
+}
+```
+Output kode program setelah dimodifikasi:<br>
+<img src="pictures/8.Perc1-pert3.1.png">
+<img src="pictures/8.Perc1-pert3.2.png">
+<img src="pictures/8.Perc1-pert3.3.png">
+
 5. **Commit dan push kode program ke Github**
+
 
 ## 2.2 Percobaan 2: Konversi Kode Barang ke Biner 
 ### 2.2.1 Langkah-langkah Percobaan
@@ -603,6 +742,115 @@ Penambahan string **“)”** digunakan untuk memastikan semua simbol/karakter y
 ```
 12. Compile dan run program.
 13. **Commit dan push kode program ke Github**
+
+Kode program class Postfix09:
+```java
+public class Postfix09 {
+    int n, top;
+    char[] stack;
+
+    public Postfix09(int total) {
+        n = total;
+        top = -1;
+        stack = new char[n];
+        push('(');
+    }
+
+    public void push(char c) {
+        top++;
+        stack[top] = c;
+    }
+
+    public char pop() {
+        char item = stack[top];
+        top--;
+        return item;
+    }
+
+    public boolean IsOperand(char c) {
+        if ((c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z') || (c >= '0' && c <= '9') || c == ' ' || c == '.') {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public boolean IsOperator(char c) {
+        if (c == '^' || c == '%' || c == '/' || c == '*' || c == '-' || c == '+') {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public int derajat(char c) {
+        switch (c) {
+            case '^':
+                return 3;
+            case '%':
+                return 2;
+            case '/':
+                return 2;
+            case '*':
+                return 2;
+            case '-':
+                return 1;
+            case '+':
+                return 1;
+            default:
+                return 0;
+        }
+    }
+
+    public String konversi(String Q) {
+        String P = "";
+        char c;
+        for (int i = 0; i < n; i++) {
+            c = Q.charAt(i);
+            if (IsOperand(c)) {
+                P = P + c;
+            } 
+            if (c == '(') {
+                push(c);
+            }
+            if (c == ')') {
+                while (stack[top] != '(') {
+                    P = P + pop();
+                } 
+                pop();
+            } 
+            if (IsOperator(c)) {
+                while (derajat(stack[top]) >= derajat(c)) {
+                    P = P + pop();
+                }
+                push(c);    
+            }
+        }
+        return P;
+    }
+}
+```
+Kode program class PostfixMain09:
+```java
+import java.util.Scanner;
+
+public class PostfixMain09 {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        String P, Q;
+        System.out.println("Masukkan ekspresi matematika (infix): ");
+        Q = sc.nextLine();
+        Q = Q.trim();
+        Q = Q + ")";
+
+        int total = Q.length();
+
+        Postfix09 post = new Postfix09(total);
+        P = post.konversi(Q);
+        System.out.println("Postfix: " + P);
+    }
+}
+```
 
 ### 2.3.2 Verifikasi Hasil Percobaan
 <img src="pictures/8.Perc-3-verif.png">
