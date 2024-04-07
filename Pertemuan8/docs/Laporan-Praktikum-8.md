@@ -198,6 +198,7 @@ public class Utama09 {
         }
 ```
 18. **Commit dan push kode program ke Github**
+<img src="pictures/8.perc1-push.png">
 19. Compile dan run program.
 
 Kode program class Barang09:
@@ -408,6 +409,7 @@ Kode yang benar:
 ```
 2. Berapa banyak data barang yang dapat ditampung di dalam tumpukan? Tunjukkan potongan kode programnya!
 Jawab: Data barang yang dapat ditampung di dalam tumpukan adalah sebanyak 7 barang karena dalam class Utama09, parameter konstruktor Gudang09 diisi dengan angka 7. Parameter tersebut dijadikan panjang array tumpukan.
+Potongan kode program:
 ```java
     Gudang09 gudang = new Gudang09(7);
 ```
@@ -484,7 +486,7 @@ Output kode program setelah dimodifikasi:<br>
 <img src="pictures/8.Perc1-pert3.3.png">
 
 5. **Commit dan push kode program ke Github**
-
+<img src="pictures/8.perc1-push.png">
 
 ## 2.2 Percobaan 2: Konversi Kode Barang ke Biner 
 ### 2.2.1 Langkah-langkah Percobaan
@@ -611,7 +613,26 @@ public class StackKonversi09 {
 
 ### 2.2.3 Pertanyaan
 1. Pada method **konversiDesimalKeBiner**, ubah kondisi perulangan menjadi **while (kode != 0)**, bagaimana hasilnya? Jelaskan alasannya!
+Jawab: Hasilnya sama saja, tidak ada perubahan jika menggunakan `while (kode != 0)`.
+Perubahan kode program:
+```java
+        while (kode != 0) {
+            int sisa = kode % 2;
+            stack.push(sisa);
+            kode = kode / 2;
+        }
+```
+Output:<br>
+<img src="pictures/8.Perc-2-pert1.png"><br>
+Berdasarkan percobaan di atas, didapatkan kesimpulan bahwa meskipun perulangan diubah menjadi ``
+while (kode != 0)``, hasilnya akan tetap sama. Keduanya akan menghasilkan biner yang sama untuk nilai desimal yang diberikan. Hal ini terjadi karena proses konversi bilangan desimal ke biner menggunakan pembagian bilangan desimal dengan 2 dan menyimpan (push ke stack) sisa hasil baginya. Ketika nilai kode sudah mencapai 0, proses konversi selesai karena tidak ada sisa bagi yang tersisa untuk dibagi lagi (0 / 2 = 0). Kedua kondisi perulangan baik ``while (kode > 0)`` maupun ``while (kode != 0)``, akan menghentikan proses pembagian ketika kode = 0, sehingga hasil akhirnya akan sama.
+
 2. Jelaskan alur kerja dari method **konversiDesimalKeBiner!**
+    1. Instansiasi objek `stack` dari class StackKonversi09 
+    2. Selama nilai parameter kode lebih besar dari 0, perulangan while pertama akan dijalankan. Dalam perulangan while pertama, variabel `sisa` bertipe integer dideklarasikan dan diisi dengan nilai `kode % 2`. Setelah itu, method push pada objek stack akan diakses dengan `sisa` sebagai parameternya. Lalu variabel `kode` akan diassignment dengan nilai `kode / 2`. Proses ini akan terus berlanjut sampai nilai `kode <= 0`.
+    3. Setelah perulangan while pertama selesai, variabel dengan nama `biner` yang bertipe String dibuat dan diinisialisasi dengan string kosong. 
+    4. Kemudian perulangan while kedua akan dijalankan selama objek `stack` tidak kosong. Dalam perulangan ini, elemen teratas dari `stack` dikeluarkan (pop) dan ditambahkan ke string `biner`.
+    5. Setelah itu, method akan mengembalikan nilai variabel `biner` (bertipe String) yang berisi bilangan biner hasil konversi.
 
 ## 2.3 Percobaan 3: Konversi Notasi Infix ke Postfix
 ### 2.3.1 Langkah-langkah Percobaan
