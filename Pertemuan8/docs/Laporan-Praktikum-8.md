@@ -343,7 +343,7 @@ public class Utama09 {
 <img src="pictures/8.Perc-1-verif2.png">
 
 ### 2.1.3 Pertanyaan
-1. Lakukan perbaikan pada kode program, sehingga keluaran yang dihasilkan sama dengan verifikasi hasil percobaan! Bagian mana saja yang perlu diperbaiki?
+1. Lakukan perbaikan pada kode program, sehingga keluaran yang dihasilkan sama dengan verifikasi hasil percobaan! Bagian mana saja yang perlu diperbaiki?<br>
 Jawab: Bagian yang perlu diperbaiki adalah pada method tampilkanBarang dan method lihatBarangTeratas(). Ada juga kesalahan dalam class Utama09, yaitu pada menu keluar.
 - Method tampilkanBarang():
 ```java
@@ -359,7 +359,7 @@ Jawab: Bagian yang perlu diperbaiki adalah pada method tampilkanBarang dan metho
         }
     }
 ```
-Terdapat kesalahan dalam perulangan untuk menampilkan barang yaitu inisalisasi counter i yang salah, batas perulangan yang salah dan update counter i yang salah. Prinsip dari stack adalah LIFO (last in first out), jadi barang dengan posisi terataslah yang akan tampil terlebih dahulu. Jadi, perulangan yang benar adalah ``//for int i = top; i >= 0; i--)``
+Terdapat kesalahan dalam perulangan untuk menampilkan barang yaitu inisalisasi counter i yang salah, batas perulangan yang salah dan update counter i yang salah. Prinsip dari stack adalah LIFO (last in first out), jadi barang dengan posisi terataslah yang akan tampil terlebih dahulu. Jadi, perulangan yang benar adalah ``//for int i = top; i >= 0; i--)``<br>
 Kode yang benar:
 ```java
 public void tampilkanBarang() {
@@ -387,7 +387,7 @@ public void tampilkanBarang() {
         }
     }
 ```
-Terdapat kesalahan pemanggilan method pada kondisi if dalam method lihatBarangTeratas(). Method isEmpty tidak terdefinisikan dalam class Gudang09. Seharusnya method yang dipanggil adalah method cekKosong() untuk memastikan apakah stack dalam keadaan kosong atau tidak.
+Terdapat kesalahan pemanggilan method pada kondisi if dalam method lihatBarangTeratas(). Method isEmpty tidak terdefinisikan dalam class Gudang09. Seharusnya method yang dipanggil adalah method cekKosong() untuk memastikan apakah stack dalam keadaan kosong atau tidak.<br>
 Kode yang benar:
 ```java
     public Barang09 lihatBarangTeratas() {
@@ -407,7 +407,7 @@ Kode yang benar:
                     System.exit(0);
                     break;
 ```
-2. Berapa banyak data barang yang dapat ditampung di dalam tumpukan? Tunjukkan potongan kode programnya!
+2. Berapa banyak data barang yang dapat ditampung di dalam tumpukan? Tunjukkan potongan kode programnya!<br>
 Jawab: Data barang yang dapat ditampung di dalam tumpukan adalah sebanyak 7 barang karena dalam class Utama09, parameter konstruktor Gudang09 diisi dengan angka 7. Parameter tersebut dijadikan panjang array tumpukan.
 Potongan kode program:
 ```java
@@ -421,10 +421,11 @@ Konstruktor Gudang09 dalam class Gudang09:
         top = -1;
     }
 ```
-3. Mengapa perlu pengecekan kondisi **!cekKosong()** pada method **tampilkanBarang**? Kalau kondisi tersebut dihapus, apa dampaknya?
-Jawab: Untuk memastikan tumpukan barang tidak dalam kondisi kosong. Karena jika tumpukan barang kosong, maka tidak ada barang yang bisa ditampilkan. Oleh karena itu, diperlukan pengecekan terlebih dahulu pada tumpukan barang untuk memastikan apakah barang yang akan ditampilkan ada atau masih kosong. Jika kondisi tersebut dihapus, maka program akan mencoba untuk menampilkan rincian tumpukan barang tanpa mengecek terleih dahulu apakah tumpukan barang kosong atau tidak. Hal ini akan mengakibatkan terjadinya error `NullPointerException`.
+3. Mengapa perlu pengecekan kondisi **!cekKosong()** pada method **tampilkanBarang**? Kalau kondisi tersebut dihapus, apa dampaknya?<br>
+Jawab: Untuk memastikan tumpukan barang tidak dalam kondisi kosong. Karena jika tumpukan barang kosong, maka tidak ada barang yang bisa ditampilkan. Oleh karena itu, diperlukan pengecekan terlebih dahulu pada tumpukan barang untuk memastikan apakah barang yang akan ditampilkan ada atau masih kosong. Jika tumpukan barang kosong, maka proses perulangan untuk menampilkan rincian barang tidak akan dijalankan. Namun, jika kondisi tersebut dihapus, maka program akan mencoba untuk menampilkan rincian tumpukan barang tanpa mengecek terleih dahulu apakah tumpukan barang kosong atau tidak. Jadi, ketika tumpukan barang kosong, program tetap bisa dijalankan, tetapi tidak ada barang yang ditampilkan.<br>
+<img src="pictures/8.perc1-pert3.png">
 
-4. Modifikasi kode program pada class **Utama** sehingga pengguna juga dapat memilih operasi lihat barang teratas, serta dapat secara bebas menentukan kapasitas gudang!
+4. Modifikasi kode program pada class **Utama** sehingga pengguna juga dapat memilih operasi lihat barang teratas, serta dapat secara bebas menentukan kapasitas gudang!<br>
 Modifikasi kode program:
 ```java
 import java.util.Scanner;
@@ -485,7 +486,7 @@ Output kode program setelah dimodifikasi:<br>
 <img src="pictures/8.Perc1-pert3.2.png">
 <img src="pictures/8.Perc1-pert3.3.png">
 
-5. **Commit dan push kode program ke Github**
+5. **Commit dan push kode program ke Github**<br>
 <img src="pictures/8.perc1-push.png">
 
 ## 2.2 Percobaan 2: Konversi Kode Barang ke Biner 
@@ -565,6 +566,7 @@ Pada method ini, terdapat penggunaan **StackKonversi** yang merupakan penerapan 
 ```
 5. Compile dan run program.
 6. **Commit dan push kode program ke Github**
+<img src="pictures/8.perc2-push.png">
 
 Kode program class StackKonversi09:
 ```java
@@ -612,8 +614,8 @@ public class StackKonversi09 {
 <img src="pictures/8.Perc-2-verif1.png">
 
 ### 2.2.3 Pertanyaan
-1. Pada method **konversiDesimalKeBiner**, ubah kondisi perulangan menjadi **while (kode != 0)**, bagaimana hasilnya? Jelaskan alasannya!
-Jawab: Hasilnya sama saja, tidak ada perubahan jika menggunakan `while (kode != 0)`.
+1. Pada method **konversiDesimalKeBiner**, ubah kondisi perulangan menjadi **while (kode != 0)**, bagaimana hasilnya? Jelaskan alasannya!<br>
+Jawab: Hasilnya sama saja, tidak ada perubahan jika menggunakan `while (kode != 0)`.<br>
 Perubahan kode program:
 ```java
         while (kode != 0) {
@@ -627,7 +629,8 @@ Output:<br>
 Berdasarkan percobaan di atas, didapatkan kesimpulan bahwa meskipun perulangan diubah menjadi ``
 while (kode != 0)``, hasilnya akan tetap sama. Keduanya akan menghasilkan biner yang sama untuk nilai desimal yang diberikan. Hal ini terjadi karena proses konversi bilangan desimal ke biner menggunakan pembagian bilangan desimal dengan 2 dan menyimpan (push ke stack) sisa hasil baginya. Ketika nilai kode sudah mencapai 0, proses konversi selesai karena tidak ada sisa bagi yang tersisa untuk dibagi lagi (0 / 2 = 0). Kedua kondisi perulangan baik ``while (kode > 0)`` maupun ``while (kode != 0)``, akan menghentikan proses pembagian ketika kode = 0, sehingga hasil akhirnya akan sama.
 
-2. Jelaskan alur kerja dari method **konversiDesimalKeBiner!**
+2. Jelaskan alur kerja dari method **konversiDesimalKeBiner!**<br>
+Jawab: Berikut adalah alur kerja dari method **konversiDesimalKeBiner!**:
     1. Instansiasi objek `stack` dari class StackKonversi09 
     2. Selama nilai parameter kode lebih besar dari 0, perulangan while pertama akan dijalankan. Dalam perulangan while pertama, variabel `sisa` bertipe integer dideklarasikan dan diisi dengan nilai `kode % 2`. Setelah itu, method push pada objek stack akan diakses dengan `sisa` sebagai parameternya. Lalu variabel `kode` akan diassignment dengan nilai `kode / 2`. Proses ini akan terus berlanjut sampai nilai `kode <= 0`.
     3. Setelah perulangan while pertama selesai, variabel dengan nama `biner` yang bertipe String dibuat dan diinisialisasi dengan string kosong. 
@@ -877,12 +880,24 @@ public class PostfixMain09 {
 <img src="pictures/8.Perc-3-verif.png">
 
 ### 2.3.3 Pertanyaan
-1. Pada method **derajat**, mengapa return value beberapa case bernilai sama? Apabila return value diubah dengan nilai berbeda-beda setiap case-nya, apa yang terjadi?
-2. Jelaskan alur kerja method **konversi**!
+1. Pada method **derajat**, mengapa return value beberapa case bernilai sama? Apabila return value diubah dengan nilai berbeda-beda setiap case-nya, apa yang terjadi?<br>
+Jawab: Karena return value menunjukkan derajat (prioritas) operator aritmatika sehingga ada beberapa case yang bernilai sama. Contohnya adalah operator `/` `*` dan `%` memiliki derajat yang sama sehingga return value nya sama (dalam konteks program ini adalah 3). Begitupun dengan operator `+` dan `-` yang juga memiliki derajat yang sama sehingga return value nya pun sama (dalam konteks program ini adalah 2). Apabila return value diubah dengan nilai berbeda-beda setiap case-nya, maka operator yang memiliki derajat sama akan dianggap berbeda derajatnya. Jadi, operator seperti `/` `*` dan `%` akan memiliki urutan prioritas yang berbeda. Hal ini akan menyebabkan kesalahan dalam mengkonversi notasi infix menjadi postfix .
+
+2. Jelaskan alur kerja method **konversi**!<br>
+Jawab: Berikut adalah alur kerja dari method **konversi**:
+    1. Inisialisasi variabel `P` dengan string kosong untuk menyimpan hasil konversi.
+    2. Membuat variabel `c` yang nantinya akan diisi dengan character dari parameter String `Q` dalam setiap iterasi perulangan for. Tentunya pada setiap iterasi, variabel `c` akan diupdate untuk menyimpan karakter `Q` selanjutnya.
+    3. Dalam perulangan for, dilakukan pengecekan kondisi. 
+        - Jika karakter Q saat ini yang disimpan pada variabel c merupakan operand, maka `c` akan langsung ditambahkan ke String `P`. 
+        - Jika `c` adalah `(` (kurung buka), maka `c` akan dimasukkan (push) ke dalam stack.
+        - Jika `c` adalah `)` (kurung tutup), maka stack akan dikosongkan (pop) dan menambahkan setiap operator yang diambil dari stack ke String `P` sampai menemukan tanda `(` (kurung buka).
+        - Jika `c` adalah operator, maka dilakukan pengecekan untuk memastikan urutan prioritas (derajat) operator. Operator yang dibandingkan adalah operator yang ada dalam stack (yang menjadi top of stack) dengan `c`. Jika operator di dalam stack (top of stack) memiliki derajat yang lebih tinggi atau sama, maka operator tersebut diambil (pop) dari stack dan ditambahkan ke dalam String `P`.
+    4. Method akan mengembalikan `P` sebagai return value. `P` merupakan hasil dari konversi notasi infix menjadi postfix.
 3. Pada method konversi, apa fungsi dari potongan kode berikut? 
 ```java
     c = Q.charAt(i);
 ```
+Jawab: Mengambil karakter dari String `Q` pada indeks ke `i` dalam iterasi perulangan for pada method konversi (i akan diupdate pada setiap iterasi) dan akan menyimpannya ke dalam variabel `c`. 
 
 ## 2.4 Latihan Praktikum
 Perhatikan dan gunakan kembali kode program pada Percobaan 1. Tambahkan dua method berikut pada class Gudang:
