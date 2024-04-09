@@ -766,6 +766,7 @@ Penambahan string **“)”** digunakan untuk memastikan semua simbol/karakter y
 ```
 12. Compile dan run program.
 13. **Commit dan push kode program ke Github**
+<img src="pictures/8.perc3-push.png">
 
 Kode program class Postfix09:
 ```java
@@ -902,4 +903,245 @@ Jawab: Mengambil karakter dari String `Q` pada indeks ke `i` dalam iterasi perul
 ## 2.4 Latihan Praktikum
 Perhatikan dan gunakan kembali kode program pada Percobaan 1. Tambahkan dua method berikut pada class Gudang:
 - Method **lihatBarangTerbawah** digunakan untuk mengecek barang pada tumpukan terbawah
+Menambahkan method lihatBarangTerbawah() pada class Gudang09:
+```java
+    public Barang09 lihatBarangTerbawah() {
+        if (!cekKosong()) {
+            Barang09 barangTerbawah = tumpukan[0]; //Karena posisi terbawah adalah pada indeks awal stack 
+            System.out.println("Barang terbawah: " + barangTerbawah.nama);
+            return barangTerbawah;
+        } else {
+            System.out.println("Tumpukan barang kosong.");
+            return null;
+        }
+    }
+```
+Modifikasi kode program class Utama09:
+```java
+import java.util.Scanner;
+
+public class Utama09 {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        //Meminta pengguna untuk menentukan kapasitas gudang
+        System.out.print("Berapa kapasitas gudang yang Anda inginkan: ");
+        int capacity = scanner.nextInt();
+        Gudang09 gudang = new Gudang09(capacity);
+
+
+        while (true) {
+            System.out.println("\nMenu:");    
+            System.out.println("1. Tambah barang");    
+            System.out.println("2. Ambil barang");    
+            System.out.println("3. Tampilkan tumpukan barang");    
+            System.out.println("4. Lihat barang teratas"); //Menambahkan menu untuk melihat barang teratas
+            System.out.println("5. Lihat barang terbawah"); //Menambahkan menu untuk melihat barang terbawah
+            System.out.println("6. Keluar");    
+            System.out.print("Pilih operasi: ");    
+            int pilihan = scanner.nextInt();
+
+            switch (pilihan) {
+                case 1:
+                    System.out.print("Masukkan kode barang: ");
+                    int kode = scanner.nextInt();
+                    scanner.nextLine();
+                    System.out.print("Masukkan nama barang: ");
+                    String nama = scanner.nextLine();
+                    System.out.print("Masukkan nama kategori: ");
+                    String kategori = scanner.nextLine();
+                    Barang09 barangBaru = new Barang09(kode, nama, kategori);
+                    gudang.tambahBarang(barangBaru);
+                    break;
+                case 2:
+                    gudang.ambilBarang();
+                    break;
+                case 3:
+                    gudang.tampilkanBarang();
+                    break;  
+                case 4: //Menu lihat barang teratas
+                    gudang.lihatBarangTeratas();
+                    break;
+                case 5: //Menu lihat barang terbawah
+                    gudang.lihatBarangTerbawah();
+                    break;
+                case 6:
+                    System.exit(0);
+                    break;
+                default:
+                    System.out.println("Pilihan tidak valid. Silahkan coba lagi.");
+            }
+        }
+    }
+}
+```
+Output:<br>
+<img src="pictures/8.LatPrak1.1.png">
+<img src="pictures/8.LatPrak1.2.png">
+<img src="pictures/8.LatPrak1.3.png">
+
 - Method **cariBarang** digunakan untuk mencari ada atau tidaknya barang berdasarkan kode barangnya atau nama barangnya
+Menambahkan method cariBarang() pada class Gudang09:<br>
+Method cariBarang() saya buat menjadi 2 method yaitu pencarian berdasarkan nama dan pencarian berdasarkan kode.
+```java
+    //Method untuk mencari kode barang dalam tumpukan barang
+    public int FindKodeBrg(int cari) {
+        if (!cekKosong()) {
+            int posisi = -1;
+            for (int j = 0; j <= top; j++) {
+                if (tumpukan[j].kode == cari) {
+                    posisi = j;
+                    break;
+                } 
+            }
+            return posisi;     
+        } else {
+            return -2;
+        }
+    }
+
+    //Method untuk mencari nama barang dalam tumpukan barang
+    public int FindNamaBrg(String cari) {
+        if (!cekKosong()) {
+            int posisi = -1;
+            for (int j = 0; j <= top; j++) {
+                if (tumpukan[j].nama.equalsIgnoreCase(cari)) {
+                    posisi = j;
+                    break;
+                } 
+            }
+            return posisi;     
+        } else {
+            return -2;
+        }
+    }
+```
+Batas perulangan for pada kedua method di atas hanya dibatasi sampai j <= top saja, bukan sampai panjang dari `tumpukan`. Hal ini dilakukan karena proses pencarian dilakukan pada barang yang masih berada dalam tumpukan (dari barang terbawah sampai top of stack). Kalau batas perulangan diatur sampai i < tumpukan.length, maka barang yang sudah diambil (pop) akan diperiksa juga (dibandingkan dengan kode/nama barang yang dicari) padahal barang tersebut sudah bukan bagian dari stack lagi. Karena pada dasarnya proses push atau pop ini menggunakan perpindahan indeks top saja, tanpa benar-benar menghapus barang yang diambil (pop). Ketika barang baru ditambahkan, indeks top akan diincrement dan jika sebelumnya ada data barang (yang sebelumnya sudah diambil (pop)) maka akan direplace dengan data barang yang baru ditambahkan.
+
+Menambahkan method untuk menampilkan hasil pencarian barang pada class Gudang09:<br>
+```java
+    //Method untuk menampilkan barang (untuk pencarian berdasarkan kode)
+    public void TampilKode(int x, int pos) {
+        if (pos == -2) {
+            System.out.println("Tumpukan barang masih kosong.");
+        } else if (pos == -1){
+            System.out.println("Barang dengan kode " + x + " tidak ditemukan!");
+        } else {
+            System.out.printf("Barang dengan kode %d ditemukan!\nBerikut rinciannya:\n", x);
+            System.out.println("Kode\t: " + tumpukan[pos].kode);
+            System.out.println("Nama\t: " + tumpukan[pos].nama);
+            System.out.println("Kategori: " + tumpukan[pos].kategori);
+        }
+    }
+
+    //Method untuk menampilkan barang (untuk pencarian berdasarkan nama)
+    public void TampilName(String y, int pos) {
+        if (pos == -2) {
+            System.out.println("Tumpukan barang masih kosong.");
+        } else if (pos == -1){
+            System.out.println("Barang dengan nama " + y + " tidak ditemukan!");
+        } else {
+            System.out.printf("Barang dengan nama %s ditemukan!\nBerikut rinciannya:\n", y);
+            System.out.println("Kode\t: " + tumpukan[pos].kode);
+            System.out.println("Nama\t: " + tumpukan[pos].nama);
+            System.out.println("Kategori: " + tumpukan[pos].kategori);
+        }
+    }
+```
+
+Modifikasi kode program class Utama09:
+```java
+import java.util.Scanner;
+
+public class Utama09 {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        Scanner sc = new Scanner(System.in);
+
+        //Meminta pengguna untuk menentukan kapasitas gudang
+        System.out.print("Berapa kapasitas gudang yang Anda inginkan: ");
+        int capacity = scanner.nextInt();
+        Gudang09 gudang = new Gudang09(capacity);
+
+
+        while (true) {
+            System.out.println("\nMenu:");    
+            System.out.println("1. Tambah barang");    
+            System.out.println("2. Ambil barang");    
+            System.out.println("3. Tampilkan tumpukan barang");    
+            System.out.println("4. Lihat barang teratas"); //Menambahkan menu untuk melihat barang teratas
+            System.out.println("5. Lihat barang terbawah"); //Menambahkan menu untuk melihat barang terbawah
+            System.out.println("6. Cari barang berdasarkan kode"); //Menambahkan menu untuk mencari barang berdasarkan kode
+            System.out.println("7. Cari barang berdasarkan nama"); //Menambahkan menu untuk mencari barang berdasarkan nama
+            System.out.println("8. Keluar");    
+            System.out.print("Pilih operasi: ");    
+            int pilihan = scanner.nextInt();
+
+            switch (pilihan) {
+                case 1:
+                    System.out.print("Masukkan kode barang: ");
+                    int kode = scanner.nextInt();
+                    scanner.nextLine();
+                    System.out.print("Masukkan nama barang: ");
+                    String nama = scanner.nextLine();
+                    System.out.print("Masukkan nama kategori: ");
+                    String kategori = scanner.nextLine();
+                    Barang09 barangBaru = new Barang09(kode, nama, kategori);
+                    gudang.tambahBarang(barangBaru);
+                    break;
+                case 2:
+                    gudang.ambilBarang();
+                    break;
+                case 3:
+                    gudang.tampilkanBarang();
+                    break;  
+                case 4: //Menu lihat barang teratas
+                    gudang.lihatBarangTeratas();
+                    break;
+                case 5: //Menu lihat barang terbawah
+                    gudang.lihatBarangTerbawah();
+                    break;
+                case 6: //Menu cari barang berdasarkan kode
+                    System.out.println("------------------------------------");
+                    System.out.println("Masukkan Kode Barang yang dicari : ");
+                    System.out.print("Kode Barang : ");
+                    int cariKd = scanner.nextInt();
+                    System.out.println("------------------------------------");
+                    int posisi = gudang.FindKodeBrg(cariKd);
+                    gudang.TampilKode(cariKd, posisi);
+                    break;
+                case 7: //Menu cari barang berdasarkan nama
+                    System.out.println("------------------------------------");
+                    System.out.println("Masukkan nama Barang yang dicari : ");
+                    System.out.print("Nama Barang : ");
+                    String cariNm = sc.nextLine();
+                    System.out.println("------------------------------------");
+                    int pos = gudang.FindNamaBrg(cariNm);
+                    gudang.TampilName(cariNm, pos);
+                    break;
+                case 8:
+                    System.exit(0);
+                    break;
+                default:
+                    System.out.println("Pilihan tidak valid. Silahkan coba lagi.");
+            }
+        }
+    }
+}
+```
+Output:<br>
+<img src="pictures/8.LatPrak2.1.png"><br>
+``Tidak bisa mencari barang ketika tumpukan barang masih kosong.``
+
+<img src="pictures/8.LatPrak2.2.png"><br>
+<img src="pictures/8.LatPrak2.3.png"><br>
+<img src="pictures/8.LatPrak2.4.png"><br>
+<img src="pictures/8.LatPrak2.5.png"><br>
+<img src="pictures/8.LatPrak2miss.png"><br>
+``Jaket tidak ditemukan karena jaket sudah diambil (pop)``
+<img src="pictures/8.LatPrak2.6.png"><br>
+``Barang yang tersisa adalah laptop dan pizza``
+<img src="pictures/8.LatPrak2.7.png"><br>
+<img src="pictures/8.LatPrak2.8.png"><br>
+<img src="pictures/8.LatPrak2.9.png"><br>
+``Begitupun ketika barang laptop diambil (pop), maka saat melakukan pencarian dengan kode laptop (12) atau nama `laptop` hasilnya tidak ditemukan``

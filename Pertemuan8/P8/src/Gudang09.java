@@ -59,15 +59,15 @@ public class Gudang09 {
     }
 
     public void tampilkanBarang() {
-        // if (!cekKosong()) {
+        if (!cekKosong()) {
             System.out.println("Rincian tumpukan barang di Gudang:");
             for (int i = top; i >= 0; i--) {
             //for (int i = 0; i <= top; i++) {
                 System.out.printf("Kode %d: %s (Kategori %s)\n", tumpukan[i].kode, tumpukan[i].nama, tumpukan[i].kategori); 
-             }
-        // } else {
-        //     System.out.println("Tumpukan barang kosong.");
-        // }
+            }
+        } else {
+            System.out.println("Tumpukan barang kosong.");
+        }
     }
 
     public String konversiDesimalKeBiner(int kode) {
@@ -82,5 +82,77 @@ public class Gudang09 {
             biner += stack.pop();   
         }
         return biner;
+    }
+
+    //Method untuk melihat barang terbawah
+    public Barang09 lihatBarangTerbawah() {
+        if (!cekKosong()) {
+            Barang09 barangTerbawah = tumpukan[0]; //Karena posisi terbawah adalah pada indeks awal stack 
+            System.out.println("Barang terbawah: " + barangTerbawah.nama);
+            return barangTerbawah;
+        } else {
+            System.out.println("Tumpukan barang kosong.");
+            return null;
+        }
+    }
+
+    //Method untuk mencari kode barang dalam tumpukan barang
+    public int FindKodeBrg(int cari) {
+        if (!cekKosong()) {
+            int posisi = -1;
+            for (int j = 0; j <= top; j++) {
+                if (tumpukan[j].kode == cari) {
+                    posisi = j;
+                    break;
+                } 
+            }
+            return posisi;     
+        } else {
+            return -2;
+        }
+    }
+
+    //Method untuk mencari nama barang dalam tumpukan barang
+    public int FindNamaBrg(String cari) {
+        if (!cekKosong()) {
+            int posisi = -1;
+            for (int j = 0; j <= top; j++) {
+                if (tumpukan[j].nama.equalsIgnoreCase(cari)) {
+                    posisi = j;
+                    break;
+                } 
+            }
+            return posisi;     
+        } else {
+            return -2;
+        }
+    }
+
+    //Method untuk menampilkan barang (untuk pencarian berdasarkan kode)
+    public void TampilKode(int x, int pos) {
+        if (pos == -2) {
+            System.out.println("Tumpukan barang masih kosong.");
+        } else if (pos == -1){
+            System.out.println("Barang dengan kode " + x + " tidak ditemukan!");
+        } else {
+            System.out.printf("Barang dengan kode %d ditemukan!\nBerikut rinciannya:\n", x);
+            System.out.println("Kode\t: " + tumpukan[pos].kode);
+            System.out.println("Nama\t: " + tumpukan[pos].nama);
+            System.out.println("Kategori: " + tumpukan[pos].kategori);
+        }
+    }
+
+    //Method untuk menampilkan barang (untuk pencarian berdasarkan nama)
+    public void TampilName(String y, int pos) {
+        if (pos == -2) {
+            System.out.println("Tumpukan barang masih kosong.");
+        } else if (pos == -1){
+            System.out.println("Barang dengan nama " + y + " tidak ditemukan!");
+        } else {
+            System.out.printf("Barang dengan nama %s ditemukan!\nBerikut rinciannya:\n", y);
+            System.out.println("Kode\t: " + tumpukan[pos].kode);
+            System.out.println("Nama\t: " + tumpukan[pos].nama);
+            System.out.println("Kategori: " + tumpukan[pos].kategori);
+        }
     }
 }
