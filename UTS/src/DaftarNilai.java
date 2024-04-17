@@ -22,9 +22,9 @@ public class DaftarNilai {
 
     public void Tampilposisi(int x, int pos) {
         if (pos != -1) {
-            System.out.println("Nilai : " + x + " ditemukan pada indeks " + pos);
+            System.out.println("Nilai " + x + " ditemukan pada indeks " + pos);
         } else {
-            System.out.println("Nilai : " + x + " tidak ditemukan");
+            System.out.println("Nilai " + x + " tidak ditemukan");
         }
     }
 
@@ -107,5 +107,4 @@ public class DaftarNilai {
             listNilai[j] = temp;
         }
     }
-
 }

@@ -59,9 +59,9 @@ public class DaftarNilai {
 
     public void Tampilposisi(int x, int pos) {
         if (pos != -1) {
-            System.out.println("Nilai : " + x + " ditemukan pada indeks " + pos);
+            System.out.println("Nilai " + x + " ditemukan pada indeks " + pos);
         } else {
-            System.out.println("Nilai : " + x + " tidak ditemukan");
+            System.out.println("Nilai " + x + " tidak ditemukan");
         }
     }
 
@@ -144,7 +144,6 @@ public class DaftarNilai {
             listNilai[j] = temp;
         }
     }
-
 }
 ```
 Kode program class MainNilai:
@@ -406,34 +405,49 @@ public int FindBinarySearch(int cari, int left, int right) {
         return -1;
     }
 ```
-3. Simulasi pengurutan dilakukan secara ascending dan descending! Nilai yang dicari merupakan nilai bebas ditentukan setiap mahasiswa dengan ketentuan empat kondisi, yaitu: 
+3. Simulasi pengurutan dilakukan secara ascending dan descending! 
+Ascending:
+```PowerShell
+Kumpulan nilai awal
+7 29 26 21 3 23 17 17 46 21 44 37 24 17 38 37 21 
+-------------------------------------------
+Pilih menu operasi
+1. Sorting
+2. Searching
+Menu yang Anda pilih: 1
+-------------------------------------------
+Pilih menu sorting
+1. Ascending
+2. Descending
+Masukkan pilihan Anda: 1
+3 7 17 17 17 21 21 21 23 24 26 29 37 37 38 44 46
+Apakah Anda ingin memilih metode sorting yang lain? (y/n)
+y
+```
+Descending:
+```PowerShell
+-------------------------------------------
+Pilih menu sorting
+1. Ascending
+2. Descending
+Masukkan pilihan Anda: 2
+46 44 38 37 37 29 26 24 23 21 21 21 17 17 17 7 3
+Apakah Anda ingin memilih metode sorting yang lain? (y/n)
+n
+Apakah Anda ingin memilih menu lain? (y/n)
+n
+```
+4. Nilai yang dicari merupakan nilai bebas ditentukan setiap mahasiswa dengan ketentuan empat kondisi, yaitu: 
 
 1) nilai yang dapat ditemukan (ditunjukkan pada lokasi index sebelum pengurutan); 
 ```PowerShell
 Kumpulan nilai awal
-7 29 26 21 3 23 17 17 46 21 44 37 24 17 38 37 21
+7 29 26 21 3 23 17 17 46 21 44 37 24 17 38 37 21 
 -------------------------------------------
 Pilih menu operasi
 1. Sorting
 2. Searching
 Menu yang Anda pilih: 2
--------------------------------------------
-Pilih menu searching
-1. Searching untuk data yang belum diurutkan
-2. Searching untuk data yang sudah diurutkan
-Masukkan pilihan Anda: 1
--------------------------------------------
-Data keseluruhan Nilai (Belum tentu dalam keadaan sudah terurut): 
-7 29 26 21 3 23 17 17 46 21 44 37 24 17 38 37 21 
-___________________________________________
-___________________________________________
-Pencarian Data : 
-Masukkan nilai yang dicari : 
-Nilai : 3
-Menggunakan Binary Search
-Nilai : 3 ditemukan pada indeks 4
-Apakah Anda ingin memilih metode searching yang lain? (y/n)
-y
 -------------------------------------------
 Pilih menu searching
 1. Searching untuk data yang belum diurutkan
@@ -448,7 +462,9 @@ Pencarian Data :
 Masukkan nilai yang dicari :
 Nilai : 24
 Menggunakan Binary Search
-Nilai : 24 ditemukan pada indeks 12
+Nilai 24 ditemukan pada indeks 12
+Apakah Anda ingin memilih metode searching yang lain? (y/n)
+y
 ```
 ``Pencarian pada menu pertama dapat mencari nilai meskipun belum terurut. Jikalau nilai sudah terurut pun juga masih dapat menemukan nilai yang dicari``
 ```PowerShell
@@ -490,13 +506,10 @@ Nilai : 38
 Menggunakan Binary Search
 Nilai : 38 ditemukan pada indeks 14
 Apakah Anda ingin memilih metode searching yang lain? (y/n)
+
 ```
-2)  nilai yang dapat ditemukan (ditunjukkan pada lokasi index setelah pengurutan secara ascending); 
+2) nilai yang dapat ditemukan (ditunjukkan pada lokasi index setelah pengurutan secara ascending); 
 ```PowerShell
-Pilih menu operasi
-1. Sorting
-2. Searching
-Menu yang Anda pilih: 2
 -------------------------------------------
 Pilih menu searching
 1. Searching untuk data yang belum diurutkan
@@ -508,16 +521,16 @@ Pilih metode binary search
 2. Binary search dengan nilai yang diurutkan secara descending
 Masukkan pilihan Anda: 1
 -------------------------------------------
-Data keseluruhan Nilai (Urut dari terkecil ke terbesar):
-3 7 17 17 17 21 21 21 23 24 26 29 37 37 38 44 46
+Data keseluruhan Nilai (Urut dari terkecil ke terbesar): 
+3 7 17 17 17 21 21 21 23 24 26 29 37 37 38 44 46 
 ___________________________________________
 ___________________________________________
 Pencarian Data :
 Masukkan nilai yang dicari :
-Nilai : 46
+Nilai : 24
 =================================
 Menggunakan binary search
-Nilai : 46 ditemukan pada indeks 16
+Nilai 24 ditemukan pada indeks 9
 Apakah Anda ingin memilih metode searching yang lain? (y/n)
 y
 ```
@@ -540,15 +553,15 @@ ___________________________________________
 ___________________________________________
 Pencarian Data :
 Masukkan nilai yang dicari :
-Nilai : 26
+Nilai : 24
 =================================
 menggunakan binary search
-Nilai : 26 ditemukan pada indeks 6
+Nilai 24 ditemukan pada indeks 7
+Apakah Anda ingin memilih metode searching yang lain? (y/n)
+y
 ```
 4) nilai tidak ditemukan.
 ```PowerShell
-Apakah Anda ingin memilih metode searching yang lain? (y/n)
-y
 -------------------------------------------
 Pilih menu searching
 1. Searching untuk data yang belum diurutkan
@@ -566,48 +579,28 @@ ___________________________________________
 ___________________________________________
 Pencarian Data :
 Masukkan nilai yang dicari :
-Nilai : 11
+Nilai : 10
 =================================
 Menggunakan binary search
-Nilai : 11 tidak ditemukan
+Nilai 10 tidak ditemukan
 Apakah Anda ingin memilih metode searching yang lain? (y/n)
 n
-Apakah Anda ingin memilih menu lain? (y/n)
-n
 ```
-
-4. Waktu pengerjaan di kelas adalah satu jam, selanjutnya dosen akan memanggil setiap mahasiswa untuk menunjukkan progress!
-5. Setelah pemeriksaan selesai, mahasiswa melanjutkan pengerjaan secara mandiri.
-Kumpulkan hasil kode program melalui repo GitHub, laporan hasil pengerjaan dilakukan melalui file markdown (.md)!
-6. Perhatikan pengumpulan di repo dipisahkan dalam folder tersendiri!
-7. Perhatikan deadline pengumpulan, tidak ada toleransi ketrlambatan dalam bentuk alasan apapun!
+5. Waktu pengerjaan di kelas adalah satu jam, selanjutnya dosen akan memanggil setiap mahasiswa untuk menunjukkan progress!
+6. Setelah pemeriksaan selesai, mahasiswa melanjutkan pengerjaan secara mandiri.
+7. Kumpulkan hasil kode program melalui repo GitHub, laporan hasil pengerjaan dilakukan melalui file markdown (.md)!
+8. Perhatikan pengumpulan di repo dipisahkan dalam folder tersendiri!
+9. Perhatikan deadline pengumpulan, tidak ada toleransi ketrlambatan dalam bentuk alasan apapun!
 
 Output Program secara keseluruhan:
 ```PowerShell
 Kumpulan nilai awal
-7 29 26 21 3 23 17 17 46 21 44 37 24 17 38 37 21
+7 29 26 21 3 23 17 17 46 21 44 37 24 17 38 37 21 
 -------------------------------------------
 Pilih menu operasi
 1. Sorting
 2. Searching
 Menu yang Anda pilih: 2
--------------------------------------------
-Pilih menu searching
-1. Searching untuk data yang belum diurutkan
-2. Searching untuk data yang sudah diurutkan
-Masukkan pilihan Anda: 1
--------------------------------------------
-Data keseluruhan Nilai (Belum tentu dalam keadaan sudah terurut): 
-7 29 26 21 3 23 17 17 46 21 44 37 24 17 38 37 21 
-___________________________________________
-___________________________________________
-Pencarian Data : 
-Masukkan nilai yang dicari : 
-Nilai : 3
-Menggunakan Binary Search
-Nilai : 3 ditemukan pada indeks 4
-Apakah Anda ingin memilih metode searching yang lain? (y/n)
-y
 -------------------------------------------
 Pilih menu searching
 1. Searching untuk data yang belum diurutkan
@@ -622,39 +615,9 @@ Pencarian Data :
 Masukkan nilai yang dicari :
 Nilai : 24
 Menggunakan Binary Search
-Nilai : 24 ditemukan pada indeks 12
+Nilai 24 ditemukan pada indeks 12
 Apakah Anda ingin memilih metode searching yang lain? (y/n)
-n
-Apakah Anda ingin memilih menu lain? (y/n)
 y
--------------------------------------------
-Pilih menu operasi
-1. Sorting
-2. Searching
-Menu yang Anda pilih: 1
--------------------------------------------
-Pilih menu sorting
-1. Ascending
-2. Descending
-Masukkan pilihan Anda: 1
-3 7 17 17 17 21 21 21 23 24 26 29 37 37 38 44 46 
-Apakah Anda ingin memilih metode sorting yang lain? (y/n)
-y
--------------------------------------------
-Pilih menu sorting
-1. Ascending
-2. Descending
-Masukkan pilihan Anda: 2
-46 44 38 37 37 29 26 24 23 21 21 21 17 17 17 7 3
-Apakah Anda ingin memilih metode sorting yang lain? (y/n)
-n
-Apakah Anda ingin memilih menu lain? (y/n)
-y
--------------------------------------------
-Pilih menu operasi
-1. Sorting
-2. Searching
-Menu yang Anda pilih: 2
 -------------------------------------------
 Pilih menu searching
 1. Searching untuk data yang belum diurutkan
@@ -666,16 +629,16 @@ Pilih metode binary search
 2. Binary search dengan nilai yang diurutkan secara descending
 Masukkan pilihan Anda: 1
 -------------------------------------------
-Data keseluruhan Nilai (Urut dari terkecil ke terbesar):
-3 7 17 17 17 21 21 21 23 24 26 29 37 37 38 44 46
+Data keseluruhan Nilai (Urut dari terkecil ke terbesar): 
+3 7 17 17 17 21 21 21 23 24 26 29 37 37 38 44 46 
 ___________________________________________
 ___________________________________________
 Pencarian Data :
 Masukkan nilai yang dicari :
-Nilai : 46
+Nilai : 24
 =================================
 Menggunakan binary search
-Nilai : 46 ditemukan pada indeks 16
+Nilai 24 ditemukan pada indeks 9
 Apakah Anda ingin memilih metode searching yang lain? (y/n)
 y
 -------------------------------------------
@@ -695,10 +658,10 @@ ___________________________________________
 ___________________________________________
 Pencarian Data :
 Masukkan nilai yang dicari :
-Nilai : 26
+Nilai : 24
 =================================
 menggunakan binary search
-Nilai : 26 ditemukan pada indeks 6
+Nilai 24 ditemukan pada indeks 7
 Apakah Anda ingin memilih metode searching yang lain? (y/n)
 y
 -------------------------------------------
@@ -718,13 +681,36 @@ ___________________________________________
 ___________________________________________
 Pencarian Data :
 Masukkan nilai yang dicari :
-Nilai : 11
+Nilai : 10
 =================================
 Menggunakan binary search
-Nilai : 11 tidak ditemukan
+Nilai 10 tidak ditemukan
 Apakah Anda ingin memilih metode searching yang lain? (y/n)
 n
 Apakah Anda ingin memilih menu lain? (y/n)
+y
+-------------------------------------------
+Pilih menu operasi
+1. Sorting
+2. Searching
+Menu yang Anda pilih: 1
+-------------------------------------------
+Pilih menu sorting
+1. Ascending
+2. Descending
+Masukkan pilihan Anda: 1
+3 7 17 17 17 21 21 21 23 24 26 29 37 37 38 44 46
+Apakah Anda ingin memilih metode sorting yang lain? (y/n)
+y
+-------------------------------------------
+Pilih menu sorting
+1. Ascending
+2. Descending
+Masukkan pilihan Anda: 2
+46 44 38 37 37 29 26 24 23 21 21 21 17 17 17 7 3
+Apakah Anda ingin memilih metode sorting yang lain? (y/n)
 n
-PS D:\Kuliah\Semester 2\Tugas Kuliah Semester 2\Algoritma dan Struktur Data\Praktikum-Algoritma dan Struktur Data> 
+Apakah Anda ingin memilih menu lain? (y/n)
+n
+PS D:\Kuliah\Semester 2\Tugas Kuliah Semester 2\Algoritma dan Struktur Data\Praktikum-Algoritma dan Struktur Data>
 ```
