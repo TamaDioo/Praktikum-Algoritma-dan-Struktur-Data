@@ -116,13 +116,13 @@ public class Queue {
             int i = front;
             while (i != rear) {
                 if (antrian[i].nama.equalsIgnoreCase(nama)) {
-                    System.out.println("Pembeli dengan nama " + nama + " berada di posisi ke-" + ((i - front + max) % max + 1));
+                    System.out.println("Pembeli dengan nama " + nama + " berada di posisi ke-" + (i));
                     return;
                 }
                 i = (i + 1) % max;
             }
             if (antrian[i].nama.equalsIgnoreCase(nama)) {
-                System.out.println("Pembeli dengan nama " + nama + " berada di posisi ke-" + ((i - front + max) % max + 1));
+                System.out.println("Pembeli dengan nama " + nama + " berada di posisi ke-" + (i));
             } else {
                 System.out.println("Pembeli dengan nama " + nama + " tidak ditemukan dalam antrian");
             }
