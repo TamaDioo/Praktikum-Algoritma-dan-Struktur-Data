@@ -10,4 +10,8 @@ public class Mahasiswa {
         this.nama = nama;
         next = berikutnya;
     }
+
+    Mahasiswa() {
+        
+    }
 }

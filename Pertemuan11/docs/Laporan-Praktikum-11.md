@@ -424,3 +424,355 @@ Screenshot hasil program:
 2. Buatlah implementasi program antrian layanan unit kemahasiswaan sesuai dengan kondisi yang ditunjukkan pada soal nomor 1! Ketentuan
     - Implementasi antrian menggunakan Queue berbasis Linked List!
     - Program merupakan proyek baru, bukan modifikasi dari soal nomor 1!
+Kode program class Mahasiswa:
+```java
+package Pertemuan11.minggu11;
+
+public class Mahasiswa {
+    int NIM;
+    String nama;
+    Mahasiswa next;
+
+    Mahasiswa(int nim, String nama, Mahasiswa berikutnya) {
+        NIM = nim;
+        this.nama = nama;
+        next = berikutnya;
+    }
+
+    //Menambahkan konstruktor default
+    Mahasiswa() {
+        
+    }
+}
+```
+
+Kode program class MhsQueue:
+```java
+package Pertemuan11.minggu11;
+
+import Pertemuan10.Tugas.Pembeli;
+
+public class MhsQueue {
+    Mahasiswa head, tail;
+
+    boolean isEmpty() {
+        return head == null;
+    }
+
+    void addFirst(int nim, String nama) {
+        Mahasiswa ndInput = new Mahasiswa(nim, nama, null);
+        if (isEmpty()) {
+            head = ndInput;
+            tail = ndInput;
+        } else {
+            ndInput.next = head;
+            head = ndInput;
+        }
+    }
+
+    void addLast(int nim, String nama) {
+        Mahasiswa ndInput = new Mahasiswa(nim, nama, null);
+        if (isEmpty()) {
+            head = ndInput;
+            tail = ndInput;
+        } else {
+            tail.next = ndInput;
+            tail = ndInput;
+        }
+    }
+
+    void print() {
+        if (isEmpty()) {
+            System.out.println("Antrian masih kosong!");
+        } else {
+            Mahasiswa tmp = head;
+            System.out.println("Cek semua antrian: ");
+            while (tmp != null) {
+                System.out.println("NIM : " + tmp.NIM + ", Nama : " + tmp.nama);
+                tmp = tmp.next;
+            }
+            System.out.println("");
+        }
+    }
+
+    void Enqueue(int nim, String nama) {
+        if (isEmpty()) {
+            addFirst(nim, nama);
+        } else {
+            addLast(nim, nama);
+        }
+    }
+
+    void peek() {
+        if (isEmpty()) {
+            System.out.println("Antrian masih kosong!");   
+        } else {
+            System.out.println("Elemen terdepan:\nNama : " + head.nama + ", NIM :" + head.NIM);
+        }
+    }
+
+    void peekRear() {
+        if (isEmpty()) {
+            System.out.println("Antrian masih kosong!");   
+        } else {
+            System.out.println("Elemen terakhir:\nNama : " + tail.nama + ", NIM :" + tail.NIM);
+        }
+    }
+
+    Mahasiswa Dequeue() {
+        if (isEmpty()) {
+            System.out.println("Antrian masih kosong, tidak dapat dihapus!");
+            return null;
+        } else if (head == tail) {
+            Mahasiswa eq = head;
+            head = tail = null;
+            return eq;
+        } else {
+            Mahasiswa eq = head;
+            head = head.next;
+            return eq;
+        }      
+    }
+}
+```
+
+Kode program class MhsQueueMain:
+```java
+package Pertemuan11.minggu11;
+import java.util.Scanner;
+
+import Pertemuan10.Praktikum2.Nasabah;
+
+public class MhsQueueMain {
+    public static void menu() {
+        System.out.println("Pilih menu: ");
+        System.out.println("1. Antrian baru");
+        System.out.println("2. Antrian keluar");
+        System.out.println("3. Cek Antrian terdepan");
+        System.out.println("4. Cek Antrian paling belakang");
+        System.out.println("5. Cek Semua Antrian");
+        System.out.println("6. Keluar");
+        System.out.println("--------------------------");
+    }
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        Scanner s = new Scanner(System.in);
+
+        MhsQueue mhsAntri = new MhsQueue();
+
+        int pilih;
+
+        do {
+            menu();
+            pilih = sc.nextInt();
+            switch (pilih) {
+                case 1:
+                    System.out.print("Nama: ");
+                    String nama = s.nextLine();
+                    System.out.print("NIM: ");
+                    int nim = sc.nextInt();
+                    mhsAntri.Enqueue(nim, nama);
+                    break;
+                case 2:
+                    Mahasiswa data = mhsAntri.Dequeue();
+                    if (data != null) {
+                        System.out.println("Antrian yang keluar:\nNIM : " + data.NIM + ", Nama : " + data.nama);
+                    } 
+                    break;
+                case 3:
+                    mhsAntri.peek();
+                    break;
+                case 4:
+                    mhsAntri.peekRear();
+                    break;
+                case 5:
+                    mhsAntri.print();
+                    break;
+                case 6:
+                    System.exit(0);
+                    break;
+                default:
+                    System.out.println("Menu yang Anda masukkan tidak valid!");
+                    break;
+            }
+        } while (pilih == 1 || pilih == 2 || pilih == 3 || pilih == 4 || pilih == 5);
+    }
+}
+```
+
+Hasil program:
+```PowerShell
+Pilih menu: 
+1. Antrian baru
+2. Antrian keluar
+3. Cek Antrian terdepan
+4. Cek Antrian paling belakang
+5. Cek Semua Antrian
+6. Keluar
+--------------------------
+2
+Antrian masih kosong, tidak dapat dihapus!
+Pilih menu: 
+1. Antrian baru
+2. Antrian keluar
+3. Cek Antrian terdepan
+4. Cek Antrian paling belakang
+5. Cek Semua Antrian
+6. Keluar
+--------------------------
+1
+Nama: Andi
+NIM: 123
+Pilih menu: 
+1. Antrian baru
+2. Antrian keluar
+3. Cek Antrian terdepan
+4. Cek Antrian paling belakang
+5. Cek Semua Antrian
+6. Keluar
+--------------------------
+1
+Nama: Roy
+NIM: 135
+Pilih menu:
+1. Antrian baru
+2. Antrian keluar
+3. Cek Antrian terdepan
+4. Cek Antrian paling belakang
+5. Cek Semua Antrian
+6. Keluar
+--------------------------
+1
+Nama: Taufik
+NIM: 235
+Pilih menu:
+1. Antrian baru
+2. Antrian keluar
+3. Cek Antrian terdepan
+4. Cek Antrian paling belakang
+5. Cek Semua Antrian
+6. Keluar
+--------------------------
+5
+Cek semua antrian:
+NIM : 123, Nama : Andi
+NIM : 135, Nama : Roy
+NIM : 235, Nama : Taufik
+
+Pilih menu:
+1. Antrian baru
+2. Antrian keluar
+3. Cek Antrian terdepan
+4. Cek Antrian paling belakang
+5. Cek Semua Antrian
+6. Keluar
+--------------------------
+2
+Antrian yang keluar:
+NIM : 123, Nama : Andi
+Pilih menu:
+1. Antrian baru
+2. Antrian keluar
+3. Cek Antrian terdepan
+4. Cek Antrian paling belakang
+5. Cek Semua Antrian
+6. Keluar
+--------------------------
+3
+Elemen terdepan:
+Nama : Roy, NIM :135
+Pilih menu:
+1. Antrian baru
+2. Antrian keluar
+3. Cek Antrian terdepan
+4. Cek Antrian paling belakang
+5. Cek Semua Antrian
+6. Keluar
+--------------------------
+1
+Nama: Hana
+NIM: 119
+Pilih menu:
+1. Antrian baru
+2. Antrian keluar
+3. Cek Antrian terdepan
+4. Cek Antrian paling belakang
+5. Cek Semua Antrian
+6. Keluar
+--------------------------
+5
+Cek semua antrian:
+NIM : 135, Nama : Roy
+NIM : 235, Nama : Taufik
+NIM : 119, Nama : Hana
+
+Pilih menu:
+1. Antrian baru
+2. Antrian keluar
+3. Cek Antrian terdepan
+4. Cek Antrian paling belakang
+5. Cek Semua Antrian
+6. Keluar
+--------------------------
+4
+Elemen terakhir:
+Nama : Hana, NIM :119
+Pilih menu:
+1. Antrian baru
+2. Antrian keluar
+3. Cek Antrian terdepan
+4. Cek Antrian paling belakang
+5. Cek Semua Antrian
+6. Keluar
+--------------------------
+1
+Nama: Joni
+NIM: 342
+Pilih menu:
+1. Antrian baru
+2. Antrian keluar
+3. Cek Antrian terdepan
+4. Cek Antrian paling belakang
+5. Cek Semua Antrian
+6. Keluar
+--------------------------
+5
+Cek semua antrian:
+NIM : 135, Nama : Roy
+NIM : 235, Nama : Taufik
+NIM : 119, Nama : Hana
+NIM : 342, Nama : Joni
+
+Pilih menu:
+1. Antrian baru
+2. Antrian keluar
+3. Cek Antrian terdepan
+4. Cek Antrian paling belakang
+5. Cek Semua Antrian
+6. Keluar
+--------------------------
+2
+Antrian yang keluar:
+NIM : 135, Nama : Roy
+Pilih menu:
+1. Antrian baru
+2. Antrian keluar
+3. Cek Antrian terdepan
+4. Cek Antrian paling belakang
+5. Cek Semua Antrian
+6. Keluar
+--------------------------
+3
+Elemen terdepan:
+Nama : Taufik, NIM :235
+Pilih menu:
+1. Antrian baru
+2. Antrian keluar
+3. Cek Antrian terdepan
+4. Cek Antrian paling belakang
+5. Cek Semua Antrian
+6. Keluar
+--------------------------
+6
+PS D:\Kuliah\Semester 2\Tugas Kuliah Semester 2\Algoritma dan Struktur Data\Praktikum-Algoritma dan Struktur Data> 
+```
