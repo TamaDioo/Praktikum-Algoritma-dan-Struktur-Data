@@ -142,10 +142,10 @@ public class SLLMain {
 <img src="pictures/2.1-Js11.png">
 
 ### 2.1.2 Pertanyaan
-1. Mengapa hasil compile kode program di baris pertama menghasilkan “Linked List Kosong”?
+1. Mengapa hasil compile kode program di baris pertama menghasilkan “Linked List Kosong”?<br>
 Jawab: Karena belum ada data yang ditambahkan ke dalam linked list sehingga linked list masih tetap kosong dan tidak bisa menampilkan data apapun.
 
-2. Jelaskan kegunaan variable temp secara umum pada setiap method!
+2. Jelaskan kegunaan variable temp secara umum pada setiap method!<br>
 Jawab: Kegunaan variabel temp adalah untuk melakukan perpindahan dari head sampai lokasi node yang diinginkan (bisa tail atau node tertentu).Proses perpindahan ini disebut juga proses traverse yaitu proses melakukan kunjungan pada setiap node tepat satu kali. Dengan melakukan kunjungan secara lengkap, maka akan didapatkan urutan
 informasi secara linier yang tersimpan dalam Linked List. Proses ini tidak merubah referensi dari head karena menggunakan variabel temp untuk melakukan traverse.
 
@@ -285,7 +285,7 @@ public class SLLMain {
 <img src="pictures/2.2-Js11.png">
 
 ### 2.2.3 Pertanyaan
-1. Mengapa digunakan keyword break pada fungsi remove? Jelaskan!
+1. Mengapa digunakan keyword break pada fungsi remove? Jelaskan!<br>
 Jawab: Keyword break pada fungsi remove digunakan untuk keluar dari perulangan while saat kondisi tertentu terpenuhi yaitu ketika kondisi if pada loop while `(temp.data == key && temp == head)` terpenuhi atau kondisi else if pada loop while `(temp.next.data == key)` terpenuhi. Jadi, break digunakan untuk menghindari iterasi perulangan yang berlebihan setelah kondisi yang diinginkan telah terpenuhi.
 
 2. Jelaskan kegunaan kode dibawah pada method remove
@@ -423,7 +423,7 @@ Screenshot hasil program:
 
 2. Buatlah implementasi program antrian layanan unit kemahasiswaan sesuai dengan kondisi yang ditunjukkan pada soal nomor 1! Ketentuan
     - Implementasi antrian menggunakan Queue berbasis Linked List!
-    - Program merupakan proyek baru, bukan modifikasi dari soal nomor 1!
+    - Program merupakan proyek baru, bukan modifikasi dari soal nomor 1!<br>
 Kode program class Mahasiswa:
 ```java
 package Pertemuan11.minggu11;
