@@ -601,7 +601,7 @@ public class MhsQueueMain {
 ```
 
 Hasil program:
-```PowerShell
+```bash
 Pilih menu: 
 1. Antrian baru
 2. Antrian keluar
