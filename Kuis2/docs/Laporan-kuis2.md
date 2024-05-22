@@ -18,5 +18,5 @@
 
 Moto GP 2024 berbeda dengan sebelumnya. Kini ada tambahan babak Sprint Race. Sprint Race merupakan sesi balapan tambahan yang berlangsung tiga jam setelah Kualifikasi MotoGP terakhir pada hari Sabtu. Jumlah balapan sesi Sprint Race beda dengan balapan utama (Grand Prix). Adapun total lap pada Sprint Race hanya 12 putaran. Namun, ajang tersebut memberikan poin tambahan kepada sembilan pebalap terdepan. Hasil Sprint Race memengaruhi penghitungan poin MotoGP dalam perebutan juara.
 
-<img src="pictures/output-1-kuis2.png">
-<img src="pictures/output-2-kuis2.png">
+<img src="pictures/output-1-kuis2rev.png">
+<img src="pictures/output-2-kuis2rev.png">
