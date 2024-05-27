@@ -41,11 +41,11 @@ public class DoubleLinkedLists {
     public void add(int item, int index) throws Exception {
         if (isEmpty()) {
             addFirst(item);     
-        } else if (index < 0 || index > size) {
+        } else if (index < 1 || index > size) {
             throw new Exception("Nilai indeks di luar batas");
         } else {
             Node current = head;
-            int i = 0;
+            int i = 1;
             while (i < index) {
                 current = current.next;
                 i++;
@@ -118,11 +118,11 @@ public class DoubleLinkedLists {
     public void remove(int index) throws Exception {
         if (isEmpty() || index >= size) {
             throw new Exception("Nilai indeks diluar batas");
-        } else if (index == 0) {
+        } else if (index == 1) {
             removeFirst();
         } else {
             Node current = head;
-            int i = 0;
+            int i = 1;
             while (i < index) {
                 current = current.next;
                 i++;
