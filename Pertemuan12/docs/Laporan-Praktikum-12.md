@@ -729,4 +729,875 @@ PS D:\Kuliah\Semester 2\Tugas Kuliah Semester 2\Algoritma dan Struktur Data\Prak
 *Pencarian Data*
 <img src="pictures/12.Tugas2.4.png">
 
+Kode program class Film:
+```java
+package Pertemuan12.doublelinkedlists;
+
+public class Film {
+    int id;
+    String judul;
+    double rating;
+    Film prev, next;
+
+    Film(Film prev, int id, String judul, double rate, Film next) {
+        this.prev = prev;
+        this.id = id;
+        this.judul = judul;
+        rating = rate;
+        this.next = next;
+    }
+}
+```
+Kode program class DLLFilm:
+```java
+package Pertemuan12.doublelinkedlists;
+
+public class DLLFilm {
+    Film head;
+    int size;
+
+    public DLLFilm() {
+        head = null;
+        size = 0;
+    }
+
+    public boolean isEmpty() {
+        return head == null;
+    }
+
+    public void addFirst(int id, String judul, double rate) {
+        if (isEmpty()) {
+            head = new Film(null, id, judul, rate, null);
+        } else {
+            Film newNode = new Film(null, id, judul, rate, head);
+            head.prev = newNode;
+            head = newNode;
+        }
+        size++;
+    }
+
+    public void addLast(int id, String judul, double rate) {
+        if (isEmpty()) {
+            addFirst(id, judul, rate);
+        } else {
+            Film current = head;
+            while (current.next != null) {
+                current = current.next;     
+            }
+            Film newNode = new Film(current, id, judul, rate, null);
+            current.next = newNode;
+            size++;
+        }
+    }
+
+    public void add(int id, String judul, double rate, int index) throws Exception {
+        if (isEmpty()) {
+            addFirst(id, judul, rate);     
+        } else if (index < 0 || index > size) {
+            throw new Exception("Nilai indeks di luar batas");
+        } else {
+            Film current = head;
+            int i = 0;
+            while (i < index) {
+                current = current.next;
+                i++;
+            }
+            if (current.prev == null) {
+                Film newNode = new Film(null, id, judul, rate, current);
+                current.prev = newNode;
+                head = newNode;
+            } else {
+                Film newNode = new Film(current.prev, id, judul, rate, current);
+                newNode.prev = current.prev;
+                newNode.next = current;
+                current.prev.next = newNode;
+                current.prev = newNode;
+            }
+        }
+        size++;
+    }
+
+    public int size() {
+        return size;    
+    }
+
+    public void print() {
+        if (!isEmpty()) {
+            Film tmp = head;
+            while (tmp != null) {
+                System.out.println("ID: " + tmp.id);
+                System.out.println(" Judul Film: " + tmp.judul);
+                System.out.println(" Rating Film: " + tmp.rating);
+                tmp = tmp.next;
+            }
+        } else {
+            System.out.println("Daftar Film masih kosong");
+        }
+    }
+
+    public void removeFirst() throws Exception {
+        if (isEmpty()) {
+            throw new Exception("Daftar Film masih kosong, tidak dapat dihapus!");
+        } else if (size == 1) {
+            removeLast();
+        } else {
+            head = head.next;
+            head.prev = null;
+            size--;
+        }
+    }
+
+    public void removeLast() throws Exception {
+        if (isEmpty()) {
+            throw new Exception("Daftar Film masih kosong, tidak dapat dihapus!");
+        } else if (head.next == null) {
+            head = null;
+            size --;
+            return;
+        } 
+        Film current = head;
+        while (current.next.next != null) {
+            current = current.next;     
+        }
+        current.next = null;
+        size--;
+    }
+
+    public void remove(int index) throws Exception {
+        if (isEmpty() || index >= size) {
+            throw new Exception("Nilai indeks diluar batas");
+        } else if (index == 0) {
+            removeFirst();
+        } else {
+            Film current = head;
+            int i = 0;
+            while (i < index) {
+                current = current.next;
+                i++;
+            }
+            if (current.next == null) {
+                current.prev.next = null;
+            } else if (current.prev == null) {
+                current = current.next;
+                current.prev = null;
+                head = current;
+            } else {
+                current.prev.next = current.next;
+                current.next.prev = current.prev;
+            }
+            size--;
+        }
+    }
+
+    public Film findFilm(int key) {
+        Film temp = head;
+            while (temp != null) {
+                if (temp.id == key) {
+                    break;
+                }
+                temp = temp.next;
+            }
+        return temp;
+    }
+
+    public int findIdx(int key) {
+        Film temp = head;
+        int i = 0;
+            while (temp != null) {
+                if (temp.id == key) {
+                    break;
+                }
+                temp = temp.next;
+                i++;
+            }
+        return i;
+    }
+
+    public void sortDesc() {
+        if (!isEmpty()) {
+            boolean swapped;
+            do {
+                swapped = false;
+                Film current = head;
+                while (current.next != null) {
+                    if (current.rating < current.next.rating) {
+                        double tempRate = current.rating;
+                        current.rating = current.next.rating;
+                        current.next.rating = tempRate;
+                        
+                        int tempId = current.id;
+                        current.id = current.next.id;
+                        current.next.id = tempId;
+                        
+                        String tempJudul = current.judul;
+                        current.judul = current.next.judul;
+                        current.next.judul = tempJudul;
+                        
+                        swapped = true;
+                    }
+                    current = current.next;
+                }
+            } while (swapped);
+        }
+    }
+}
+```
+Kode program class FilmMain:
+```java
+package Pertemuan12.doublelinkedlists;
+import java.util.Scanner;
+
+public class FilmMain {
+    public static void menu() {
+        System.out.println("===============================");
+        System.out.println("DATA FILM LAYAR LEBAR");
+        System.out.println("===============================");
+        System.out.println("1. Tambah Data Awal");
+        System.out.println("2. Tambah Data Akhir");
+        System.out.println("3. Tambah Data Index Tertentu");
+        System.out.println("4. Hapus Data Pertama");
+        System.out.println("5. Hapus Data Terakhir");
+        System.out.println("6. Hapus Data Tertentu");
+        System.out.println("7. Cetak");
+        System.out.println("8. Cari ID Film");
+        System.out.println("9. Urut Data Rating Film-DESC");
+        System.out.println("10. Keluar");
+        System.out.println("===============================");
+    } 
+    public static void main(String[] args) throws Exception {
+        Scanner sc = new Scanner(System.in);
+        Scanner s = new Scanner(System.in);
+        int id, idx;
+        double rate;
+        String judul;
+
+        DLLFilm listFilm = new DLLFilm();
+
+        short pilih;
+        do {
+            menu();
+            pilih = sc.nextShort();
+            switch (pilih) {
+                case 1:
+                    System.out.println("Masukkan Data Film Posisi Awal");
+                    System.out.println("ID FIlm: ");
+                    id = sc.nextInt();
+                    System.out.println("Judul Film: ");
+                    judul = s.nextLine();
+                    System.out.println("Rating FIlm: ");
+                    rate = sc.nextDouble();
+                    listFilm.addFirst(id, judul, rate);
+                    break;
+                case 2:
+                    System.out.println("Masukkan Data Film Posisi Akhir");
+                    System.out.println("ID FIlm: ");
+                    id = sc.nextInt();
+                    System.out.println("Judul Film: ");
+                    judul = s.nextLine();
+                    System.out.println("Rating FIlm: ");
+                    rate = sc.nextDouble();
+                    listFilm.addLast(id, judul, rate);
+                    break;
+                case 3:
+                    System.out.println("Masukkan Data Film");
+                    System.out.println("Urutan ke- ");
+                    idx = sc.nextInt();
+                    System.out.println("ID FIlm: ");
+                    id = sc.nextInt();
+                    System.out.println("Judul Film: ");
+                    judul = s.nextLine();
+                    System.out.println("Rating FIlm: ");
+                    rate = sc.nextDouble();
+                    listFilm.add(id, judul, rate, idx);
+                    System.out.println("Data Film ini akan masuk di urutan ke-");
+                    System.out.println(idx);
+                    break;
+                case 4:
+                    listFilm.removeFirst();
+                    break;
+                case 5:
+                    listFilm.removeLast();
+                    break;
+                case 6:
+                    System.out.println("Masukkan Urutan Data Film yang ingin dihapus");
+                    idx = sc.nextInt();
+                    listFilm.remove(idx);
+                    break;
+                case 7:
+                    System.out.println("Cetak Data");
+                    listFilm.print();
+                    break;
+                case 8:
+                    System.out.println("Masukkan ID Film yang Anda cari");
+                    int idKey = sc.nextInt();
+                    Film found = listFilm.findFilm(idKey);
+                    int pos = listFilm.findIdx(idKey);
+                    if (found != null) {
+                        System.out.println("Data Id Film: " + idKey + " berada di node ke- " + pos);
+                        System.out.println("IDENTITAS");
+                        System.out.println(" ID Film: " + found.id);
+                        System.out.println(" Judul Film: " + found.judul);
+                        System.out.println(" IMDB Rating: " + found.rating);
+                    } else {
+                        System.out.println("Film dengan ID " + idKey + "tidak ada di dalam list!");
+                    }
+                    break;
+                case 9:   
+                    listFilm.sortDesc();
+                    listFilm.print();
+                    break;
+                case 10:
+                    System.exit(0);
+                    break;
+                default:
+                    System.out.println("Menu yang Anda masukkan tidak valid!");
+                    break;
+            }
+        } while (pilih <= 10 && pilih > 0);
+    }
+}
+```
+
+Output program:
+```
+===============================
+DATA FILM LAYAR LEBAR
+===============================
+1. Tambah Data Awal
+2. Tambah Data Akhir
+3. Tambah Data Index Tertentu
+4. Hapus Data Pertama
+5. Hapus Data Terakhir
+6. Hapus Data Tertentu
+7. Cetak
+8. Cari ID Film
+9. Urut Data Rating Film-DESC
+10. Keluar
+===============================
+1
+Masukkan Data Film Posisi Awal
+ID FIlm:
+1222 
+Judul Film:
+Spider-Man: No Way Home
+Rating FIlm:
+8.7
+===============================
+DATA FILM LAYAR LEBAR
+===============================
+1. Tambah Data Awal
+2. Tambah Data Akhir
+3. Tambah Data Index Tertentu
+4. Hapus Data Pertama
+5. Hapus Data Terakhir
+6. Hapus Data Tertentu
+7. Cetak
+8. Cari ID Film
+9. Urut Data Rating Film-DESC
+10. Keluar
+===============================
+2
+Masukkan Data Film Posisi Akhir
+ID FIlm:
+1346      
+Judul Film:
+Uncharted
+Rating FIlm:
+6.7
+===============================
+DATA FILM LAYAR LEBAR
+===============================
+1. Tambah Data Awal
+2. Tambah Data Akhir
+3. Tambah Data Index Tertentu
+4. Hapus Data Pertama
+5. Hapus Data Terakhir
+6. Hapus Data Tertentu
+7. Cetak
+8. Cari ID Film
+9. Urut Data Rating Film-DESC
+10. Keluar
+===============================
+3
+Masukkan Data Film
+Urutan ke-
+1
+ID FIlm:
+1765
+Judul Film:
+Skyfall
+Rating FIlm:
+7.8
+Data Film ini akan masuk di urutan ke-
+1
+===============================
+DATA FILM LAYAR LEBAR
+===============================
+1. Tambah Data Awal
+2. Tambah Data Akhir
+3. Tambah Data Index Tertentu
+4. Hapus Data Pertama
+5. Hapus Data Terakhir
+6. Hapus Data Tertentu
+7. Cetak
+8. Cari ID Film
+9. Urut Data Rating Film-DESC
+10. Keluar
+===============================
+2
+Masukkan Data Film Posisi Akhir
+ID FIlm:
+1567
+Judul Film:
+The Dark Knight Rises
+Rating FIlm:
+8.4
+===============================
+DATA FILM LAYAR LEBAR
+===============================
+1. Tambah Data Awal
+2. Tambah Data Akhir
+3. Tambah Data Index Tertentu
+4. Hapus Data Pertama
+5. Hapus Data Terakhir
+6. Hapus Data Tertentu
+7. Cetak
+8. Cari ID Film
+9. Urut Data Rating Film-DESC
+10. Keluar
+===============================
+7
+Cetak Data
+ID: 1222
+ Judul Film: Spider-Man: No Way Home
+ Rating Film: 8.7
+ID: 1765
+ Judul Film: Skyfall
+ Rating Film: 7.8
+ID: 1346
+ Judul Film: Uncharted
+ Rating Film: 6.7
+ID: 1567
+ Judul Film: The Dark Knight Rises
+ Rating Film: 8.4
+===============================
+DATA FILM LAYAR LEBAR
+===============================
+1. Tambah Data Awal
+2. Tambah Data Akhir
+3. Tambah Data Index Tertentu
+4. Hapus Data Pertama
+5. Hapus Data Terakhir
+6. Hapus Data Tertentu
+7. Cetak
+8. Cari ID Film
+9. Urut Data Rating Film-DESC
+10. Keluar
+===============================
+5
+===============================
+DATA FILM LAYAR LEBAR
+===============================
+1. Tambah Data Awal
+2. Tambah Data Akhir
+3. Tambah Data Index Tertentu
+4. Hapus Data Pertama
+5. Hapus Data Terakhir
+6. Hapus Data Tertentu
+7. Cetak
+8. Cari ID Film
+9. Urut Data Rating Film-DESC
+10. Keluar
+===============================
+7
+Cetak Data
+ID: 1222
+ Judul Film: Spider-Man: No Way Home
+ Rating Film: 8.7
+ID: 1765
+ Judul Film: Skyfall
+ Rating Film: 7.8
+ID: 1346
+ Judul Film: Uncharted
+ Rating Film: 6.7
+===============================
+DATA FILM LAYAR LEBAR
+===============================
+1. Tambah Data Awal
+2. Tambah Data Akhir
+3. Tambah Data Index Tertentu
+4. Hapus Data Pertama
+5. Hapus Data Terakhir
+6. Hapus Data Tertentu
+7. Cetak
+8. Cari ID Film
+9. Urut Data Rating Film-DESC
+10. Keluar
+===============================
+1
+Masukkan Data Film Posisi Awal
+ID FIlm:
+1398
+Judul Film:
+Kimetsu No Yaiba: Mugen Train
+Rating FIlm:
+8.9
+===============================
+DATA FILM LAYAR LEBAR
+===============================
+1. Tambah Data Awal
+2. Tambah Data Akhir
+3. Tambah Data Index Tertentu
+4. Hapus Data Pertama
+5. Hapus Data Terakhir
+6. Hapus Data Tertentu
+7. Cetak
+8. Cari ID Film
+9. Urut Data Rating Film-DESC
+10. Keluar
+===============================
+8
+Masukkan ID Film yang Anda cari
+1765
+Data Id Film: 1765 berada di node ke- 2
+IDENTITAS
+ ID Film: 1765
+ Judul Film: Skyfall
+ IMDB Rating: 7.8
+===============================
+DATA FILM LAYAR LEBAR
+===============================
+1. Tambah Data Awal
+2. Tambah Data Akhir
+3. Tambah Data Index Tertentu
+4. Hapus Data Pertama
+5. Hapus Data Terakhir
+6. Hapus Data Tertentu
+7. Cetak
+8. Cari ID Film
+9. Urut Data Rating Film-DESC
+10. Keluar
+===============================
+7
+Cetak Data
+ID: 1398
+ Judul Film: Kimetsu No Yaiba: Mugen Train
+ Rating Film: 8.9
+ID: 1222
+ Judul Film: Spider-Man: No Way Home
+ Rating Film: 8.7
+ID: 1765
+ Judul Film: Skyfall
+ Rating Film: 7.8
+ID: 1346
+ Judul Film: Uncharted
+ Rating Film: 6.7
+===============================
+DATA FILM LAYAR LEBAR
+===============================
+1. Tambah Data Awal
+2. Tambah Data Akhir
+3. Tambah Data Index Tertentu
+4. Hapus Data Pertama
+5. Hapus Data Terakhir
+6. Hapus Data Tertentu
+7. Cetak
+8. Cari ID Film
+9. Urut Data Rating Film-DESC
+10. Keluar
+===============================
+3
+Masukkan Data Film
+Urutan ke-
+2
+ID FIlm:
+1238
+Judul Film:
+Death on The Nile
+Rating FIlm:
+6.6
+Data Film ini akan masuk di urutan ke-
+2
+===============================
+DATA FILM LAYAR LEBAR
+===============================
+1. Tambah Data Awal
+2. Tambah Data Akhir
+3. Tambah Data Index Tertentu
+4. Hapus Data Pertama
+5. Hapus Data Terakhir
+6. Hapus Data Tertentu
+7. Cetak
+8. Cari ID Film
+9. Urut Data Rating Film-DESC
+10. Keluar
+===============================
+4
+===============================
+DATA FILM LAYAR LEBAR
+===============================
+1. Tambah Data Awal
+2. Tambah Data Akhir
+3. Tambah Data Index Tertentu
+4. Hapus Data Pertama
+5. Hapus Data Terakhir
+6. Hapus Data Tertentu
+7. Cetak
+8. Cari ID Film
+9. Urut Data Rating Film-DESC
+10. Keluar
+===============================
+7
+Cetak Data
+ID: 1222
+ Judul Film: Spider-Man: No Way Home
+ Rating Film: 8.7
+ID: 1238
+ Judul Film: Death on The Nile
+ Rating Film: 6.6
+ID: 1765
+ Judul Film: Skyfall
+ Rating Film: 7.8
+ID: 1346
+ Judul Film: Uncharted
+ Rating Film: 6.7
+===============================
+DATA FILM LAYAR LEBAR
+===============================
+1. Tambah Data Awal
+2. Tambah Data Akhir
+3. Tambah Data Index Tertentu
+4. Hapus Data Pertama
+5. Hapus Data Terakhir
+6. Hapus Data Tertentu
+7. Cetak
+8. Cari ID Film
+9. Urut Data Rating Film-DESC
+10. Keluar
+===============================
+2
+Masukkan Data Film Posisi Akhir
+ID FIlm:
+5641
+Judul Film:
+John Wick: Chapter 4
+Rating FIlm:
+7.7
+===============================
+DATA FILM LAYAR LEBAR
+===============================
+1. Tambah Data Awal
+2. Tambah Data Akhir
+3. Tambah Data Index Tertentu
+4. Hapus Data Pertama
+5. Hapus Data Terakhir
+6. Hapus Data Tertentu
+7. Cetak
+8. Cari ID Film
+9. Urut Data Rating Film-DESC
+10. Keluar
+===============================
+1
+Masukkan Data Film Posisi Awal
+ID FIlm:
+8975
+Judul Film:
+Interstellar
+Rating FIlm:
+8.9
+===============================
+DATA FILM LAYAR LEBAR
+===============================
+1. Tambah Data Awal
+2. Tambah Data Akhir
+3. Tambah Data Index Tertentu
+4. Hapus Data Pertama
+5. Hapus Data Terakhir
+6. Hapus Data Tertentu
+7. Cetak
+8. Cari ID Film
+9. Urut Data Rating Film-DESC
+10. Keluar
+===============================
+7
+Cetak Data
+ID: 8975
+ Judul Film: Interstellar
+ Rating Film: 8.9
+ID: 1222
+ Judul Film: Spider-Man: No Way Home
+ Rating Film: 8.7
+ID: 1238
+ Judul Film: Death on The Nile
+ Rating Film: 6.6
+ID: 1765
+ Judul Film: Skyfall
+ Rating Film: 7.8
+ID: 1346
+ Judul Film: Uncharted
+ Rating Film: 6.7
+ID: 5641
+ Judul Film: John Wick: Chapter 4
+ Rating Film: 7.7
+===============================
+DATA FILM LAYAR LEBAR
+===============================
+1. Tambah Data Awal
+2. Tambah Data Akhir
+3. Tambah Data Index Tertentu
+4. Hapus Data Pertama
+5. Hapus Data Terakhir
+6. Hapus Data Tertentu
+7. Cetak
+8. Cari ID Film
+9. Urut Data Rating Film-DESC
+10. Keluar
+===============================
+6
+Masukkan Urutan Data Film yang ingin dihapus
+2
+===============================
+DATA FILM LAYAR LEBAR
+===============================
+1. Tambah Data Awal
+2. Tambah Data Akhir
+3. Tambah Data Index Tertentu
+4. Hapus Data Pertama
+5. Hapus Data Terakhir
+6. Hapus Data Tertentu
+7. Cetak
+8. Cari ID Film
+9. Urut Data Rating Film-DESC
+10. Keluar
+===============================
+7
+Cetak Data
+ID: 8975
+ Judul Film: Interstellar
+ Rating Film: 8.9
+ID: 1222
+ Judul Film: Spider-Man: No Way Home
+ Rating Film: 8.7
+ID: 1765
+ Judul Film: Skyfall
+ Rating Film: 7.8
+ID: 1346
+ Judul Film: Uncharted
+ Rating Film: 6.7
+ID: 5641
+ Judul Film: John Wick: Chapter 4
+ Rating Film: 7.7
+===============================
+DATA FILM LAYAR LEBAR
+===============================
+1. Tambah Data Awal
+2. Tambah Data Akhir
+3. Tambah Data Index Tertentu
+4. Hapus Data Pertama
+5. Hapus Data Terakhir
+6. Hapus Data Tertentu
+7. Cetak
+8. Cari ID Film
+9. Urut Data Rating Film-DESC
+10. Keluar
+===============================
+8
+Masukkan ID Film yang Anda cari
+5641
+Data Id Film: 5641 berada di node ke- 4
+IDENTITAS
+ ID Film: 5641
+ Judul Film: John Wick: Chapter 4
+ IMDB Rating: 7.7
+===============================
+DATA FILM LAYAR LEBAR
+===============================
+1. Tambah Data Awal
+2. Tambah Data Akhir
+3. Tambah Data Index Tertentu
+4. Hapus Data Pertama
+5. Hapus Data Terakhir
+6. Hapus Data Tertentu
+7. Cetak
+8. Cari ID Film
+9. Urut Data Rating Film-DESC
+10. Keluar
+===============================
+9
+ID: 8975
+ Judul Film: Interstellar
+ Rating Film: 8.9
+ID: 1222
+ Judul Film: Spider-Man: No Way Home
+ Rating Film: 8.7
+ID: 1765
+ Judul Film: Skyfall
+ Rating Film: 7.8
+ID: 5641
+ Judul Film: John Wick: Chapter 4
+ Rating Film: 7.7
+ID: 1346
+ Judul Film: Uncharted
+ Rating Film: 6.7
+===============================
+DATA FILM LAYAR LEBAR
+===============================
+1. Tambah Data Awal
+2. Tambah Data Akhir
+3. Tambah Data Index Tertentu
+4. Hapus Data Pertama
+5. Hapus Data Terakhir
+6. Hapus Data Tertentu
+7. Cetak
+8. Cari ID Film
+9. Urut Data Rating Film-DESC
+10. Keluar
+===============================
+5
+===============================
+DATA FILM LAYAR LEBAR
+===============================
+1. Tambah Data Awal
+2. Tambah Data Akhir
+3. Tambah Data Index Tertentu
+4. Hapus Data Pertama
+5. Hapus Data Terakhir
+6. Hapus Data Tertentu
+7. Cetak
+8. Cari ID Film
+9. Urut Data Rating Film-DESC
+10. Keluar
+===============================
+7
+Cetak Data
+ID: 8975
+ Judul Film: Interstellar
+ Rating Film: 8.9
+ID: 1222
+ Judul Film: Spider-Man: No Way Home
+ Rating Film: 8.7
+ID: 1765
+ Judul Film: Skyfall
+ Rating Film: 7.8
+ID: 5641
+ Judul Film: John Wick: Chapter 4
+ Rating Film: 7.7
+===============================
+DATA FILM LAYAR LEBAR
+===============================
+1. Tambah Data Awal
+2. Tambah Data Akhir
+3. Tambah Data Index Tertentu
+4. Hapus Data Pertama
+5. Hapus Data Terakhir
+6. Hapus Data Tertentu
+7. Cetak
+8. Cari ID Film
+9. Urut Data Rating Film-DESC
+10. Keluar
+===============================
+10
+PS D:\Kuliah\Semester 2\Tugas Kuliah Semester 2\Algoritma dan Struktur Data\Praktikum-Algoritma dan Struktur Data>
+```
+
 # <p align ="center">--- *** ---</p>
