@@ -1074,10 +1074,10 @@ DATA FILM LAYAR LEBAR
 9. Urut Data Rating Film-DESC
 10. Keluar
 ===============================
-1
+1    
 Masukkan Data Film Posisi Awal
 ID FIlm:
-1222 
+1222
 Judul Film:
 Spider-Man: No Way Home
 Rating FIlm:
@@ -1099,9 +1099,9 @@ DATA FILM LAYAR LEBAR
 2
 Masukkan Data Film Posisi Akhir
 ID FIlm:
-1346      
+1346
 Judul Film:
-Uncharted
+uncharted
 Rating FIlm:
 6.7
 ===============================
@@ -1128,8 +1128,7 @@ Judul Film:
 Skyfall
 Rating FIlm:
 7.8
-Data Film ini akan masuk di urutan ke-
-1
+Data Film ini akan masuk di urutan ke-1
 ===============================
 DATA FILM LAYAR LEBAR
 ===============================
@@ -1175,7 +1174,7 @@ ID: 1765
  Judul Film: Skyfall
  Rating Film: 7.8
 ID: 1346
- Judul Film: Uncharted
+ Judul Film: uncharted
  Rating Film: 6.7
 ID: 1567
  Judul Film: The Dark Knight Rises
@@ -1195,6 +1194,11 @@ DATA FILM LAYAR LEBAR
 10. Keluar
 ===============================
 5
+Film dengan
+ ID: 1567
+ Judul: The Dark Knight Rises
+ Rating: 8.4
+berhasil dihapus
 ===============================
 DATA FILM LAYAR LEBAR
 ===============================
@@ -1209,7 +1213,7 @@ DATA FILM LAYAR LEBAR
 9. Urut Data Rating Film-DESC
 10. Keluar
 ===============================
-7
+7 
 Cetak Data
 ID: 1222
  Judul Film: Spider-Man: No Way Home
@@ -1218,7 +1222,7 @@ ID: 1765
  Judul Film: Skyfall
  Rating Film: 7.8
 ID: 1346
- Judul Film: Uncharted
+ Judul Film: uncharted
  Rating Film: 6.7
 ===============================
 DATA FILM LAYAR LEBAR
@@ -1257,7 +1261,7 @@ DATA FILM LAYAR LEBAR
 10. Keluar
 ===============================
 8
-Masukkan ID Film yang Anda cari
+Masukkan ID Film yang Anda cari:
 1765
 Data Id Film: 1765 berada di node ke- 2
 IDENTITAS
@@ -1290,7 +1294,7 @@ ID: 1765
  Judul Film: Skyfall
  Rating Film: 7.8
 ID: 1346
- Judul Film: Uncharted
+ Judul Film: uncharted
  Rating Film: 6.7
 ===============================
 DATA FILM LAYAR LEBAR
@@ -1316,8 +1320,7 @@ Judul Film:
 Death on The Nile
 Rating FIlm:
 6.6
-Data Film ini akan masuk di urutan ke-
-2
+Data Film ini akan masuk di urutan ke-2
 ===============================
 DATA FILM LAYAR LEBAR
 ===============================
@@ -1333,6 +1336,11 @@ DATA FILM LAYAR LEBAR
 10. Keluar
 ===============================
 4
+Film dengan
+ ID: 1398
+ Judul: Kimetsu No Yaiba: Mugen Train
+ Rating: 8.9
+berhasil dihapus
 ===============================
 DATA FILM LAYAR LEBAR
 ===============================
@@ -1359,7 +1367,7 @@ ID: 1765
  Judul Film: Skyfall
  Rating Film: 7.8
 ID: 1346
- Judul Film: Uncharted
+ Judul Film: uncharted
  Rating Film: 6.7
 ===============================
 DATA FILM LAYAR LEBAR
@@ -1434,7 +1442,7 @@ ID: 1765
  Judul Film: Skyfall
  Rating Film: 7.8
 ID: 1346
- Judul Film: Uncharted
+ Judul Film: uncharted
  Rating Film: 6.7
 ID: 5641
  Judul Film: John Wick: Chapter 4
@@ -1454,8 +1462,13 @@ DATA FILM LAYAR LEBAR
 10. Keluar
 ===============================
 6
-Masukkan Urutan Data Film yang ingin dihapus
+Masukkan Urutan Data Film yang ingin dihapus:
 2
+Film dengan
+ ID: 1238
+ Judul: Death on The Nile
+ Rating: 6.6
+berhasil dihapus
 ===============================
 DATA FILM LAYAR LEBAR
 ===============================
@@ -1482,7 +1495,7 @@ ID: 1765
  Judul Film: Skyfall
  Rating Film: 7.8
 ID: 1346
- Judul Film: Uncharted
+ Judul Film: uncharted
  Rating Film: 6.7
 ID: 5641
  Judul Film: John Wick: Chapter 4
@@ -1502,7 +1515,7 @@ DATA FILM LAYAR LEBAR
 10. Keluar
 ===============================
 8
-Masukkan ID Film yang Anda cari
+Masukkan ID Film yang Anda cari:
 5641
 Data Id Film: 5641 berada di node ke- 4
 IDENTITAS
@@ -1537,7 +1550,7 @@ ID: 5641
  Judul Film: John Wick: Chapter 4
  Rating Film: 7.7
 ID: 1346
- Judul Film: Uncharted
+ Judul Film: uncharted
  Rating Film: 6.7
 ===============================
 DATA FILM LAYAR LEBAR
@@ -1554,6 +1567,11 @@ DATA FILM LAYAR LEBAR
 10. Keluar
 ===============================
 5
+Film dengan
+ ID: 1346
+ Judul: uncharted
+ Rating: 6.7
+berhasil dihapus
 ===============================
 DATA FILM LAYAR LEBAR
 ===============================
@@ -1573,6 +1591,51 @@ Cetak Data
 ID: 8975
  Judul Film: Interstellar
  Rating Film: 8.9
+ID: 1222
+ Judul Film: Spider-Man: No Way Home
+ Rating Film: 8.7
+ID: 1765
+ Judul Film: Skyfall
+ Rating Film: 7.8
+ID: 5641
+ Judul Film: John Wick: Chapter 4
+ Rating Film: 7.7
+===============================
+DATA FILM LAYAR LEBAR
+===============================
+1. Tambah Data Awal
+2. Tambah Data Akhir
+3. Tambah Data Index Tertentu
+4. Hapus Data Pertama
+5. Hapus Data Terakhir
+6. Hapus Data Tertentu
+7. Cetak
+8. Cari ID Film
+9. Urut Data Rating Film-DESC
+10. Keluar
+===============================
+4 
+Film dengan
+ ID: 8975
+ Judul: Interstellar
+ Rating: 8.9
+berhasil dihapus
+===============================
+DATA FILM LAYAR LEBAR
+===============================
+1. Tambah Data Awal
+2. Tambah Data Akhir
+3. Tambah Data Index Tertentu
+4. Hapus Data Pertama
+5. Hapus Data Terakhir
+6. Hapus Data Tertentu
+7. Cetak
+8. Cari ID Film
+9. Urut Data Rating Film-DESC
+10. Keluar
+===============================
+7
+Cetak Data
 ID: 1222
  Judul Film: Spider-Man: No Way Home
  Rating Film: 8.7

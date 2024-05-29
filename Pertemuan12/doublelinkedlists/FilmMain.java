@@ -63,7 +63,7 @@ public class FilmMain {
                     System.out.println("Rating FIlm: ");
                     rate = sc.nextDouble();
                     listFilm.add(id, judul, rate, idx);
-                    System.out.println("Data Film ini akan masuk di urutan ke-");
+                    System.out.print("Data Film ini akan masuk di urutan ke-");
                     System.out.println(idx);
                     break;
                 case 4:
@@ -73,7 +73,7 @@ public class FilmMain {
                     listFilm.removeLast();
                     break;
                 case 6:
-                    System.out.println("Masukkan Urutan Data Film yang ingin dihapus");
+                    System.out.println("Masukkan Urutan Data Film yang ingin dihapus:");
                     idx = sc.nextInt();
                     listFilm.remove(idx);
                     break;
@@ -82,7 +82,7 @@ public class FilmMain {
                     listFilm.print();
                     break;
                 case 8:
-                    System.out.println("Masukkan ID Film yang Anda cari");
+                    System.out.println("Masukkan ID Film yang Anda cari:");
                     int idKey = sc.nextInt();
                     Film found = listFilm.findFilm(idKey);
                     int pos = listFilm.findIdx(idKey);

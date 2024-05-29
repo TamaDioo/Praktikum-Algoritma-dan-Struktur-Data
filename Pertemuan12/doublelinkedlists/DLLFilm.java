@@ -89,9 +89,11 @@ public class DLLFilm {
         } else if (size == 1) {
             removeLast();
         } else {
+            Film rm = head;
             head = head.next;
             head.prev = null;
             size--;
+            System.out.printf("Film dengan\n ID: %d \n Judul: %s \n Rating: %.1f \nberhasil dihapus\n", rm.id, rm.judul, rm.rating);
         }
     }
 
@@ -99,16 +101,20 @@ public class DLLFilm {
         if (isEmpty()) {
             throw new Exception("Daftar Film masih kosong, tidak dapat dihapus!");
         } else if (head.next == null) {
+            Film rm = head;
             head = null;
             size --;
+            System.out.printf("Film dengan\n ID: %d \n Judul: %s \n Rating: %.1f \nberhasil dihapus\n", rm.id, rm.judul, rm.rating);
             return;
         } 
         Film current = head;
         while (current.next.next != null) {
             current = current.next;     
         }
+        Film rm = current.next;
         current.next = null;
         size--;
+        System.out.printf("Film dengan\n ID: %d \n Judul: %s \n Rating: %.1f \nberhasil dihapus\n", rm.id, rm.judul, rm.rating);
     }
 
     public void remove(int index) throws Exception {
@@ -123,6 +129,7 @@ public class DLLFilm {
                 current = current.next;
                 i++;
             }
+            Film rm = current;
             if (current.next == null) {
                 current.prev.next = null;
             } else if (current.prev == null) {
@@ -134,6 +141,7 @@ public class DLLFilm {
                 current.next.prev = current.prev;
             }
             size--;
+            System.out.printf("Film dengan\n ID: %d \n Judul: %s \n Rating: %.1f \nberhasil dihapus\n", rm.id, rm.judul, rm.rating);
         }
     }
 
