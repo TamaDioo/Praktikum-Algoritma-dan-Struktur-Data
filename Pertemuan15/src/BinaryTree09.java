@@ -1,3 +1,5 @@
+import org.w3c.dom.Node;
+
 public class BinaryTree09 {
     Node09 root;
     int size;
@@ -161,5 +163,57 @@ public class BinaryTree09 {
                 }
             }
         }
+    }
+
+    Node09 addRekursif(Node09 current, int data) {
+        if (current == null) {
+            return new Node09(data);
+        }
+
+        if (data < current.data) {
+            current.left = addRekursif(current.left, data);
+        } else if (data > current.data) {
+            current.right = addRekursif(current.right, data);
+        }
+        return current;
+    }
+
+    int findMin() {
+        Node09 current = root;
+        while (current.left != null) {
+            current = current.left;
+        }
+        return current.data;
+    }
+
+    int findMax() {
+        Node09 current = root;
+        while (current.right != null) {
+            current = current.right;
+        }
+        return current.data;
+    }
+
+    void printLeaf(Node09 node) {
+        if (node == null) {
+            return;
+        }
+        if (node.left == null && node.right == null) {
+            System.out.print(node.data + " ");
+        }
+        printLeaf(node.left);
+        printLeaf(node.right);
+    }
+
+    int hitungLeaf(Node09 node) {
+        if (node == null) {
+            return 0;
+        }
+        if (node.left == null && node.right == null) {
+            return 1; 
+        }
+        int leafKiri = hitungLeaf(node.left);
+        int leafKanan = hitungLeaf(node.right);
+        return leafKiri + leafKanan;
     }
 }

@@ -338,10 +338,147 @@ Jadi, node binary tree yang disimpan dalam array dengan indeks 2 akan memiliki p
 Jawab: Statement int idxLast = 6 akan mengisi variabel idxLast dengan 6 yang kemudian variabel idxLast akan dimasukkan sebagai parameter pada method populateData(). Walaupun sebenarnya indeks maksimum dari array data adalah 9 (karena ada 10 elemen), tetapi yang digunakan hanya sampai indeks ke-6 saja, karena indeks 7-9 nilainya 0 sehingga tidak perlu dimasukkan ke dalam binary tree. Dengan menginisialisasi idxLast = 6, akan membuat program menjadi lebih efisien karena tidak perlu memproses elemen yang bernilai 0 yaitu pada indeks 7-9.
 
 ## 13.4 Tugas Praktikum
-1. Buat method di dalam class **BinaryTree** yang akan menambahkan node dengan cara rekursif.
-2. Buat method di dalam class **BinaryTree** untuk menampilkan nilai paling kecil dan yang paling besar yang ada di dalam tree.
-3. Buat method di dalam class **BinaryTree** untuk menampilkan data yang ada di leaf.
-4. Buat method di dalam class **BinaryTree** untuk menampilkan berapa jumlah leaf yang ada di dalam tree.
+1. Buat method di dalam class **BinaryTree** yang akan menambahkan node dengan cara rekursif.<br>
+Jawab:
+```java
+    Node09 addRekursif(Node09 current, int data) {
+        if (current == null) {
+            return new Node09(data);
+        }
+
+        if (data < current.data) {
+            current.left = addRekursif(current.left, data);
+        } else if (data > current.data) {
+            current.right = addRekursif(current.right, data);
+        }
+        return current;
+    }
+```
+
+2. Buat method di dalam class **BinaryTree** untuk menampilkan nilai paling kecil dan yang paling besar yang ada di dalam tree.<br>
+Jawab:
+```java
+    int findMin() {
+        Node09 current = root;
+        while (current.left != null) {
+            current = current.left;
+        }
+        return current.data;
+    }
+
+    int findMax() {
+        Node09 current = root;
+        while (current.right != null) {
+            current = current.right;
+        }
+        return current.data;
+    }
+```
+
+3. Buat method di dalam class **BinaryTree** untuk menampilkan data yang ada di leaf.<br>
+Jawab:
+```java
+    void printLeaf(Node09 node) {
+        if (node == null) {
+            return;
+        }
+        if (node.left == null && node.right == null) {
+            System.out.print(node.data + " ");
+        }
+        printLeaf(node.left);
+        printLeaf(node.right);
+    }
+```
+
+4. Buat method di dalam class **BinaryTree** untuk menampilkan berapa jumlah leaf yang ada di dalam tree.<br>
+Jawab:
+```java
+    int hitungLeaf(Node09 node) {
+        if (node == null) {
+            return 0;
+        }
+        if (node.left == null && node.right == null) {
+            return 1; 
+        }
+        int leafKiri = hitungLeaf(node.left);
+        int leafKanan = hitungLeaf(node.right);
+        return leafKiri + leafKanan;
+    }
+```
+
 5. Modifikasi class **BinaryTreeArray**, dan tambahkan :
-    - method **add(int data)** untuk memasukan data ke dalam tree
-    - method **traversePreOrder()** dan **traversePostOrder()**
+    - method **add(int data)** untuk memasukan data ke dalam tree<br>
+    ```java
+        void add(int data) {
+        if (idxLast < this.data.length - 1) {
+            idxLast++;
+            this.data[idxLast] = data;
+        } else {
+            System.out.println("Tree sudah penuh, tidak bisa menambahkan elemen!");
+        }
+    }
+    ```
+    - method **traversePreOrder()** dan **traversePostOrder()**<br>
+    ```java
+    void traversePreOrder(int idxStart) {
+        if (idxStart <= idxLast) {
+            System.out.print(data[idxStart] + " ");
+            traversePreOrder(2 * idxStart + 1);
+            traversePreOrder(2 * idxStart + 2); 
+        }
+    }
+
+    void traversePostOrder(int idxStart) {
+        if (idxStart <= idxLast) {
+            traversePostOrder(2 * idxStart + 1);
+            traversePostOrder(2 * idxStart + 2); 
+            System.out.print(data[idxStart] + " ");
+        }
+    }
+    ```
+
+Kode program class BinaryTreeMain09 setelah ada penambahan method:
+```Java
+public class BinaryTreeMain09 {
+    public static void main(String[] args) {
+        BinaryTree09 bt = new BinaryTree09();
+        bt.root = bt.addRekursif(bt.root, 6);
+        bt.root = bt.addRekursif(bt.root, 4);
+        bt.root = bt.addRekursif(bt.root, 8);
+        bt.root = bt.addRekursif(bt.root, 3);
+        bt.root = bt.addRekursif(bt.root, 5);
+        bt.root = bt.addRekursif(bt.root, 7);
+        bt.root = bt.addRekursif(bt.root, 9);
+        bt.root = bt.addRekursif(bt.root, 10);
+        bt.root = bt.addRekursif(bt.root, 15);
+        System.out.print("Preorder Traversal : ");
+        bt.traversePreOrder(bt.root);
+        System.out.println("");
+        System.out.print("inOrder Traversal : ");
+        bt.traverseInOrder(bt.root);
+        System.out.println("");
+        System.out.print("PostOrder Traversal : ");
+        bt.traversePostOrder(bt.root);  
+        System.out.println("");
+        System.out.println("Find Node : " + bt.find(5));
+        System.out.println("Delete Node 8 ");
+        bt.delete(8);
+        System.out.println("");
+        System.out.print("PreOrder Traversal : ");
+        bt.traversePreOrder(bt.root);
+        System.out.println("");
+
+        System.out.println("Nilai terkecil dalam tree : " + bt.findMin());
+        System.out.println("Nilai terbesar dalam tree : " + bt.findMax());
+
+        System.out.print("Data yang ada di leaf : ");
+        bt.printLeaf(bt.root);
+        System.out.println("");
+
+        System.out.println("Jumlah leaf yang ada di dalam tree : " + bt.hitungLeaf(bt.root));
+    }
+}
+```
+
+Output program:<br>
+<img src="pictures/Tugas-output1.png">
