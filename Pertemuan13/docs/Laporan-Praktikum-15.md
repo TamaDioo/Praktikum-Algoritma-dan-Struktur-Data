@@ -406,37 +406,6 @@ Jawab:
     }
 ```
 
-5. Modifikasi class **BinaryTreeArray**, dan tambahkan :
-    - method **add(int data)** untuk memasukan data ke dalam tree<br>
-    ```java
-        void add(int data) {
-        if (idxLast < this.data.length - 1) {
-            idxLast++;
-            this.data[idxLast] = data;
-        } else {
-            System.out.println("Tree sudah penuh, tidak bisa menambahkan elemen!");
-        }
-    }
-    ```
-    - method **traversePreOrder()** dan **traversePostOrder()**<br>
-    ```java
-    void traversePreOrder(int idxStart) {
-        if (idxStart <= idxLast) {
-            System.out.print(data[idxStart] + " ");
-            traversePreOrder(2 * idxStart + 1);
-            traversePreOrder(2 * idxStart + 2); 
-        }
-    }
-
-    void traversePostOrder(int idxStart) {
-        if (idxStart <= idxLast) {
-            traversePostOrder(2 * idxStart + 1);
-            traversePostOrder(2 * idxStart + 2); 
-            System.out.print(data[idxStart] + " ");
-        }
-    }
-    ```
-
 Kode program class BinaryTreeMain09 setelah ada penambahan method:
 ```Java
 public class BinaryTreeMain09 {
@@ -482,3 +451,56 @@ public class BinaryTreeMain09 {
 
 Output program:<br>
 <img src="pictures/Tugas-output1.png">
+
+5. Modifikasi class **BinaryTreeArray**, dan tambahkan :
+    - method **add(int data)** untuk memasukan data ke dalam tree<br>
+    ```java
+        void add(int data) {
+        if (idxLast < this.data.length - 1) {
+            idxLast++;
+            this.data[idxLast] = data;
+        } else {
+            System.out.println("Tree sudah penuh, tidak bisa menambahkan elemen!");
+        }
+    }
+    ```
+    - method **traversePreOrder()** dan **traversePostOrder()**<br>
+    ```java
+    void traversePreOrder(int idxStart) {
+        if (idxStart <= idxLast) {
+            System.out.print(data[idxStart] + " ");
+            traversePreOrder(2 * idxStart + 1);
+            traversePreOrder(2 * idxStart + 2); 
+        }
+    }
+
+    void traversePostOrder(int idxStart) {
+        if (idxStart <= idxLast) {
+            traversePostOrder(2 * idxStart + 1);
+            traversePostOrder(2 * idxStart + 2); 
+            System.out.print(data[idxStart] + " ");
+        }
+    }
+    ```
+
+Kode program class BinaryTreeArrayMain09 setelah ada penambahan method:
+```java
+public class BinaryTreeArrayMain09 {
+    public static void main(String[] args) {
+        BinaryTreeArray09 bta = new BinaryTreeArray09();
+        int[] data = {6,4,8,3,5,7,9,0,0,0};
+        int idxLast = 6;
+        bta.populateData(data, idxLast);
+        System.out.print("\nInOrder Traversal : ");
+        bta.traverseInOrder(0);
+        System.out.print("\nPreOrder Traversal : ");
+        bta.traversePreOrder(0);
+        System.out.print("\nPostOrder Traversal : ");
+        bta.traversePostOrder(0);
+        System.out.println("\n");
+    }
+}
+```
+
+Output program:<br>
+<img src="pictures/Tugas-output2.png">
