@@ -1,5 +1,3 @@
-import org.w3c.dom.Node;
-
 public class BinaryTree09 {
     Node09 root;
     int size;
