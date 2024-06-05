@@ -447,14 +447,58 @@ public class GraphMain09 {
 <img src="pictures/perc2-output.png">
 
 ### 2.2.3 Pertanyaan
-1. Perbaiki kode program Anda apabila terdapat error atau hasil kompilasi kode tidak sesuai!
-2. Apa jenis graph yang digunakan pada Percobaan 2?
-3. Apa maksud dari dua baris kode berikut?
+1. Perbaiki kode program Anda apabila terdapat error atau hasil kompilasi kode tidak sesuai!<br>
+Jawab: Terdapat output yang tidak sesuai yaitu saat lintasan dari gedung B ke gedung C dihapus, jarak ke gedung B tidak akan tercetak di vertex gedung B. Hal ini karena nilai dari edge setelah dihapus adalah -1 sedangkan pada method removeEdges() dilakukan pengecekan apakah nilai edges tidak sama dengan -1. Ketika nilai edges tidak sama dengan -1, maka vertex gedung akan dicetak. Oleh sebab itulah, ketika lintasan dari gedung B ke gedung C dihapus, jarak ke gedung B tidak akan tercetak di vertex gedung B. Untuk memperbaikinya, saya mengganti nilai dari edge setelah dihapus menjadi 0 agar ketika dicetak akan menampilkan nilai 0. Lalu pengecekan kondisi pada method removeEdges() saya hilangkan, karena pada contoh output semua vertex akan tercetak meskipun tidak ada edge (lintasan) antara vertex asal ke vertex tujuan. Berikut kode program setelah diperbaiki:
+``` java
+    public void removeEdge(int asal, int tujuan) {
+        matriks[asal][tujuan] = 0; //sebelumnya matriks[asal][tujuan] = -1;
+    }
+
+    public void printGraph() {
+        for (int i = 0; i < vertex; i++) {
+            System.out.print("Gedung " + (char) ('A' + i) + ": ");
+            for (int j = 0; j < vertex; j++) {
+                System.out.print("Gedung " + (char) ('A' + j) + " (" + matriks[i][j] + " m), ");
+            }
+            System.out.println();
+        }
+    }
+```
+
+2. Apa jenis graph yang digunakan pada Percobaan 2?<br>
+jawab: Jenis graph yang digunakan pada percobaan 2 adalah Adjacency Matrix karena menggunakan array 2D dengan size v x v dimana v adalah jumlah node pada graph. Nilai jarak dari suatu lintasan yang menghubungkan dua node akan disimpan dalam setiap indeks array 2D.
+
+3. Apa maksud dari dua baris kode berikut?<br>
 ```java
         gdg.makeEdge(1, 2, 70);
         gdg.makeEdge(2, 1, 80);
 ```
-4. Modifikasi kode program sehingga terdapat method untuk menghitung degree, termasuk inDegree dan outDegree!
+Jawab: Dua baris kode akan membuat suatu lintasan yang menghubungkan dua node dengan mengakses method makeEdge() dari objek gdg. Baris pertama dengan parameter (1, 2, 70) berarti akan menghubungkan node 1 dan 2 dengan node 1 sebagai asal dan node 2 sebagai tujuan serta jarak dari vertex 1 ke 2 diisi dengan nilai 70. Baris kedua dengan parameter (2, 1, 80) berarti akan menghubungkan node 2 dan 1 dengan node 2 sebagai asal dan node 1 sebagai tujuan serta jarak dari vertex 2 ke 1 diisi dengan nilai 80. 
+
+4. Modifikasi kode program sehingga terdapat method untuk menghitung degree, termasuk inDegree dan outDegree!<br>
+Jawab: Berikut adalah modifikasi kode program dengan menambahkan method untuk menghitung degree:
+```java
+    public void degree(int index) {
+        int inDeg = 0, outDeg = 0;
+        //inDegree
+        for (int i = 0; i < vertex; i++) {
+            if (matriks[i][index] != 0) {
+                inDeg++;
+            }
+        }
+        //outDegree
+        for (int i = 0; i < vertex; i++) {
+            if (matriks[index][i] != 0) {
+                outDeg++;
+            }
+        }
+        System.out.println("InDegree dari Gedung " + (char) ('A' + index) + ": " + inDeg);
+        System.out.println("outDegree dari Gedung " + (char) ('A' + index) + ": " + outDeg);
+        System.out.println("Degree dari Gedung " + (char) ('A' + index) + ": " + (inDeg + outDeg));
+    }
+```
+Hasil running program setelah dimodifikasi:
+<img src="pictures/perc2.4-output.png">
 
 ## 3. Latihan Praktikum
 1. Modifikasi kode program pada class **GraphMain** sehingga terdapat menu program yang bersifat dinamis, setidaknya terdiri dari:<br>
