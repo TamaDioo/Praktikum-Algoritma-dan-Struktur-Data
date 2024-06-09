@@ -374,18 +374,34 @@ Jawab: Terdapat kesalahan pada bagian method remove() yaitu size tidak dikurangi
     }
 ```
 
-2. Pada class Graph, terdapat atribut **list[]** bertipe DoubleLinkedList. Sebutkan tujuan pembuatan variabel tersebut!
-Jawab: 
+2. Pada class Graph, terdapat atribut **list[]** bertipe DoubleLinkedList. Sebutkan tujuan pembuatan variabel tersebut!<br>
+Jawab: Atribut `list[]` dalam kelas `Graph09` bertujuan untuk menyimpan node yang terhubung (adjacency list) untuk setiap node (vertex) dalam graph. Setiap elemen dari array `list[]` menghubungkan ke sebuah linked list yang berisi informasi tentang node-node yang terhubung dan jarak (bobot) antara node-node tersebut dalam graph. 
 
-3. Jelaskan alur kerja dari method **removeEdge**!
-Jawab: 
+3. Jelaskan alur kerja dari method **removeEdge**!<br>
+Jawab: Method removeEdge() pada kelas Graph09 bertujuan untuk menghapus sebuah lintasan (edge) antara dua node yang terhubung dalam graph. Berikut adalah alur kerja dari method removeEdge:
+1. Method removeEdge memerlukan dua parameter yaitu parameter `int asal` (indeks node asal) dan `int tujuan` (indeks node tujuan) yang dihubungkan oleh lintasan (edge).
+2. Melakukan iterasi perulangan for melalui seluruh vertex dalam graph (dari 0 sampai vertex - 1). Jika indeks node saat iterasi sama dengan parameter `tujuan`, maka lintasan (edge) yang menghubungkan node asal dengan node tujuan dari adjacency list node asal akan dihapus.
 
-4. Apakah alasan pemanggilan method **addFirst()** untuk menambahkan data, bukan method add jenis lain saat digunakan pada method **addEdge** pada class Graph?
-Jawab:
+4. Apakah alasan pemanggilan method **addFirst()** untuk menambahkan data, bukan method add jenis lain saat digunakan pada method **addEdge** pada class Graph?<br>
+Jawab: Pemanggilan method addFirst() untuk menambahkan data pada method addEdge akan memasukkan node yang baru ke posisi pertama dalam adjacency list vertex tertentu. Pemanggilan method addFirst() untuk menambahkan data, bukan method add jenis lain saat digunakan pada method addEdge pada kelas Graph09 memiliki beberapa alasan. Penggunaan method addFirst() untuk menambahkan data pada method addEdge akan memastikan bahwa penambahan node yang baru tidak memerlukan iterasi melalui seluruh adjacency list untuk menemukan posisi terakhir. Hal ini membuat kode program lebih efisien dan mudah dibaca. Selain itu, adjacency list sering kali diimplementasikan sebagai list yang tidak diurutkan, di mana urutan penambahan edge tidak terlalu penting. 
 
-5. Modifikasi kode program sehingga dapat dilakukan pengecekan apakah terdapat jalur antara suatu node dengan node lainnya, seperti contoh berikut (Anda dapat memanfaatkan Scanner).
+5. Modifikasi kode program sehingga dapat dilakukan pengecekan apakah terdapat jalur antara suatu node dengan node lainnya, seperti contoh berikut (Anda dapat memanfaatkan Scanner).<br>
 <img src="pictures/perc1 no5 soal.png"><br>
-Jawab:
+Jawab: Berikut adalah penambahan method untuk mengecek apakah terdapat jalur antara suatu node dengan node lainnya pada class Graph09:
+
+```java
+    public void cekEdge(int asal, int tujuan) throws Exception {
+        for (int i = 0; i < list[asal].size(); i++) {
+            if (list[asal].get(i) == tujuan) {
+                System.out.println("Gedung " + (char) ('A' + asal) + " dan " + (char) ('A' + tujuan) + " bertetangga");
+            } else {
+                System.out.println("Gedung " + (char) ('A' + asal) + " dan " + (char) ('A' + tujuan) + " tidak bertetangga");
+            }
+        }
+    }
+```
+Hasil running program:<br>
+<img src="pictures/perc1.5-output.png"><br>
 
 ## 2.2 Percobaan 2: Implementasi Graph menggunakan Matriks
 ### 2.2.1 Langkah-langkah Percobaan
