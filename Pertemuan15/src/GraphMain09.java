@@ -75,6 +75,6 @@ public class GraphMain09 {
                     System.exit(0);
                     break;
             }
-        } while (pilih <= 8);
+        } while (pilih <= 8 && pilih > 0);
     }
 }
