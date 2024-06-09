@@ -82,4 +82,34 @@ public class Graph09 {
             }
         }
     }
+
+    public void updateJarak(int asal, int tujuan, int jarakBaru) throws Exception {
+        boolean newJarak = false;
+        for (int i = 0; i < list[asal].size(); i++) {
+            if (list[asal].get(i) == tujuan) {
+                list[asal].updateJarak(i, jarakBaru);
+                newJarak = true;
+                break;
+            }
+        }
+        for (int j = 0; j < list[tujuan].size(); j++) {
+            if (list[tujuan].get(j) == asal) {
+                list[tujuan].updateJarak(j, jarakBaru);
+                break;
+            }
+        }
+        if (newJarak == true) {
+            System.out.println("Jarak antara gedung " + (char) ('A' + asal) + " dan gedung " + (char) ('A' + tujuan) + " telah diubah menjadi " + jarakBaru + " m");
+        } else {
+            System.out.println("Gedung " + (char) ('A' + asal) + " dan gedung " + (char) ('A' + tujuan) + " tidak terhubung!");
+        }
+    }
+
+    public int hitungEdge() {
+        int jmlEdge = 0;
+        for (int i = 0; i < vertex; i++) {
+            jmlEdge += list[i].size();
+        }
+        return jmlEdge;
+    }
 }

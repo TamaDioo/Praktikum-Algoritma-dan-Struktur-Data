@@ -199,4 +199,12 @@ public class DoubleLinkedList09 {
         }
         return tmp.data;
     }
+
+    public void updateJarak(int index, int jarakBaru) {
+        Node09 tmp = head;
+        for (int i = 0; i < index; i++) {
+            tmp = tmp.next;
+        }
+        tmp.jarak = jarakBaru;
+    }
 }

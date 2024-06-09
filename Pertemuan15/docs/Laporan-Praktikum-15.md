@@ -795,5 +795,269 @@ Pilih menu:
 6
 PS D:\Kuliah\Semester 2\Tugas Kuliah Semester 2\Algoritma dan Struktur Data\Praktikum-Algoritma dan Struktur Data> 
 ```
-2. Tambahkan method **updateJarak** pada Percobaan 1 yang digunakan untuk mengubah jarak antara dua node asal dan tujuan!
-3. Tambahkan method **hitungEdge** untuk menghitung banyaknya edge yang terdapat di dalam graf!
+2. Tambahkan method **updateJarak** pada Percobaan 1 yang digunakan untuk mengubah jarak antara dua node asal dan tujuan!<br>
+Jawab: Kode program method updateJarak pada class Graph09:
+```java
+    public void updateJarak(int asal, int tujuan, int jarakBaru) throws Exception {
+        boolean newJarak = false;
+        for (int i = 0; i < list[asal].size(); i++) {
+            if (list[asal].get(i) == tujuan) {
+                list[asal].updateJarak(i, jarakBaru);
+                newJarak = true;
+                break;
+            }
+        }
+        for (int j = 0; j < list[tujuan].size(); j++) {
+            if (list[tujuan].get(j) == asal) {
+                list[tujuan].updateJarak(j, jarakBaru);
+                break;
+            }
+        }
+        if (newJarak == true) {
+            System.out.println("Jarak antara gedung " + (char) ('A' + asal) + " dan gedung " + (char) ('A' + tujuan) + " telah diubah menjadi " + jarakBaru + " m");
+        } else {
+            System.out.println("Gedung " + (char) ('A' + asal) + " dan gedung " + (char) ('A' + tujuan) + " tidak terhubung!");
+        }
+    }
+```
+Kode program method updateJarak pada class DoubleLinkedList09:
+```java
+    public void updateJarak(int index, int jarakBaru) {
+        Node09 tmp = head;
+        for (int i = 0; i < index; i++) {
+            tmp = tmp.next;
+        }
+        tmp.jarak = jarakBaru;
+    }
+```
+Hasil running program:<br>
+```
+Pilih menu: 
+1. Add Edge
+2. Remove Edge
+3. Degree
+4. Print Graph
+5. Cek Edge
+6. Update Jarak
+7. Keluar
+--------------------------
+1   
+Tambahkan lintasan antar gedung
+Masukkan index node (gedung) asal: 1   
+Masukkan index node (gedung) tujuan: 2
+Masukkan jarak lintasan dari node awal ke node tujuan (satuan meter): 100
+Pilih menu:
+1. Add Edge
+2. Remove Edge
+3. Degree
+4. Print Graph
+5. Cek Edge
+6. Update Jarak
+7. Keluar
+--------------------------
+4
+Cetak semua node (gedung) yang ada pada graf:
+Gedung B terhubung dengan
+C (100 m),
+
+Pilih menu: 
+1. Add Edge
+2. Remove Edge
+3. Degree
+4. Print Graph
+5. Cek Edge
+6. Update Jarak
+7. Keluar
+--------------------------
+6
+Ubah jarak lintasan antar gedung
+Masukkan index node (gedung) asal: 1
+Masukkan index node (gedung) tujuan: 2
+Masukkan jarak baru lintasan (satuan meter): 200
+Jarak antara gedung B dan gedung C telah diubah menjadi 200 m
+Pilih menu:
+1. Add Edge
+2. Remove Edge
+3. Degree
+4. Print Graph
+5. Cek Edge
+6. Update Jarak
+7. Keluar
+--------------------------
+6
+Ubah jarak lintasan antar gedung
+Masukkan index node (gedung) asal: 3
+Masukkan index node (gedung) tujuan: 0
+Masukkan jarak baru lintasan (satuan meter): 120
+Gedung D dan gedung A tidak terhubung!
+Pilih menu:
+1. Add Edge
+2. Remove Edge
+3. Degree
+4. Print Graph
+5. Cek Edge
+6. Update Jarak
+7. Keluar
+--------------------------
+4
+Cetak semua node (gedung) yang ada pada graf:
+Gedung B terhubung dengan
+C (200 m),
+
+Pilih menu:
+1. Add Edge
+2. Remove Edge
+3. Degree
+4. Print Graph
+5. Cek Edge
+6. Update Jarak
+7. Keluar
+--------------------------
+7
+PS D:\Kuliah\Semester 2\Tugas Kuliah Semester 2\Algoritma dan Struktur Data\Praktikum-Algoritma dan Struktur Data> 
+```
+3. Tambahkan method **hitungEdge** untuk menghitung banyaknya edge yang terdapat di dalam graf!<br>
+Jawab: Kode program method hitungEdge pada class Graph09:
+```java
+    public int hitunngEdge() {
+        int jmlEdge = 0;
+        for (int i = 0; i < vertex; i++) {
+            jmlEdge += list[i].size();
+        }
+        return jmlEdge;
+    }
+```
+Hasil running program:<br>
+```
+Pilih menu: 
+1. Add Edge
+2. Remove Edge
+3. Degree
+4. Print Graph
+5. Cek Edge
+6. Update Jarak
+7. Hitung Edge
+8. keluar
+--------------------------
+1   
+Tambahkan lintasan antar gedung
+Masukkan index node (gedung) asal: 0
+Masukkan index node (gedung) tujuan: 1
+Masukkan jarak lintasan dari node awal ke node tujuan (satuan meter): 123
+Pilih menu:
+1. Add Edge
+2. Remove Edge
+3. Degree
+4. Print Graph
+5. Cek Edge
+6. Update Jarak
+7. Hitung Edge
+8. keluar
+--------------------------
+1
+Tambahkan lintasan antar gedung
+Masukkan index node (gedung) asal: 2
+Masukkan index node (gedung) tujuan: 1
+Masukkan jarak lintasan dari node awal ke node tujuan (satuan meter): 190
+Pilih menu:
+1. Add Edge
+2. Remove Edge
+3. Degree
+4. Print Graph
+5. Cek Edge
+6. Update Jarak
+7. Hitung Edge
+8. keluar
+--------------------------
+1
+Tambahkan lintasan antar gedung
+Masukkan index node (gedung) asal: 3
+Masukkan index node (gedung) tujuan: 2
+Masukkan jarak lintasan dari node awal ke node tujuan (satuan meter): 76
+Pilih menu:
+1. Add Edge
+2. Remove Edge
+3. Degree
+4. Print Graph
+5. Cek Edge
+6. Update Jarak
+7. Hitung Edge
+8. keluar
+--------------------------
+4
+Cetak semua node (gedung) yang ada pada graf:
+Gedung A terhubung dengan
+B (123 m), 
+Gedung C terhubung dengan
+B (190 m),
+Gedung D terhubung dengan
+C (76 m),
+
+Pilih menu:
+1. Add Edge
+2. Remove Edge
+3. Degree
+4. Print Graph
+5. Cek Edge
+6. Update Jarak
+7. Hitung Edge
+8. keluar
+--------------------------
+7
+Jumlah edge (lintasan) di dalam graph: 3
+Pilih menu:
+1. Add Edge
+2. Remove Edge
+3. Degree
+4. Print Graph
+5. Cek Edge
+6. Update Jarak
+7. Hitung Edge
+8. keluar
+--------------------------
+2
+Hapus lintasan antar gedung
+Masukkan index node (gedung) asal: 3
+Masukkan index node (gedung) tujuan: 2
+Pilih menu:
+1. Add Edge
+2. Remove Edge
+3. Degree
+4. Print Graph
+5. Cek Edge
+6. Update Jarak
+7. Hitung Edge
+8. keluar
+--------------------------
+7
+Jumlah edge (lintasan) di dalam graph: 2
+Pilih menu:
+1. Add Edge
+2. Remove Edge
+3. Degree
+4. Print Graph
+5. Cek Edge
+6. Update Jarak
+7. Hitung Edge
+8. keluar
+--------------------------
+4
+Cetak semua node (gedung) yang ada pada graf:
+Gedung A terhubung dengan
+B (123 m),
+Gedung C terhubung dengan
+B (190 m),
+
+Pilih menu:
+1. Add Edge
+2. Remove Edge
+3. Degree
+4. Print Graph
+5. Cek Edge
+6. Update Jarak
+7. Hitung Edge
+8. keluar
+--------------------------
+8
+PS D:\Kuliah\Semester 2\Tugas Kuliah Semester 2\Algoritma dan Struktur Data\Praktikum-Algoritma dan Struktur Data> 
+```
