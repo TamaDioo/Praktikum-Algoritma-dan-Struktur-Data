@@ -379,15 +379,15 @@ Jawab: Atribut `list[]` dalam kelas `Graph09` bertujuan untuk menyimpan node yan
 
 3. Jelaskan alur kerja dari method **removeEdge**!<br>
 Jawab: Method removeEdge() pada kelas Graph09 bertujuan untuk menghapus sebuah lintasan (edge) antara dua node yang terhubung dalam graph. Berikut adalah alur kerja dari method removeEdge:
-1. Method removeEdge memerlukan dua parameter yaitu parameter `int asal` (indeks node asal) dan `int tujuan` (indeks node tujuan) yang dihubungkan oleh lintasan (edge).
-2. Melakukan iterasi perulangan for melalui seluruh vertex dalam graph (dari 0 sampai vertex - 1). Jika indeks node saat iterasi sama dengan parameter `tujuan`, maka lintasan (edge) yang menghubungkan node asal dengan node tujuan dari adjacency list node asal akan dihapus.
+   1. Method removeEdge memerlukan dua parameter yaitu parameter `int asal` (indeks node asal) dan `int tujuan` (indeks node tujuan) yang dihubungkan oleh lintasan (edge).
+   2. Melakukan iterasi perulangan for melalui seluruh vertex dalam graph (dari 0 sampai vertex - 1). Jika indeks node saat iterasi sama dengan parameter `tujuan`, maka lintasan (edge) yang menghubungkan node asal dengan node tujuan dari adjacency list node asal akan dihapus.
 
 4. Apakah alasan pemanggilan method **addFirst()** untuk menambahkan data, bukan method add jenis lain saat digunakan pada method **addEdge** pada class Graph?<br>
 Jawab: Pemanggilan method addFirst() untuk menambahkan data pada method addEdge akan memasukkan node yang baru ke posisi pertama dalam adjacency list vertex tertentu. Pemanggilan method addFirst() untuk menambahkan data, bukan method add jenis lain saat digunakan pada method addEdge pada kelas Graph09 memiliki beberapa alasan. Penggunaan method addFirst() untuk menambahkan data pada method addEdge akan memastikan bahwa penambahan node yang baru tidak memerlukan iterasi melalui seluruh adjacency list untuk menemukan posisi terakhir. Hal ini membuat kode program lebih efisien dan mudah dibaca. Selain itu, adjacency list sering kali diimplementasikan sebagai list yang tidak diurutkan, di mana urutan penambahan edge tidak terlalu penting. 
 
 5. Modifikasi kode program sehingga dapat dilakukan pengecekan apakah terdapat jalur antara suatu node dengan node lainnya, seperti contoh berikut (Anda dapat memanfaatkan Scanner).<br>
 <img src="pictures/perc1 no5 soal.png"><br>
-Jawab: Berikut adalah penambahan method untuk mengecek apakah terdapat jalur antara suatu node dengan node lainnya pada class Graph09:
+Jawab: Berikut adalah modifikasi kode program penambahan method untuk mengecek apakah terdapat jalur antara suatu node dengan node lainnya pada class Graph09:
 
 ```java
     public void cekEdge(int asal, int tujuan) throws Exception {
@@ -523,6 +523,277 @@ b) Remove Edge<br>
 c) Degree<br>
 d) Print Graph<br>
 e) Cek Edge<br>
-Pengguna dapat memilih menu program melalui input Scanner
+Pengguna dapat memilih menu program melalui input Scanner<br>
+Jawab: Berikut adalah modifikasi kode program penambahan menu-menu di atas pada class GraphMain09:<br>
+```java
+package Pertemuan15.src;
+import java.util.Scanner;
+
+public class GraphMain09 {
+    public static void menu() {
+        System.out.println("Pilih menu: ");
+        System.out.println("1. Add Edge");
+        System.out.println("2. Remove Edge");
+        System.out.println("3. Degree");
+        System.out.println("4. Print Graph");
+        System.out.println("5. Cek Edge");
+        System.out.println("6. Keluar");
+        System.out.println("--------------------------");
+    }
+    public static void main(String[] args) throws Exception {
+        Scanner sc = new Scanner(System.in);
+        int a, t, pilih;
+        Graph09 gedung = new Graph09(6);
+
+        do {
+            menu();
+            pilih = sc.nextInt();
+            switch (pilih) {
+                case 1:
+                    System.out.println("Tambahkan lintasan antar gedung");
+                    System.out.print("Masukkan index node (gedung) asal: ");
+                    a = sc.nextInt();
+                    System.out.print("Masukkan index node (gedung) tujuan: : ");
+                    t = sc.nextInt();
+                    System.out.print("Masukkan jarak lintasan dari node awal ke node tujuan: : ");
+                    int m = sc.nextInt();
+                    gedung.addEdge(a, t, m);
+                    break;
+                case 2:
+                    System.out.println("Hapus lintasan antar gedung");
+                    System.out.print("Masukkan index node (gedung) asal: ");
+                    a = sc.nextInt();
+                    System.out.print("Masukkan index node (gedung) tujuan: ");
+                    t = sc.nextInt();
+                    gedung.removeEdge(a, t);
+                case 3:
+                    System.out.print("Masukkan index node yang ingin dicek degree-nya: ");
+                    a = sc.nextInt();
+                    gedung.degree(a);
+                    break;
+                case 4:
+                    System.out.println("Cetak semua node (gedung) yang ada pada graf:");
+                    gedung.printGraph();
+                    break;
+                case 5:
+                    System.out.println("Cek lintasan antar node (gedung)");
+                    System.out.print("Masukkan index node asal: ");
+                    a = sc.nextInt();
+                    System.out.print("Masukkan index node tujuan: ");
+                    t = sc.nextInt();
+                    gedung.cekEdge(a, t);
+                    break;
+                case 6:
+                    System.exit(0);
+                    break;
+            }
+        } while (pilih <= 6);
+    }
+}
+```
+Hasil running program:<br>
+```
+Pilih menu: 
+1. Add Edge
+2. Remove Edge
+3. Degree
+4. Print Graph
+5. Cek Edge
+6. Keluar
+--------------------------
+1
+Tambahkan lintasan antar gedung
+Masukkan index node (gedung) asal: 1
+Masukkan index node (gedung) tujuan: 2
+Masukkan jarak lintasan dari node awal ke node tujuan (satuan meter): 35
+Pilih menu: 
+1. Add Edge
+2. Remove Edge
+3. Degree
+4. Print Graph
+5. Cek Edge
+6. Keluar
+--------------------------
+1
+Tambahkan lintasan antar gedung
+Masukkan index node (gedung) asal: 1
+Masukkan index node (gedung) tujuan: 0
+Masukkan jarak lintasan dari node awal ke node tujuan (satuan meter): 23
+Pilih menu:
+1. Add Edge
+2. Remove Edge
+3. Degree
+4. Print Graph
+5. Cek Edge
+6. Keluar
+--------------------------
+1
+Tambahkan lintasan antar gedung
+Masukkan index node (gedung) asal: 1
+Masukkan index node (gedung) tujuan: 4
+Masukkan jarak lintasan dari node awal ke node tujuan (satuan meter): 90
+Pilih menu:
+1. Add Edge
+2. Remove Edge
+3. Degree
+4. Print Graph
+5. Cek Edge
+6. Keluar
+--------------------------
+1
+Tambahkan lintasan antar gedung
+Masukkan index node (gedung) asal: 2
+Masukkan index node (gedung) tujuan: 4
+Masukkan jarak lintasan dari node awal ke node tujuan (satuan meter): 45
+Pilih menu:
+1. Add Edge
+2. Remove Edge
+3. Degree
+4. Print Graph
+5. Cek Edge
+6. Keluar
+--------------------------
+1
+Tambahkan lintasan antar gedung
+Masukkan index node (gedung) asal: 2
+Masukkan index node (gedung) tujuan: 3
+Masukkan jarak lintasan dari node awal ke node tujuan (satuan meter): 29
+Pilih menu:
+1. Add Edge
+2. Remove Edge
+3. Degree
+4. Print Graph
+5. Cek Edge
+6. Keluar
+--------------------------
+4
+Cetak semua node (gedung) yang ada pada graf:
+Gedung B terhubung dengan
+E (90 m), A (23 m), C (35 m),
+Gedung C terhubung dengan
+D (29 m), E (45 m),
+
+Pilih menu:
+1. Add Edge
+2. Remove Edge
+3. Degree
+4. Print Graph
+5. Cek Edge
+6. Keluar
+--------------------------
+2
+Hapus lintasan antar gedung
+Masukkan index node (gedung) asal: 2
+Masukkan index node (gedung) tujuan: 4
+Pilih menu:
+1. Add Edge
+2. Remove Edge
+3. Degree
+4. Print Graph
+5. Cek Edge
+6. Keluar
+--------------------------
+3
+Masukkan index node yang ingin dicek degree-nya: 1
+InDegree dari Gedung B: 0
+OutDegree dari Gedung B: 3
+Degree dari Gedung B: 3
+Pilih menu:
+1. Add Edge
+2. Remove Edge
+3. Degree
+4. Print Graph
+5. Cek Edge
+6. Keluar
+--------------------------
+1
+Tambahkan lintasan antar gedung
+Masukkan index node (gedung) asal: 5
+Masukkan index node (gedung) tujuan: 1
+Masukkan jarak lintasan dari node awal ke node tujuan (satuan meter): 120
+Pilih menu:
+1. Add Edge
+2. Remove Edge
+3. Degree
+4. Print Graph
+5. Cek Edge
+6. Keluar
+--------------------------
+5
+Cek lintasan antar node (gedung)
+Masukkan index node asal: 2
+Masukkan index node tujuan: 3
+Gedung C dan D bertetangga
+Pilih menu:
+1. Add Edge
+2. Remove Edge
+3. Degree
+4. Print Graph
+5. Cek Edge
+6. Keluar
+--------------------------
+4
+Cetak semua node (gedung) yang ada pada graf:
+Gedung B terhubung dengan
+E (90 m), A (23 m), C (35 m),
+Gedung C terhubung dengan
+D (29 m),
+Gedung F terhubung dengan
+B (120 m),
+
+Pilih menu:
+1. Add Edge
+2. Remove Edge
+3. Degree
+4. Print Graph
+5. Cek Edge
+6. Keluar
+--------------------------
+5
+Cek lintasan antar node (gedung)
+Masukkan index node asal: 2
+Masukkan index node tujuan: 0
+Gedung C dan A tidak bertetangga
+Pilih menu:
+1. Add Edge
+2. Remove Edge
+3. Degree
+4. Print Graph
+5. Cek Edge
+6. Keluar
+--------------------------
+3
+Masukkan index node yang ingin dicek degree-nya: 1
+InDegree dari Gedung B: 1
+OutDegree dari Gedung B: 3
+Degree dari Gedung B: 4
+Pilih menu:
+1. Add Edge
+2. Remove Edge
+3. Degree
+4. Print Graph
+5. Cek Edge
+6. Keluar
+--------------------------
+4
+Cetak semua node (gedung) yang ada pada graf:
+Gedung B terhubung dengan
+E (90 m), A (23 m), C (35 m),
+Gedung C terhubung dengan
+D (29 m),
+Gedung F terhubung dengan
+B (120 m),
+
+Pilih menu:
+1. Add Edge
+2. Remove Edge
+3. Degree
+4. Print Graph
+5. Cek Edge
+6. Keluar
+--------------------------
+6
+PS D:\Kuliah\Semester 2\Tugas Kuliah Semester 2\Algoritma dan Struktur Data\Praktikum-Algoritma dan Struktur Data> 
+```
 2. Tambahkan method **updateJarak** pada Percobaan 1 yang digunakan untuk mengubah jarak antara dua node asal dan tujuan!
 3. Tambahkan method **hitungEdge** untuk menghitung banyaknya edge yang terdapat di dalam graf!
