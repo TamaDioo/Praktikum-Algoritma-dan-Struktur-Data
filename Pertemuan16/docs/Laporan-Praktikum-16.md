@@ -283,8 +283,53 @@ public class ListMahasiswa {
 
 ### 16.4.3. Pertanyaan Percobaan
 1. Pada fungsi tambah() yang menggunakan unlimited argument itu menggunakan konsep apa? Dan kelebihannya apa?<br>
+Jawab: Fungsi tambah() yang menggunakan unlimited argument (varargs) menggunakan konsep varargs (variadic arguments). Varargs memungkinkan untuk mengirim sejumlah argumen yang tidak terbatas ke dalam suatu method. Pada kode program class ListMahasiswa, tambah(Mahasiswa... mahasiswa) memungkinkan untuk dapat mengirimkan nol atau lebih objek Mahasiswa sebagai argumen. Argumen varargs akan diterima sebagai array di dalam method. Salah satu kelebihan varargs adalah fleksibilitasnya karena varargs dapat memanggil method dengan jumlah argumen yang berbeda-beda tanpa harus mendefinisikan banyak overloading method. Selain itu, kode juga menjadi lebih ringkas karena tidak perlu membuat banyak method dengan jumlah parameter yang berbeda.
+
 2. Pada fungsi linearSearch() di atas, silakan diganti dengan fungsi binarySearch() dari collection!<br>
+Jawab: Berikut kode program penambahan fungsi binarySearch() dari collection:
+```java
+    int binarySearch(String nim) {
+        List<String> sortedNimList = new ArrayList<>(); //Digunakan untuk menyimpan NIM dari semua mahasiswa
+        for (Mahasiswa mhs : mahasiswas) {
+            sortedNimList.add(mhs.nim);
+        }
+        Collections.sort(sortedNimList); //Data perlu diurutkan terlebih dahulu untuk melakukan pencarian dengan binary search
+        return Collections.binarySearch(sortedNimList, nim);
+    }
+```
+Method main:
+```java
+    public static void main(String[] args) {
+        ListMahasiswa lm = new ListMahasiswa();
+        Mahasiswa m = new Mahasiswa("201234", "Noureen", "021xx1");
+        Mahasiswa m1 = new Mahasiswa("201235", "Akhleema", "021xx2");
+        Mahasiswa m2 = new Mahasiswa("201236", "Shannum", "021xx3");
+
+        lm.tambah(m, m1, m2);
+        lm.tampil();
+
+        lm.update(lm.binarySearch("201235"), new Mahasiswa("201235", "Akhleema Lela"  , "021xx2"));
+        System.out.println("");
+        lm.tampil();
+    }
+```
+Output program yang telah dimodifikasi:<br>
+<img src="pictures/Percobaan3 No2-Collection-Output.png"><br>
+Hasilnya sama seperti ketika menggunakan method linearSearch().
+
 3. Tambahkan fungsi sorting baik secara ascending ataupun descending pada class tersebut!<br>
+Jawab: Berikut kode program penambahan fungsi sorting pada class ListMahasiswa:
+```java
+    public void sortAscending() { //Sorting ascending berdasarkan nama
+        Collections.sort(mahasiswas, (m1, m2) -> m1.nama.compareTo(m2.nama));
+    }
+    
+    public void sortDescending() { //Sorting descending berdasarkan nama
+        Collections.sort(mahasiswas, (m1, m2) -> m2.nama.compareTo(m1.nama)); 
+    }
+```
+Output program yang telah dimodifikasi:<br>
+<img src="pictures/Percobaan3 No3-Collection-Output.png">
 
 ## 16.5. Tugas Praktikum
 1. Buatlah implementasi program daftar nilai mahasiswa semester, minimal memiliki 3 class yaitu Mahasiswa, Nilai, dan Mata Kuliah. Data Mahasiswa dan Mata Kuliah perlu melalui penginputan data terlebih dahulu.
