@@ -63,11 +63,32 @@ public class ContohList {
 
 ### 16.2.3. Pertanyaan Percobaan
 1. Perhatikan baris kode 25-36, mengapa semua jenis data bisa ditampung ke dalam sebuah Arraylist?<br>
+Jawab: Karena secara default List akan menggunakan tipe Object ketika tipe generic tidak ditentukan secara eksplisit. Tipe Object adalah tipe dasar dari semua kelas di Java, sehingga List ini dapat menampung objek dari semua jenis data, baik itu Integer, String, atau tipe objek lainnya.
+
 2. Modifikasi baris kode 25-36 seingga data yang ditampung hanya satu jenis atau spesifik tipe tertentu!<br>
+Jawab: Berikut kode program hasil modifikasi:
+``` java
+        List<Integer> l = new ArrayList();
+        l.add(1);
+        l.add(2);
+        l.add(3);
+        // l.add("Cireng"); Cireng tidak bisa dimasukkan karena merupakan String
+        System.out.printf("Elemen 0: %d total elemen: %d elemen terakhir: %s\n",
+                l.get(0), l.size(), l.get(l.size() - 1));
+
+        l.add(4);
+        l.remove(0);
+```
+
 3. Ubah kode pada baris kode 38 menjadi seperti ini
 ```java
    LinkedList<String> names = new LinkedList<>();
 ```
+Jawab: Berikut adalah perubahan kode pada baris kode 38:
+```java
+    LinkedList<String> names = new LinkedList<>();
+```
+
 4. Tambahkan juga baris berikut ini, untuk memberikan perbedaan dari tampilan yang sebelumnya
 ```java
    names.push("Mei-mei");
@@ -75,8 +96,18 @@ public class ContohList {
          names.get(0), names.size(), names.get(names.size() - 1));
    System.out.println("Names: " + names.toString());
 ```
-5. Dari penambahan kode tersebut, silakan dijalankan dan apakah yang dapat Anda jelaskan!<br>
+Jawab: Berikut kode program hasil modifikasi:
+```java
+    names.push("Mei-mei");
+    System.out.printf("Elemen 0: %s total elemen: %d elemen terakhir: %s%n", 
+            names.get(0), names.size(), names.get(names.size() - 1));
+    System.out.println("Names: " + names.toString());
+```
 
+5. Dari penambahan kode tersebut, silakan dijalankan dan apakah yang dapat Anda jelaskan!<br>
+Jawab: Berikut adalah output kode program setelah dimodifikasi:
+<img src="pictures/Percobaan1 No5-Collection-Output.png"><br>
+Dengan mengubah List menjadi LinkedList, maka method push bisa digunakan. Method push akan menambahkan elemen di bagian depan LinkedList (addFirst) dan elemen tersebut akan menjadi elemen pertama. 
 
 ## 16.3. Kegiatan Praktikum 2
 
