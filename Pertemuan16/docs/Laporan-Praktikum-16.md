@@ -107,7 +107,7 @@ Jawab: Berikut kode program hasil modifikasi:
 5. Dari penambahan kode tersebut, silakan dijalankan dan apakah yang dapat Anda jelaskan!<br>
 Jawab: Berikut adalah output kode program setelah dimodifikasi:
 <img src="pictures/Percobaan1 No5-Collection-Output.png"><br>
-Dengan mengubah List menjadi LinkedList, maka method push bisa digunakan. Method push akan menambahkan elemen di bagian depan LinkedList (addFirst) dan elemen tersebut akan menjadi elemen pertama. 
+Dengan mengubah List menjadi LinkedList, maka method push() bisa digunakan. Method push() akan menambahkan elemen di bagian depan LinkedList (addFirst) dan elemen tersebut akan menjadi elemen pertama. 
 
 ## 16.3. Kegiatan Praktikum 2
 
@@ -160,11 +160,46 @@ public class LoopCollection {
 
 ### 16.3.3. Pertanyaan Percobaan
 1. Apakah perbedaan fungsi push() dan add() pada objek *fruits*?<br>
+Jawab: Sebenarnya tidak ada perbedaan antara fungsi push() dan add() pada objek *fruits*. Kedua fungsi tersebut akan menambahkan elemen ke posisi terakhir dari stack (top of stack). Namun, push() adalah method yang didefinisikan dalam kelas Stack dan secara eksplisit dimaksudkan untuk menumpuk elemen ke atas Stack. Sementara itu, add() adalah method yang diwarisi dari interface Collection, dan fungsinya serupa dalam konteks ini, serta penggunaannya lebih umum dan tidak secara eksplisit menggambarkan niat menumpuk elemen. Jadi, push() merupakan method khusus untuk Stack, sedangkan add() merupakan method umum untuk collection di Java, termasuk Stack.
+
 2. Silakan hilangkan baris 43 dan 44, apakah yang akan terjadi? Mengapa bisa demikian?<br>
+Jawab: Berikut adalah output kode program setelah baris 43 dan 44 dihapus:
+<img src="pictures/Percobaan2 No2-Collection-Output.png"><br>
+Setelah baris 43 dan 44, tidak ada penambahan elemen baru ke dalam `Stack` yang kosong karena sebelumnya sudah di pop dengan perulangan while. Oleh karena itu, perulangan `for` dan `forEach` pada baris kode selanjutnya tidak memiliki elemen untuk diiterasi, sehingga tidak ada output yang dapat dicetak dari kedua perulangan tersebut. Jadi dapat disimpulkan bahwa ketika program akan mencetak elemen `Stack` setelah di-pop, outputnya tidak akan menampilkan apa pun karena `Stack` sudah kosong dan tidak diisi dengan elemen yang baru.
+
 3. Jelaskan fungsi dari baris 46-49?<br>
+Jawab: Baris 46-49 berfungsi untuk mencetak semua elemen dari objek fruits menggunakan iterator. Method fruits.iterator() akan mengembalikan sebuah iterator yang dapat digunakan untuk mengakses elemen-elemen dalam fruits. Method it.hasNext() digunakan untuk memeriksa apakah masih ada elemen yang belum diambil dari iterator. Lalu, method it.next() mengambil elemen berikutnya dari iterator. Dan pada setiap iterasi perulangan akan mencetak elemen yang diambil dari iterator.
+
 4. Silakan ganti baris kode 25, *Stack\<String>* menjadi *List\<String>* dan apakah yang terjadi? Mengapa bisa demikian?<br>
+Jawab: Terjadi error pada program karena `List` tidak dapat mengimplementasikan beberapa method yang ada pada `Stack` seperti method pop(), push(), dan empty().
+
 5. Ganti elemen terakhir dari dari objek fruits menjadi “Strawberry”!<br>
+Jawab: Untuk mengganti elemen terakhir dari dari objek fruits menjadi “Strawberry”, saya memodifikasi kode program dengan rincian di bawah ini:
+- Saya menambahkan kode di bawah ini setelah baris 30:
+```java
+    if (!fruits.isEmpty()) {
+        fruits.set(fruits.size() - 1, "Strawberry");
+    }
+```
+- Saya menambahkan kode di bawah ini setelah baris 44:
+```java
+    fruits.set(fruits.size() - 1, "Strawberry");
+```
+Modifikasi kode program di atas akan mengganti elemen terakhir dari objek fruits menjadi “Strawberry”<br>
+<img src="pictures/Percobaan2 No5-Collection-Output.png">
+
 6. Tambahkan 3 buah seperti “Mango”,”guava”, dan “avocado” kemudian dilakukan sorting!<br>
+Jawab: Saya menambahkan kode di bawah ini setelah baris 44:
+```java
+        fruits.push("Mango");
+        fruits.push("Guava");
+        fruits.push("Avocado");
+
+        //Menggunakan method sort() dari interface Collections
+        Collections.sort(fruits);
+```
+Output program yang telah dimodifikasi:
+<img src="pictures/Percobaan2 No6-Collection-Output.png">
 
 ## 16.4. Kegiatan Praktikum 3
 
