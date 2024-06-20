@@ -162,7 +162,7 @@ public class DaftarNilai {
                 Collections.sort(daftarNilai, Comparator.comparing(Nilai::getNilai).reversed());
                 break;
             default:
-                System.out.println("pilih tidak valid!");
+                System.out.println("pilihan tidak valid!");
         }
         tampilNilai();
     }
